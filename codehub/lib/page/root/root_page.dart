@@ -5,6 +5,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:codehub/page/root/drawer_page.dart';
 
 
 class RootController extends StatefulWidget {
@@ -12,10 +13,22 @@ class RootController extends StatefulWidget {
   _RootControllerState createState() => _RootControllerState();
 }
 
-class _RootControllerState extends State<RootController> {
-
+class _RootControllerState extends State<RootController> with SingleTickerProviderStateMixin{
+  TabController _tabController;
   int _selectedIndex = 0;
-
+  List<String> tabs = [
+    "关注",
+    "趋势",
+    "我的"
+  ];
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: tabs.length,
+      vsync: this
+    );
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -23,7 +36,7 @@ class _RootControllerState extends State<RootController> {
       appBar: AppBar(
         title: Text("标题"),
       ),
-//      drawer: ,
+      drawer: MyDrawer(),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.add),title: Text("关注")),
@@ -33,6 +46,7 @@ class _RootControllerState extends State<RootController> {
         currentIndex: _selectedIndex,
         fixedColor: Colors.blue,
         onTap: _onItemTapped,
+
       ),
     );
   }
