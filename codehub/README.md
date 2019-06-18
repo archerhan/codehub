@@ -1,16 +1,2 @@
 # codehub
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+纯flutter撸一个github,App主要参考[CarGuo大神](https://github.com/CarGuo)的flutter项目[**GSYGithubAppFlutter**](https://github.com/CarGuo/GSYGithubAppFlutter) ,喜欢原版的可以去参考大神的代码. 该项目主要是为了学习巩固flutter知识而写的第一个flutter项目, 项目中难免会有部分功能借鉴,原作者若对该项目有异议, 本人将会随时删除相关代码.
