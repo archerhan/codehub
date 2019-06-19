@@ -6,6 +6,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:codehub/page/root/drawer_page.dart';
+import 'package:codehub/page/follow/my_follow_page.dart';
+import 'package:codehub/page/trending/trending_repositories_page.dart';
+import 'package:codehub/page/my/me_page.dart';
 
 
 class RootController extends StatefulWidget {
@@ -13,50 +16,77 @@ class RootController extends StatefulWidget {
   _RootControllerState createState() => _RootControllerState();
 }
 
-class _RootControllerState extends State<RootController> with SingleTickerProviderStateMixin{
-  TabController _tabController;
-  int _selectedIndex = 0;
-  List<String> tabs = [
-    "关注",
-    "趋势",
-    "我的"
-  ];
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(
-      length: tabs.length,
-      vsync: this
+class _RootControllerState extends State<RootController> with SingleTickerProviderStateMixin {
+
+  int bottomSelectedIndex = 0;
+
+  List<BottomNavigationBarItem> buildBottomNavBarItems() {
+    return [
+      BottomNavigationBarItem(
+          icon: new Icon(Icons.home),
+          title: new Text('关注')
+      ),
+      BottomNavigationBarItem(
+        icon: new Icon(Icons.search),
+        title: new Text('趋势'),
+      ),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.info_outline),
+          title: Text('我的')
+      )
+    ];
+  }
+
+  PageController pageController = PageController(
+    initialPage: 0,
+    keepPage: true,
+  );
+
+  Widget buildPageView() {
+    return PageView(
+      controller: pageController,
+      onPageChanged: (index) {
+        pageChanged(index);
+      },
+      children: <Widget>[
+        MyFollowPage(),
+        TrendingRepositories(),
+        MyPage(),
+      ],
     );
   }
+  void pageChanged(int index) {
+    setState(() {
+      bottomSelectedIndex = index;
+    });
+  }
+
+  void bottomTapped(int index) {
+    setState(() {
+      bottomSelectedIndex = index;
+      pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text("标题"),
       ),
       drawer: MyDrawer(),
+      body: buildPageView(),
       bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.add),title: Text("关注")),
-          BottomNavigationBarItem(icon: Icon(Icons.store),title: Text("趋势")),
-          BottomNavigationBarItem(icon: Icon(Icons.person),title: Text("我的")),
-        ],
-        currentIndex: _selectedIndex,
-        fixedColor: Colors.blue,
-        onTap: _onItemTapped,
-
+        currentIndex: bottomSelectedIndex,
+        onTap: (index) {
+          bottomTapped(index);
+        },
+        items: buildBottomNavBarItems(),
       ),
     );
   }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 }
+
 
 
 
