@@ -40,12 +40,37 @@ class _MyDrawerState extends State<MyDrawer> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: CircleAvatar(
-//                      child: Image.asset(
-//                        "resource/images/valley.jpg",
-//                        width: 80,
-//                      ),
+                      child: Container(
+                        width: 80,
+                        height: 80,
+                        decoration: ShapeDecoration(
+                          shape: CircleBorder(
+                            side: BorderSide.none
+                          ),
+                          image: DecorationImage(
+                            image: AssetImage("resource/images/snow_sun.jpg"),
+                            fit: BoxFit.fill
+                          ),
                         ),
+                      )
+//                      child: Container(
+//                        width: 80.0,
+//                        height: 80.0,
+//                        decoration: BoxDecoration(
+//                          shape: BoxShape.circle,
+//                          image: DecorationImage(
+//                              image: AssetImage("resource/images/valley.jpg"),
+//                              fit: BoxFit.cover)
+//                        ),
+//                      ),
+
+//                    child: ClipOval(
+//                      child: Image.asset("resource/images/valley.jpg",width: 80,),
+//                    ),
+//                    child: CircleAvatar(
+//                      backgroundImage: AssetImage("resource/images/stars.jpg"),
+//                      radius: 80,
+//                    ),
                   ),
                   Text(
                     "ArcherHan",
@@ -59,14 +84,14 @@ class _MyDrawerState extends State<MyDrawer> {
                 itemBuilder: (BuildContext context, int index) {
                   if (_titles[index] == loadingTag) {
                     return Container(
-                      padding: EdgeInsets.all(10.0),
-                      alignment: Alignment.center,
-                      child: RaisedButton(
-                        child: Text("退出登录"),
-                        onPressed: () {
-                          print("退出登录");
-                        },
-                      ));
+                        padding: EdgeInsets.all(10.0),
+                        alignment: Alignment.center,
+                        child: RaisedButton(
+                          child: Text("退出登录"),
+                          onPressed: () {
+                            print("退出登录");
+                          },
+                        ));
                   }
                   return ListTile(
                     title: Text(_titles[index]),
