@@ -2,6 +2,7 @@
   <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.flutter-io.cn/shared_preferences-0.5.3+1" />
+      <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.flutter-io.cn/connectivity-0.4.3+2" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
