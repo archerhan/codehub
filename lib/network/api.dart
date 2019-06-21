@@ -23,7 +23,11 @@ class Api {
   ///用户的star get
   static userStar(userName, sort) {
     sort ??= 'updated';
-
     return "${host}users/$userName/starred?sort=$sort";
+  }
+  ///用户的仓库 get
+  static userRepos(userName, sort) {
+    sort ??= 'pushed';
+    return "${host}users/$userName/repos?sort=$sort";
   }
 }

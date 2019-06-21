@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:codehub/common/dao/user_dao.dart';
 import 'package:codehub/common/local/local_storage.dart';
 import 'package:codehub/common/constant/global_config.dart';
+import 'package:codehub/network/http_manager.dart';
+import 'package:codehub/network/api.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -16,8 +18,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  var _uname = "";
-  var _pwd = "";
+//  var _uname = "";
+//  var _pwd = "";
   TextEditingController _unameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -26,10 +28,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    _uname = LocalStorage.get(GlobalConfig.USER_ACCOUNT_KEY);
-    _pwd = LocalStorage.get(GlobalConfig.USER_PWD_KEY);
-    _unameController.value = TextEditingValue(text: _uname ?? "");
-    _passwordController.value = TextEditingValue(text: _pwd ?? "");
+//    _uname = LocalStorage.get(GlobalConfig.USER_ACCOUNT_KEY);
+//    _pwd = LocalStorage.get(GlobalConfig.USER_PWD_KEY);
+//    _unameController.value = TextEditingValue(text: _uname ?? "");
+//    _passwordController.value = TextEditingValue(text: _pwd ?? "");
   }
   @override
   Widget build(BuildContext context) {
@@ -92,9 +94,11 @@ class _LoginPageState extends State<LoginPage> {
                                 onPressed: () {
                                   if ((_formKey.currentState as FormState).validate()) {
                                     print("$_unameController.text,$_passwordController.text");
-                                    UserDao.login(_unameController.text, _passwordController.text).then((res) {
-                                      print(res);
-                                    });
+                                    httpManager.request(Api.userRepos("archerhan", null), null, null, null);
+//                                    UserDao.login(_unameController.text, _passwordController.text).then((res) {
+//                                      print(res);
+//                                    });
+
                                   }
                                 },
                               ),
