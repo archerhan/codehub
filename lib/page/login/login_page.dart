@@ -5,6 +5,9 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:codehub/common/dao/user_dao.dart';
+import 'package:codehub/common/local/local_storage.dart';
+import 'package:codehub/common/constant/global_config.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -12,11 +15,22 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  var _uname = "";
+  var _pwd = "";
   TextEditingController _unameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
   GlobalKey _formKey = GlobalKey<FormState>();
 
+  @override
+  void initState() {
+    super.initState();
+    _uname = LocalStorage.get(GlobalConfig.USER_ACCOUNT_KEY);
+    _pwd = LocalStorage.get(GlobalConfig.USER_PWD_KEY);
+    _unameController.value = TextEditingValue(text: _uname ?? "");
+    _passwordController.value = TextEditingValue(text: _pwd ?? "");
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -77,7 +91,10 @@ class _LoginPageState extends State<LoginPage> {
                                 textColor: Colors.white,
                                 onPressed: () {
                                   if ((_formKey.currentState as FormState).validate()) {
-                                    print("登录");
+                                    print("$_unameController.text,$_passwordController.text");
+                                    UserDao.login(_unameController.text, _passwordController.text).then((res) {
+                                      print(res);
+                                    });
                                   }
                                 },
                               ),
