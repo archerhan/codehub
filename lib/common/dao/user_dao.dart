@@ -33,8 +33,10 @@ class UserDao {
       "client_secret": GlobalConfig.CLIENT_SECRET
     };
     httpManager.clearAuthorization();
-
-    var res = await httpManager.request(Api.getAuthorization(), json.encode(requestParam), null, Options(method: "post",headers: {"Authorization" : "1ad3cbde47044e3e88bd0039337711988b423b39"}));
+    Options options = Options();
+    options.headers["Authorization"] = base64Str;
+    options.method = "post";
+    var res = await httpManager.request(Api.getAuthorization(), json.encode(requestParam), null, options);
     var resultData = null;
     if (res != null && res.result) {
       await LocalStorage.save(GlobalConfig.USER_PWD_KEY, password);

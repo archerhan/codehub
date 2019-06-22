@@ -6,16 +6,18 @@
 import 'package:shared_preferences/shared_preferences.dart';
 class LocalStorage {
   static save(String key, value) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString(key, value);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(key, value);
   }
+
   static get(String key) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.get(key);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.get(key);
   }
+
   static remove(String key) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.remove(key);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove(key);
   }
 }
 

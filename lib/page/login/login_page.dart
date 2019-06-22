@@ -94,10 +94,11 @@ class _LoginPageState extends State<LoginPage> {
                                 onPressed: () {
                                   if ((_formKey.currentState as FormState).validate()) {
                                     print("$_unameController.text,$_passwordController.text");
-                                    httpManager.request(Api.userRepos("archerhan", null), null, null, null);
-//                                    UserDao.login(_unameController.text, _passwordController.text).then((res) {
-//                                      print(res);
-//                                    });
+                                    UserDao.login(_unameController.text.trim(), _passwordController.text.trim()).then((res){
+                                      print(res);
+                                    });
+
+
 
                                   }
                                 },

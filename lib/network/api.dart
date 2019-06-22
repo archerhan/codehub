@@ -9,6 +9,7 @@ class Api {
   static const String host = "https://api.github.com/";
   static const String hostWeb = "https://github.com/";
 
+
   static getAuthorization() {
     return "${host}authorizations";
   }

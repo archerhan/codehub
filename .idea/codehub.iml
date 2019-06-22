@@ -25,6 +25,18 @@
       <excludeFolder url="file://$MODULE_DIR$/codehub/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/codehub/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/codehub/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/connectivity/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/connectivity/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/connectivity/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/connectivity/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/connectivity/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/connectivity/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/shared_preferences/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/shared_preferences/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/shared_preferences/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/shared_preferences/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/shared_preferences/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/shared_preferences/example/build" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
