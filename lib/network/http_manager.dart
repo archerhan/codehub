@@ -7,20 +7,33 @@ import 'package:codehub/network/interceptors/token_interceptor.dart';
 import 'package:codehub/network/interceptors/error_interceptor.dart';
 import 'package:codehub/network/status_code.dart';
 import 'package:codehub/network/result_data.dart';
+import 'package:codehub/common/constant/global_config.dart';
 
 class HttpManager {
   static const CONTENT_TYPE_JSON = "application/json";
   static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 
   Dio _dio = Dio();
+
+  // 设置代理用来调试应用
+
   final TokenInterceptor _tokenInterceptor = TokenInterceptor();
 
   HttpManager() {
+
     _dio.interceptors.add(new HeaderInterceptor());
     _dio.interceptors.add(_tokenInterceptor);
     _dio.interceptors.add(new LogsInterceptor());
     _dio.interceptors.add(new ResponseInterceptor());
     _dio.interceptors.add(new ErrorInterceptor(_dio));
+
+    (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) {
+      client.findProxy = (uri) {
+
+        // 用1个开关设置是否开启代理
+        return GlobalConfig.DEBUG ? GlobalConfig.PROXY_IP : 'DIRECT';
+      };
+    };
   }
 
 

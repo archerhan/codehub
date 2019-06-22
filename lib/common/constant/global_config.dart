@@ -5,8 +5,13 @@
 class GlobalConfig {
 
 
-
+  //是否开启Log
   static const DEBUG = true;
+  //开启代理, 上线前一定要关闭!!!!!!!
+  static const USE_PROXY = true;
+
+  static const PROXY_IP = "PROXY 192.168.0.110:8888";
+
   static const USER_TOKEN_KEY = "user-token-key";
   static const USER_ACCOUNT_KEY = "user-account-key";
   static const USER_PWD_KEY = "user-pwd-key";

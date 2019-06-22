@@ -40,11 +40,10 @@ class UserDao {
     var resultData = null;
     if (res != null && res.result) {
       await LocalStorage.save(GlobalConfig.USER_PWD_KEY, password);
+      //请求user数据, 在适当的时机存储
       var resultData = await getUserInfo(null);
       if (GlobalConfig.DEBUG) {
-        print("user result " + resultData.result.toString());
-        print(resultData.data);
-        print(res.data.toString());
+        print('User返回数据:' + res.data.toString());
       }
     }
     return DataResult(resultData, res.result);
@@ -86,7 +85,31 @@ class UserDao {
         return new DataResult(res.data, false);
       }
     }
+
+    if (needDB) {
+      //todo:user持久化, sqlite的使用
+    }
+
+    return await next();
   }
+  //获取本地存储的user
+  static getUserInLocal() async {
+    var userText = await LocalStorage.get(GlobalConfig.USER_INFO);
+    if (userText != null) {
+      var userMap = json.decode(userText);
+      User user = User.fromJson(userMap);
+      return DataResult(user, true);
+    }
+    else {
+      return DataResult(null, false);
+    }
+  }
+
+  static clearAll() async {
+    httpManager.clearAuthorization();
+    LocalStorage.remove(GlobalConfig.USER_INFO);
+  }
+
   ///在header中提起stared count
   static getUserStaredCountNet(userName) async {
     String url = Api.userStar(userName, null) + "&per_page=1";
