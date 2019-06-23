@@ -12,7 +12,7 @@ import 'package:codehub/network/api.dart';
 import 'package:dio/dio.dart';
 import 'package:codehub/common/dao/dao_reslut.dart';
 import 'package:codehub/common/model/user.dart';
-
+import 'package:codehub/common/db/provider/user_info_db_provider.dart';
 
 
 class UserDao {
@@ -52,6 +52,7 @@ class UserDao {
 
 
   static getUserInfo(userName , {needDB = false}) async {
+    UserInfoDbProvider provider = UserInfoDbProvider();
     next() async {
       var res;
       if (userName == null) {
@@ -76,7 +77,7 @@ class UserDao {
         }
         else {
           if (needDB) {
-
+            provider.insert(userName, json.encode(user.toJson()));
           }
         }
         return new DataResult(user, true);
@@ -87,7 +88,12 @@ class UserDao {
     }
 
     if (needDB) {
-      //todo:user持久化, sqlite的使用
+      User user = await provider.getUserInfo(userName);
+      if (user == null) {
+        return await next();
+      }
+      DataResult dataResult = DataResult(user, true, next: next());
+      return dataResult;
     }
 
     return await next();

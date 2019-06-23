@@ -5,6 +5,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:codehub/page/login/login_page.dart';
 
 class MyDrawer extends StatefulWidget {
   @override
@@ -89,6 +90,17 @@ class _MyDrawerState extends State<MyDrawer> {
                         child: RaisedButton(
                           child: Text("退出登录"),
                           onPressed: () {
+                            Navigator.push(context, PageRouteBuilder(
+                              transitionDuration: Duration(milliseconds: 500),
+                              pageBuilder: (BuildContext context, Animation animation,
+                                  Animation secondaryAnimation){
+                                  return FadeTransition(
+                                    opacity: animation,
+                                    child: LoginPage(),
+                                  );
+                              }
+
+                            ));
                             print("退出登录");
                           },
                         ));

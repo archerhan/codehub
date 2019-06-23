@@ -50,7 +50,7 @@ class _RootControllerState extends State<RootController> with SingleTickerProvid
         pageChanged(index);
       },
       children: <Widget>[
-        LoginPage(),
+        MyFollowPage(),
         TrendingRepositories(),
         MyPage(),
       ],
