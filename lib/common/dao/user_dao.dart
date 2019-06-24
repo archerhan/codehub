@@ -18,7 +18,7 @@ import 'package:redux/redux.dart';
 
 
 class UserDao {
-  static login(userName, password) async {
+  static login(userName, password,Store store) async {
     String type = userName + ":" + password;
     var bytes = utf8.encode(type);
     var base64Str = base64.encode(bytes);
@@ -50,19 +50,19 @@ class UserDao {
         print(res.data.toString());
       }
 
-//      store.dispatch(UpdateUserAction(resultData.data));
+      store.dispatch(UpdateUserAction(resultData.data));
 
     }
     return DataResult(resultData, res.result);
 
   }
 
-  static initUserInfo() async {
+  static initUserInfo(Store store) async {
     String token = await LocalStorage.get(GlobalConfig.USER_TOKEN_KEY);
     DataResult res = await getUserInLocal();
-//    if (res != null && res.result && token != null) {
-//      store.dispatch(UpdateUserAction(res.data));
-//    }
+    if (res != null && res.result && token != null) {
+      store.dispatch(UpdateUserAction(res.data));
+    }
     return DataResult(res.data,(res.result && token != null));
   }
 
@@ -126,10 +126,10 @@ class UserDao {
     }
   }
 
-  static clearAll() async {
+  static clearAll(Store store) async {
     httpManager.clearAuthorization();
     LocalStorage.remove(GlobalConfig.USER_INFO);
-//    store.dispatch(UpdateUserAction(User.empty()));
+    store.dispatch(UpdateUserAction(User.empty()));
   }
 
   ///在header中提起stared count
