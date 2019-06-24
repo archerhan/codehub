@@ -4,6 +4,7 @@
  *  description :
  */
 
+import 'package:codehub/common/constant/global_config.dart';
 
 class Api {
   static const String host = "https://api.github.com/";
@@ -31,4 +32,52 @@ class Api {
     sort ??= 'pushed';
     return "${host}users/$userName/repos?sort=$sort";
   }
+
+  ///用户收到的事件信息 get
+  static getEventReceived(userName) {
+    return "${host}users/$userName/received_events";
+  }
+
+  ///用户相关的事件信息 get
+  static getEvent(userName) {
+    return "${host}users/$userName/events";
+  }
+
+  ///处理分页参数
+  static getPageParams(tab, page, [pageSize = GlobalConfig.PAGE_SIZE]) {
+    if (page != null) {
+      if (pageSize != null) {
+        return "${tab}page=$page&per_page=$pageSize";
+      } else {
+        return "${tab}page=$page";
+      }
+    } else {
+      return "";
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
