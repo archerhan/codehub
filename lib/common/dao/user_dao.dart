@@ -66,7 +66,7 @@ class UserDao {
     return DataResult(res.data,(res.result && token != null));
   }
 
-  static getUserInfo(userName , {needDB = false}) async {
+  static getUserInfo(userName , {needDB = true}) async {
     UserInfoDbProvider provider = UserInfoDbProvider();
     next() async {
       var res;

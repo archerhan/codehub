@@ -35,7 +35,7 @@ abstract class BaseDbProvider {
 
   @mustCallSuper
   prepare(name, String createSql) async {
-    isTableExists = await DbManager.isTableExist(name);
+    isTableExists = await DbManager.isTableExits(name);
     if (!isTableExists) {
       Database db = await DbManager.getCurrentDatabase();
       return await db.execute(createSql);

@@ -9,7 +9,7 @@ class GlobalConfig {
   static const DEBUG = true;
   //开启代理, 上线前一定要关闭!!!!!!!
   static const USE_PROXY = true;
-  static const PROXY_IP = "PROXY 192.168.1.96:8888";
+  static const PROXY_IP = "PROXY 192.168.0.110:8888";
 
   //分页
   static const PAGE_SIZE = 20;

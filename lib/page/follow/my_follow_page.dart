@@ -37,10 +37,10 @@ class _MyFollowPageState extends State<MyFollowPage> {
         child: RaisedButton(
           child: Text("click me"),
           onPressed: () async {
-             var res = await MyFollowDao.getMyFollowDao(_getStore().state.userInfo.login, page: 1, needDb: false);
-             print(res.data);
-             var resp = await MyFollowDao.getMyFollowReceived(_getStore().state.userInfo.login, page: 1, needDb: false);
-             print(resp.data);
+             await MyFollowDao.getMyFollowDao(_getStore().state.userInfo.login, page: 1, needDb: true).then((res){
+            });
+//             var resp = await MyFollowDao.getMyFollowReceived(_getStore().state.userInfo.login, page: 1, needDb: true);
+//             print(resp.data);
           },
         ),
       ),
