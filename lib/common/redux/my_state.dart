@@ -4,7 +4,6 @@
  *  description : redux 全局state
  */
 
-import 'package:flutter/material.dart';
 import 'package:codehub/common/model/user.dart';
 import 'package:codehub/common/redux/middleware/epic_middleware.dart';
 import 'package:codehub/common/redux/user_redux.dart';

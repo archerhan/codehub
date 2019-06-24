@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bed87c1-5225-4f53-8825-5e2839c87211" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/common/dao/my_follow_dao.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/common/db/provider/my_follow_db_provider.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/common/redux/my_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/common/redux/user_redux.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codehub.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codehub.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app.dill.track.dill" beforeDir="false" afterPath="$PROJECT_DIR$/build/app.dill.track.dill" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app.dill.track.dill.incremental.dill" beforeDir="false" afterPath="$PROJECT_DIR$/build/app.dill.track.dill.incremental.dill" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/flutter_assets/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/build/flutter_assets/LICENSE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/flutter_assets/kernel_blob.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/App" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/App" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/_CodeSignature/CodeResources" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/_CodeSignature/CodeResources" afterDir="false" />
@@ -30,13 +24,12 @@
       <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/_CodeSignature/CodeResources" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/_CodeSignature/CodeResources" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/snapshot_blob.bin.d" beforeDir="false" afterPath="$PROJECT_DIR$/build/snapshot_blob.bin.d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/snapshot_blob.bin.d.fingerprint" beforeDir="false" afterPath="$PROJECT_DIR$/build/snapshot_blob.bin.d.fingerprint" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/App.framework/flutter_assets/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/App.framework/flutter_assets/LICENSE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/Flutter/App.framework/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/App.framework/flutter_assets/kernel_blob.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/common/constant/global_config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/constant/global_config.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/network/api.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/network/api.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/common/dao/my_follow_dao.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/dao/my_follow_dao.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/common/dao/user_dao.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/dao/user_dao.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/common/redux/my_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/redux/my_state.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/page/follow/my_follow_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/page/follow/my_follow_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/page/root/root_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/page/root/root_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,8 +42,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/page/login/login_page.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+            <state relative-caret-position="390">
+              <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
               <folding>
                 <element signature="e#75#114#0" expanded="true" />
               </folding>
@@ -59,10 +52,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/common/dao/dao_reslut.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/common/dao/user_dao.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
+            <state relative-caret-position="128">
+              <caret line="61" column="41" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="41" />
               <folding>
                 <element signature="e#75#97#0" expanded="true" />
               </folding>
@@ -79,39 +81,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/page/follow/my_follow_page.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="165">
+              <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
               <folding>
                 <element signature="e#75#114#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/common/redux/my_state.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="25" column="4" lean-forward="true" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
-              <folding>
-                <element signature="e#0#115#0" expanded="true" />
-                <element signature="e#90#129#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/common/redux/user_redux.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="59" column="48" lean-forward="true" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
-              <folding>
-                <element signature="e#0#115#0" expanded="true" />
-                <element signature="e#85#124#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -120,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/common/dao/my_follow_dao.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+            <state relative-caret-position="406">
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
               <folding>
                 <element signature="e#75#127#0" expanded="true" />
               </folding>
@@ -142,9 +118,10 @@
     <findStrings>
       <find>_onItemTapped</find>
       <find>_tabController</find>
-      <find>store</find>
       <find>USER_TOKEN_KEY</find>
       <find>请输入用户名或密码</find>
+      <find>store</find>
+      <find>getUserInLocal</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -189,20 +166,16 @@
         <option value="$PROJECT_DIR$/lib/network/interceptors/token_interceptor.dart" />
         <option value="$PROJECT_DIR$/lib/common/local/local_storage.dart" />
         <option value="$PROJECT_DIR$/lib/network/http_manager.dart" />
-        <option value="$PROJECT_DIR$/lib/page/login/login_page.dart" />
         <option value="$PROJECT_DIR$/lib/common/db/sql_manager.dart" />
         <option value="$PROJECT_DIR$/lib/common/db/sql_provider.dart" />
         <option value="$PROJECT_DIR$/lib/common/utils/code_utils.dart" />
         <option value="$PROJECT_DIR$/lib/common/db/provider/user_info_db_provider.dart" />
-        <option value="$PROJECT_DIR$/lib/common/dao/user_dao.dart" />
         <option value="$PROJECT_DIR$/lib/common/route/route_manager.dart" />
         <option value="$PROJECT_DIR$/lib/page/root/drawer_page.dart" />
         <option value="$PROJECT_DIR$/lib/common/db/provider/my_follow_db_provider.dart" />
         <option value="$PROJECT_DIR$/lib/common/constant/global_config.dart" />
         <option value="$PROJECT_DIR$/lib/network/api.dart" />
-        <option value="$PROJECT_DIR$/lib/common/dao/my_follow_dao.dart" />
         <option value="$PROJECT_DIR$/lib/page/root/root_page.dart" />
-        <option value="$PROJECT_DIR$/lib/page/follow/my_follow_page.dart" />
         <option value="$PROJECT_DIR$/lib/common/redux/middleware/combine_epics.dart" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/lib/common/redux/middleware/epic.dart" />
@@ -210,6 +183,10 @@
         <option value="$PROJECT_DIR$/lib/common/redux/MyState.dart" />
         <option value="$PROJECT_DIR$/lib/common/redux/user_redux.dart" />
         <option value="$PROJECT_DIR$/lib/common/redux/my_state.dart" />
+        <option value="$PROJECT_DIR$/lib/common/dao/my_follow_dao.dart" />
+        <option value="$PROJECT_DIR$/lib/page/login/login_page.dart" />
+        <option value="$PROJECT_DIR$/lib/common/dao/user_dao.dart" />
+        <option value="$PROJECT_DIR$/lib/page/follow/my_follow_page.dart" />
       </list>
     </option>
   </component>
@@ -380,7 +357,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.23525019" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.23525019" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -400,7 +377,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50186706" side_tool="true" weight="0.37547892" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.32950193" />
       <window_info anchor="bottom" id="Android Profiler" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="12" visible="true" weight="0.32950193" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32950193" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
@@ -644,39 +621,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/common/dao/dao_reslut.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/common/route/route_manager.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="e#91#130#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/page/login/login_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
-          <folding>
-            <element signature="e#75#114#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/common/dao/user_dao.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
-          <folding>
-            <element signature="e#75#97#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -722,23 +672,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/common/dao/my_follow_dao.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-          <folding>
-            <element signature="e#75#127#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/page/root/root_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="68" column="7" selection-start-line="68" selection-start-column="7" selection-end-line="68" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/common/redux/middleware/epic.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1390">
@@ -776,12 +709,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/page/follow/my_follow_page.dart">
+    <entry file="file://$PROJECT_DIR$/lib/common/redux/my_state.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="50">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
           <folding>
-            <element signature="e#75#114#0" expanded="true" />
+            <element signature="e#0#115#0" expanded="true" />
+            <element signature="e#89#137#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -797,13 +731,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/common/redux/my_state.dart">
+    <entry file="file://$PROJECT_DIR$/lib/page/root/root_page.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="25" column="4" lean-forward="true" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
+        <state relative-caret-position="35">
+          <caret line="68" column="7" selection-start-line="68" selection-start-column="7" selection-end-line="68" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/common/dao/dao_reslut.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/common/dao/user_dao.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="61" column="41" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="41" />
           <folding>
-            <element signature="e#0#115#0" expanded="true" />
-            <element signature="e#90#129#0" expanded="true" />
+            <element signature="e#75#97#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/page/login/login_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+          <folding>
+            <element signature="e#75#114#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/common/dao/my_follow_dao.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="e#75#127#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/page/follow/my_follow_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding>
+            <element signature="e#75#114#0" expanded="true" />
           </folding>
         </state>
       </provider>

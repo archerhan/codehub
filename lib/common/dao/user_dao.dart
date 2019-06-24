@@ -13,6 +13,8 @@ import 'package:dio/dio.dart';
 import 'package:codehub/common/dao/dao_reslut.dart';
 import 'package:codehub/common/model/user.dart';
 import 'package:codehub/common/db/provider/user_info_db_provider.dart';
+import 'package:codehub/common/redux/user_redux.dart';
+import 'package:redux/redux.dart';
 
 
 class UserDao {
@@ -43,13 +45,26 @@ class UserDao {
       //请求user数据, 在适当的时机存储
       var resultData = await getUserInfo(null);
       if (GlobalConfig.DEBUG) {
-        print('User返回数据:' + res.data.toString());
+//        print("user result " + resultData.result.toString());
+//        print(resultData.data);
+        print(res.data.toString());
       }
+
+//      store.dispatch(UpdateUserAction(resultData.data));
+
     }
     return DataResult(resultData, res.result);
 
   }
 
+  static initUserInfo() async {
+    String token = await LocalStorage.get(GlobalConfig.USER_TOKEN_KEY);
+    DataResult res = await getUserInLocal();
+//    if (res != null && res.result && token != null) {
+//      store.dispatch(UpdateUserAction(res.data));
+//    }
+    return DataResult(res.data,(res.result && token != null));
+  }
 
   static getUserInfo(userName , {needDB = false}) async {
     UserInfoDbProvider provider = UserInfoDbProvider();
@@ -114,6 +129,7 @@ class UserDao {
   static clearAll() async {
     httpManager.clearAuthorization();
     LocalStorage.remove(GlobalConfig.USER_INFO);
+//    store.dispatch(UpdateUserAction(User.empty()));
   }
 
   ///在header中提起stared count

@@ -6,6 +6,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:codehub/common/dao/my_follow_dao.dart';
+import 'package:codehub/common/dao/user_dao.dart';
+import 'package:codehub/common/model/user.dart';
+import 'package:codehub/common/dao/dao_reslut.dart';
 
 class MyFollowPage extends StatefulWidget {
   @override
@@ -17,8 +20,10 @@ class _MyFollowPageState extends State<MyFollowPage> {
   @override
   void initState() {
     super.initState();
-    MyFollowDao.getMyFollowReceived("archerhan");
-    MyFollowDao.getMyFollowDao("archerhan");
+//    DataResult res = UserDao.getUserInLocal();
+//    User user = res.data;
+//    MyFollowDao.getMyFollowReceived(user.login);
+//    MyFollowDao.getMyFollowDao(user.login);
   }
 
   @override
