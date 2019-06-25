@@ -57,6 +57,7 @@ class MyFollowDao {
 
   static getMyFollowDao(String userName, {int page = 1,bool needDb = false}) async {
     MyFollowEventDbProvider provider = MyFollowEventDbProvider();
+
     next() async {
       String url = Api.getEvent(userName) + Api.getPageParams("?", page);
       var res = await httpManager.request(url, null, null, null);
@@ -80,7 +81,7 @@ class MyFollowDao {
       }
     }
     if (needDb) {
-      //todo:从表里面取出数据
+      //从表里面取出数据
       List<FollowEvent> list = await provider.getMyFollowEvent(userName);
       if (list == null || list.length == 0) {
         return await next();

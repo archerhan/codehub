@@ -31,8 +31,8 @@ class UserDao {
     Map requestParam = {
       "scopes": ['user', 'repo', 'gist', 'notifications'],
       "note": "admin_script",
-      "client_id": GlobalConfig.CLIENT_ID,
-      "client_secret": GlobalConfig.CLIENT_SECRET
+//      "client_id": GlobalConfig.CLIENT_ID,
+//      "client_secret": GlobalConfig.CLIENT_SECRET
     };
     httpManager.clearAuthorization();
     Options options = Options();
