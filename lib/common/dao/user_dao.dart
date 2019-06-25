@@ -31,15 +31,15 @@ class UserDao {
     Map requestParam = {
       "scopes": ['user', 'repo', 'gist', 'notifications'],
       "note": "admin_script",
-//      "client_id": GlobalConfig.CLIENT_ID,
-//      "client_secret": GlobalConfig.CLIENT_SECRET
+      "client_id": GlobalConfig.CLIENT_ID,
+      "client_secret": GlobalConfig.CLIENT_SECRET
     };
     httpManager.clearAuthorization();
     Options options = Options();
     options.headers["Authorization"] = base64Str;
     options.method = "post";
     var res = await httpManager.request(Api.getAuthorization(), json.encode(requestParam), null, options);
-    var resultData = null;
+    var resultData = res;
     if (res != null && res.result) {
       await LocalStorage.save(GlobalConfig.USER_PWD_KEY, password);
       //请求user数据, 在适当的时机存储
@@ -66,22 +66,20 @@ class UserDao {
     return DataResult(res.data,(res.result && token != null));
   }
 
-  static getUserInfo(userName , {needDB = true}) async {
-    UserInfoDbProvider provider = UserInfoDbProvider();
+  static getUserInfo(userName , {needDb = true}) async {
+    UserInfoDbProvider provider = new UserInfoDbProvider();
     next() async {
       var res;
       if (userName == null) {
         res = await httpManager.request(Api.getMyUserInfo(), null, null, null);
-      }
-      else {
+      } else {
         res = await httpManager.request(Api.getUserInfo(userName), null, null, null);
       }
-
       if (res != null && res.result) {
         String starred = "---";
         if (res.data["type"] != "Organization") {
           var countRes = await getUserStaredCountNet(res.data["login"]);
-          if (res.result) {
+          if (countRes.result) {
             starred = countRes.data;
           }
         }
@@ -89,28 +87,25 @@ class UserDao {
         user.starred = starred;
         if (userName == null) {
           LocalStorage.save(GlobalConfig.USER_INFO, json.encode(user.toJson()));
-        }
-        else {
-          if (needDB) {
+        } else {
+          if (needDb) {
             provider.insert(userName, json.encode(user.toJson()));
           }
         }
         return new DataResult(user, true);
-      }
-      else {
+      } else {
         return new DataResult(res.data, false);
       }
     }
 
-    if (needDB) {
+    if (needDb) {
       User user = await provider.getUserInfo(userName);
       if (user == null) {
         return await next();
       }
-      DataResult dataResult = DataResult(user, true, next: next());
+      DataResult dataResult = new DataResult(user, true, next: next());
       return dataResult;
     }
-
     return await next();
   }
   //获取本地存储的user

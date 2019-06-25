@@ -75,6 +75,9 @@ class UserInfoDbProvider extends BaseDbProvider {
 
   ///获取事件数据
   Future<User> getUserInfo(String userName) async {
+    if (userName == null) {
+      return null;
+    }
     Database db = await getDataBase();
     var userProvider = await _getUserProvider(db, userName);
     if (userProvider != null) {
