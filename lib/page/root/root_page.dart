@@ -13,6 +13,7 @@ import 'package:codehub/page/login/login_page.dart';
 
 
 class RootController extends StatefulWidget {
+  static final String routeName = "home";
   @override
   _RootControllerState createState() => _RootControllerState();
 }

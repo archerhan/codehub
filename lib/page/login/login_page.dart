@@ -10,6 +10,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:codehub/common/redux/my_state.dart';
 
 class LoginPage extends StatefulWidget {
+  static final String routeName = "login";
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
