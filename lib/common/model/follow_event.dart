@@ -6,6 +6,8 @@
 
 import 'package:json_annotation/json_annotation.dart';
 import 'package:codehub/common/model/user.dart';
+import 'package:codehub/common/model/follow_event_payload.dart';
+import 'package:codehub/common/model/repository.dart';
 
 part 'follow_event.g.dart';
 
@@ -14,9 +16,9 @@ class FollowEvent {
   String id;
   String type;
   User actor;
-//  Repository repo;
+  Repository repo;
   User org;
-//  EventPayload payload;
+  EventPayload payload;
   @JsonKey(name: "public")
   bool isPublic;
   @JsonKey(name: "created_at")
@@ -26,9 +28,9 @@ class FollowEvent {
       this.id,
       this.type,
       this.actor,
-//      this.repo,
+      this.repo,
       this.org,
-//      this.payload,
+      this.payload,
       this.isPublic,
       this.createdAt,
       );

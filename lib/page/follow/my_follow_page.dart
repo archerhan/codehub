@@ -13,6 +13,7 @@ import 'package:codehub/common/model/follow_event.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:codehub/common/redux/my_state.dart';
+import 'package:codehub/widget/follow/follow_item.dart';
 
 class MyFollowPage extends StatefulWidget {
   @override
@@ -56,6 +57,16 @@ class _MyFollowPageState extends State<MyFollowPage> {
     });
   }
 
+  _renderItems(FollowEvent e) {
+    FollowEventViewModel eventViewModel = FollowEventViewModel.fromFollowMap(e);
+    return FollowItem(
+      eventViewModel,
+      onPressed: (){
+        print("点击了Item");
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
@@ -78,9 +89,7 @@ class _MyFollowPageState extends State<MyFollowPage> {
         }
         else {
 
-          return ListTile(
-            title: Text(_followList[index].actor.login),
-          );
+          return _renderItems(_followList[index]);
 
         }
       },
