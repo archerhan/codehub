@@ -3,12 +3,43 @@
  *  date : 2019-06-19 09:47
  *  description :
  */
-
 import 'package:flutter/material.dart';
+///支持顶部和顶部的TabBar控件
+///配合AutomaticKeepAliveClientMixin可以keep住
+class CustomTabBarWidget extends StatefulWidget {
+  ///底部模式type
+  static const int BOTTOM_TAB = 1;
 
-class TabbarPageWidget extends StatefulWidget {
+  ///顶部模式type
+  static const int TOP_TAB = 2;
 
-  TabbarPageWidget({
+  final int type;
+
+  final bool resizeToAvoidBottomPadding;
+
+  final List<Widget> tabItems;
+
+  final List<Widget> tabViews;
+
+  final Color backgroundColor;
+
+  final Color indicatorColor;
+
+  final Widget title;
+
+  final Widget drawer;
+
+  final Widget floatingActionButton;
+
+  final FloatingActionButtonLocation floatingActionButtonLocation;
+
+  final Widget bottomBar;
+
+  final TarWidgetControl tarWidgetControl;
+
+  final ValueChanged<int> onPageChanged;
+
+  CustomTabBarWidget({
     Key key,
     this.type,
     this.tabItems,
@@ -17,69 +48,32 @@ class TabbarPageWidget extends StatefulWidget {
     this.indicatorColor,
     this.title,
     this.drawer,
+    this.bottomBar,
+    this.floatingActionButtonLocation,
     this.floatingActionButton,
+    this.resizeToAvoidBottomPadding = true,
     this.tarWidgetControl,
-    this.topPageControl,
+    this.onPageChanged,
   }) : super(key: key);
-  //tabbar在底部
-  static const int BOTTOM_TAB = 1;
-  //tabbar在顶部
-  static const int TOP_TAB = 2;
-  //类型
-  final int type;
-  //按钮item
-  final List<Widget> tabItems;
-  //页面
-  final List<Widget> tabViews;
-  final Color backgroundColor;
-  //指示条颜色
-  final Color indicatorColor;
-
-  final Widget title;
-  //抽屉
-  final Widget drawer;
-
-  final Widget floatingActionButton;
-
-  final TarWidgetControl tarWidgetControl;
-
-  final PageController topPageControl;
-
 
   @override
-  _TabbarPageWidgetState createState() => _TabbarPageWidgetState(
-      type,
-      tabItems,
-      tabViews,
-      backgroundColor,
-      indicatorColor,
-      title,
-      drawer,
-      floatingActionButton,
-      topPageControl
+  _CustomTabBarState createState() => new _CustomTabBarState(
+    type,
+    tabViews,
+    indicatorColor,
+    title,
+    drawer,
+    floatingActionButton,
+    tarWidgetControl,
+    onPageChanged,
   );
 }
 
-class _TabbarPageWidgetState extends State<TabbarPageWidget> with SingleTickerProviderStateMixin{
-
-  _TabbarPageWidgetState(
-      this._type,
-      this._tabItems,
-      this._tabViews,
-      this._backgroundColor,
-      this._indicatorColor,
-      this._title,
-      this._drawer,
-      this._floatingActionButton,
-      this._pageController)
-      : super();
+class _CustomTabBarState extends State<CustomTabBarWidget>
+    with SingleTickerProviderStateMixin {
   final int _type;
 
-  final List<Widget> _tabItems;
-
   final List<Widget> _tabViews;
-
-  final Color _backgroundColor;
 
   final Color _indicatorColor;
 
@@ -89,77 +83,109 @@ class _TabbarPageWidgetState extends State<TabbarPageWidget> with SingleTickerPr
 
   final Widget _floatingActionButton;
 
-  final PageController _pageController;
+  final TarWidgetControl _tarWidgetControl;
 
+  final PageController _pageController = PageController();
+
+  final ValueChanged<int> _onPageChanged;
+
+  _CustomTabBarState(
+      this._type,
+      this._tabViews,
+      this._indicatorColor,
+      this._title,
+      this._drawer,
+      this._floatingActionButton,
+      this._tarWidgetControl,
+      this._onPageChanged,
+      ) : super();
 
   TabController _tabController;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _tabController = TabController(length: _tabItems.length, vsync: this);
+    _tabController =
+    new TabController(vsync: this, length: widget.tabItems.length);
   }
+
+  ///整个页面dispose时，记得把控制器也dispose掉，释放内存
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (this._type == TabbarPageWidget.TOP_TAB) {
-      return Scaffold(
-        appBar: AppBar(
+    if (this._type == CustomTabBarWidget.TOP_TAB) {
+      ///顶部tab bar
+      return new Scaffold(
+        resizeToAvoidBottomPadding: widget.resizeToAvoidBottomPadding,
+        floatingActionButton:
+        SafeArea(child: _floatingActionButton ?? Container()),
+        floatingActionButtonLocation: widget.floatingActionButtonLocation,
+        persistentFooterButtons:
+        _tarWidgetControl == null ? null : _tarWidgetControl.footerButton,
+        appBar: new AppBar(
+          backgroundColor: Theme.of(context).primaryColor,
           title: _title,
-          backgroundColor: _backgroundColor,
-          bottom: TabBar(
-            isScrollable: true,
-            controller: _tabController,
-            tabs: _tabItems,
-            indicatorColor: _indicatorColor,
-          ),
+          bottom: new TabBar(
+              controller: _tabController,
+              tabs: widget.tabItems,
+              indicatorColor: _indicatorColor,
+              onTap: (index) {
+                _onPageChanged?.call(index);
+                _pageController
+                    .jumpTo(MediaQuery.of(context).size.width * index);
+              }),
         ),
-        drawer: _drawer,
-        floatingActionButton: _floatingActionButton,
-        body: PageView(
-          controller: _pageController,
-          children: _tabViews,
-          onPageChanged: (index){
-            _tabController.animateTo(index);
-          },
-        ),
-      );
-    }
-    else {
-      return Scaffold(
-        appBar: AppBar(
-          title: _title,
-          backgroundColor: _backgroundColor,
-        ),
-        drawer: _drawer,
-        floatingActionButton: _floatingActionButton,
-        body: PageView(
+        body: new PageView(
           controller: _pageController,
           children: _tabViews,
           onPageChanged: (index) {
             _tabController.animateTo(index);
+            _onPageChanged?.call(index);
           },
         ),
-        bottomNavigationBar: Material(
-          color: _backgroundColor,
-          child: TabBar(
-            controller: _tabController,
-            tabs: _tabItems,
-            indicatorColor: _indicatorColor,
-          ),
-        ),
+        bottomNavigationBar: widget.bottomBar,
       );
     }
 
-  }
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    _tabController.dispose();
-    super.dispose();
+    ///底部tab bar
+    return new Scaffold(
+        drawer: _drawer,
+        appBar: new AppBar(
+          backgroundColor: Theme.of(context).primaryColor,
+          title: _title,
+        ),
+        body: new PageView(
+          controller: _pageController,
+          children: _tabViews,
+          onPageChanged: (index) {
+            _tabController.animateTo(index);
+            _onPageChanged?.call(index);
+          },
+        ),
+        bottomNavigationBar: new Material(
+          //为了适配主题风格，包一层Material实现风格套用
+          color: Theme.of(context).primaryColor, //底部导航栏主题颜色
+          child: new SafeArea(
+            child: new TabBar(
+              //TabBar导航标签，底部导航放到Scaffold的bottomNavigationBar中
+              controller: _tabController, //配置控制器
+              tabs: widget.tabItems,
+              indicatorColor: _indicatorColor,
+              onTap: (index) {
+                _onPageChanged?.call(index);
+                _pageController
+                    .jumpTo(MediaQuery.of(context).size.width * index);
+              }, //tab标签的下划线颜色
+            ),
+          ),
+        ));
   }
 }
-
 
 class TarWidgetControl {
   List<Widget> footerButton = [];
