@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 
 class RepoDetailFilePage extends StatefulWidget {
   @override
-  _RepoDetailFilePageState createState() => _RepoDetailFilePageState();
+  RepoDetailFilePageState createState() => RepoDetailFilePageState();
 }
 
-class _RepoDetailFilePageState extends State<RepoDetailFilePage> {
+class RepoDetailFilePageState extends State<RepoDetailFilePage> {
   @override
   Widget build(BuildContext context) {
     return Container(

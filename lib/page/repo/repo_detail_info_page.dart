@@ -9,10 +9,10 @@ import 'package:flutter/material.dart';
 class RepoDetailInfoPage extends StatefulWidget {
 
   @override
-  _RepoDetailInfoPageState createState() => _RepoDetailInfoPageState();
+  RepoDetailInfoPageState createState() => RepoDetailInfoPageState();
 }
 
-class _RepoDetailInfoPageState extends State<RepoDetailInfoPage> {
+class RepoDetailInfoPageState extends State<RepoDetailInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
