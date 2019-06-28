@@ -52,9 +52,8 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
 
   _getRepoStatus() async {
     var result = await ReposDao.getRepositoryStatusDao(widget.userName, widget.reposName);
-    if (result == null) return;
     String watchText = result.data["watch"] ? "UnWatch" : "Watch";
-    String starText = result.data["start"] ? "UnStar" : "Star";
+    String starText = result.data["star"] ? "UnStar" : "Star";
     IconData watchIcon = result.data["watch"]
         ? CustomIcons.REPOS_ITEM_WATCHED
         : CustomIcons.REPOS_ITEM_WATCH;
@@ -122,11 +121,11 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
     List<Widget> bottomWidget =
     <Widget>[
       ///star
-      _renderBottomItem(bottomStatusModel.star, bottomStatusModel.starIcon, null),
+      _renderBottomItem("Star", CustomIcons.REPOS_ITEM_STAR, null),
       ///watch
-      _renderBottomItem(bottomStatusModel.watch, bottomStatusModel.watchIcon, null),
+      _renderBottomItem("Watch", CustomIcons.REPOS_ITEM_WATCH, null),
       ///fork
-      _renderBottomItem("fork", CustomIcons.REPOS_ITEM_FORK, null),
+      _renderBottomItem("Fork", CustomIcons.REPOS_ITEM_FORK, null),
 
     ];
     return bottomWidget;
@@ -141,8 +140,9 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
         vsync: this, duration: Duration(milliseconds: 800));
     animationController.forward();
 
-//    _refresh();
-    _getBranchList();
+    _refresh();
+//    _getBranchList();
+    tarBarControl.footerButton = _getBottomWidget();
   }
 
   @override

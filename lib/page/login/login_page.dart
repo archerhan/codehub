@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:codehub/common/dao/user_dao.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:codehub/common/redux/my_state.dart';
+import 'package:codehub/common/route/route_manager.dart';
+
+
 
 class LoginPage extends StatefulWidget {
   static final String routeName = "login";
@@ -89,7 +92,12 @@ class _LoginPageState extends State<LoginPage> {
                                                   _passwordController.text
                                                       .trim(), store)
                                               .then((res) {
-                                            print("登陆成功, 继续向下处理");
+                                            if (res != null && res.result){
+                                              Future.delayed(Duration(seconds: 1),(){
+                                                RouteManager.goHome(context);
+                                                return true;
+                                              });
+                                            }
                                           });
                                         }
                                       },

@@ -33,6 +33,7 @@ dependencies:
   rxdart: ^0.22.0
   scoped_model: ^1.0.1
   bezier: ^1.1.2
+  flutter_statusbar: ^0.0.1
 
 
 dev_dependencies:
@@ -58,6 +59,11 @@ flutter:
     - resource/images/stars.jpg
     - resource/images/valley.jpg
     - resource/images/white_temple.jpg
+
+  fonts:
+    - family: wxcIconFont
+      fonts:
+        - asset: resource/font/iconfont.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

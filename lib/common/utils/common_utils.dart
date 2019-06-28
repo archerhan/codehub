@@ -5,6 +5,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_statusbar/flutter_statusbar.dart';
 
 class CommonUtils {
 
@@ -17,6 +18,9 @@ class CommonUtils {
   static final double HOURS_LIMIT = 24 * MINUTES_LIMIT;
 
   static final double DAYS_LIMIT = 30 * HOURS_LIMIT;
+
+  static double sStaticBarHeight = 0.0;
+
   ///日期格式转换
   static String getNewsTimeStr(DateTime date) {
 
@@ -44,6 +48,11 @@ class CommonUtils {
       return date.toString();
     }
     return date.toString().substring(0, 10);
+  }
+
+  static void initStatusBarHeight(context) async {
+    sStaticBarHeight =
+        await FlutterStatusbar.height / MediaQuery.of(context).devicePixelRatio;
   }
 
 }
