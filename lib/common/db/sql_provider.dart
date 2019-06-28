@@ -10,11 +10,13 @@ import 'package:meta/meta.dart';
 import 'package:sqflite/sqflite.dart';
 
 abstract class BaseDbProvider {
-  bool isTableExists = false;
+  bool isTableExits = false;
+
   tableSqlString();
+
   tableName();
 
-  tableBaseString(String name, String columnId){
+  tableBaseString(String name, String columnId) {
     return '''
         create table $name (
         $columnId integer primary key autoincrement,
@@ -26,19 +28,19 @@ abstract class BaseDbProvider {
   }
 
   @mustCallSuper
-  open() async {
-    if (!isTableExists) {
-      await prepare(tableName(), tableSqlString());
-    }
-    return await DbManager.getCurrentDatabase();
-  }
-
-  @mustCallSuper
   prepare(name, String createSql) async {
-    isTableExists = await DbManager.isTableExits(name);
-    if (!isTableExists) {
+    isTableExits = await DbManager.isTableExits(name);
+    if (!isTableExits) {
       Database db = await DbManager.getCurrentDatabase();
       return await db.execute(createSql);
     }
+  }
+
+  @mustCallSuper
+  open() async {
+    if (!isTableExits) {
+      await prepare(tableName(), tableSqlString());
+    }
+    return await DbManager.getCurrentDatabase();
   }
 }

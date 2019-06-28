@@ -5,7 +5,15 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:codehub/page/login/login_page.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
+import 'package:codehub/common/redux/my_state.dart';
+import 'package:codehub/widget/user_icon_widget.dart';
+import 'package:codehub/common/model/user.dart';
+import 'package:codehub/common/route/route_manager.dart';
+import 'package:codehub/common/dao/user_dao.dart';
+import 'package:codehub/common/db/sql_manager.dart';
+
 
 class MyDrawer extends StatefulWidget {
   @override
@@ -28,93 +36,80 @@ class _MyDrawerState extends State<MyDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: MediaQuery.removePadding(
-        context: context,
-        removeTop: true,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 38.0),
-              child: Row(
+      return StoreBuilder<MyState> (
+        builder: (context, store){
+          User user = store.state.userInfo;
+          return Drawer(
+            child: MediaQuery.removePadding(
+              context: context,
+              removeTop: true,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Container(
-                        width: 80,
-                        height: 80,
-                        decoration: ShapeDecoration(
-                          shape: CircleBorder(
-                            side: BorderSide.none
+                    padding: const EdgeInsets.only(top: 38.0),
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: user.avatar_url.length > 0
+                              ? UserIcon(
+                              padding: const EdgeInsets.only(
+                                  top: 0.0, right: 5.0, left: 0.0),
+                              width: 80.0,
+                              height: 80.0,
+                              image: user.avatar_url,
+                              onPressed: () {
+                                print("点击头像");
+                              })
+                              : Container(
+                            width: 80,
+                            height: 80,
+                            decoration: ShapeDecoration(
+                              shape: CircleBorder(side: BorderSide.none),
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      "resource/images/snow_sun.jpg"),
+                                  fit: BoxFit.fill),
+                            ),
                           ),
-                          image: DecorationImage(
-                            image: AssetImage("resource/images/snow_sun.jpg"),
-                            fit: BoxFit.fill
-                          ),
-                        ),
-                      )
-//                      child: Container(
-//                        width: 80.0,
-//                        height: 80.0,
-//                        decoration: BoxDecoration(
-//                          shape: BoxShape.circle,
-//                          image: DecorationImage(
-//                              image: AssetImage("resource/images/valley.jpg"),
-//                              fit: BoxFit.cover)
-//                        ),
-//                      ),
 
-//                    child: ClipOval(
-//                      child: Image.asset("resource/images/valley.jpg",width: 80,),
-//                    ),
-//                    child: CircleAvatar(
-//                      backgroundImage: AssetImage("resource/images/stars.jpg"),
-//                      radius: 80,
-//                    ),
+                        ),
+                        Text(
+                          user.login ?? "nickname",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
                   ),
-                  Text(
-                    "ArcherHan",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )
+                  Expanded(
+                    child: ListView.builder(
+                      itemBuilder: (BuildContext context, int index) {
+                        if (_titles[index] == loadingTag) {
+                          return Container(
+                              padding: EdgeInsets.all(10.0),
+                              alignment: Alignment.center,
+                              child: RaisedButton(
+                                child: Text("退出登录"),
+                                onPressed: () {
+                                  UserDao.clearAll(store);
+                                  DbManager.close();
+                                  RouteManager.goLogin(context);
+                                },
+                              ));
+                        }
+                        return ListTile(
+                          title: Text(_titles[index]),
+                        );
+                      },
+                      itemCount: _titles.length,
+                    ),
+                  ),
                 ],
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                itemBuilder: (BuildContext context, int index) {
-                  if (_titles[index] == loadingTag) {
-                    return Container(
-                        padding: EdgeInsets.all(10.0),
-                        alignment: Alignment.center,
-                        child: RaisedButton(
-                          child: Text("退出登录"),
-                          onPressed: () {
-                            Navigator.push(context, PageRouteBuilder(
-                              transitionDuration: Duration(milliseconds: 500),
-                              pageBuilder: (BuildContext context, Animation animation,
-                                  Animation secondaryAnimation){
-                                  return FadeTransition(
-                                    opacity: animation,
-                                    child: LoginPage(),
-                                  );
-                              }
-
-                            ));
-                            print("退出登录");
-                          },
-                        ));
-                  }
-                  return ListTile(
-                    title: Text(_titles[index]),
-                  );
-                },
-                itemCount: _titles.length,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+          );
+        },
+      );
   }
 }

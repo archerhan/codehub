@@ -12,27 +12,35 @@ import 'package:codehub/common/utils/code_utils.dart';
 import 'package:flutter/foundation.dart';
 
 class FollowEventReceivedDbProvider extends BaseDbProvider {
-  final String name = 'FollowEventReceivedDbProvider';//表名
-  final String columnId = '_id';//id key
-  final String columnData = 'data';// data key
+  final String name = 'ReceivedEvent';
+
+  final String columnId = "_id";
+  final String columnData = "data";
 
   int id;
   String data;
 
   FollowEventReceivedDbProvider();
 
-
-  Map<String, dynamic> toMap(String eventMapString){
-    Map<String, dynamic> map = {columnData : eventMapString};
+  Map<String, dynamic> toMap(String eventMapString) {
+    Map<String, dynamic> map = {columnData: eventMapString};
     if (id != null) {
       map[columnId] = id;
     }
     return map;
   }
 
-  FollowEventReceivedDbProvider.fromMap(Map map){
+  FollowEventReceivedDbProvider.fromMap(Map map) {
     id = map[columnId];
     data = map[columnData];
+  }
+
+  @override
+  tableSqlString() {
+    return tableBaseString(name, columnId) +
+        '''
+        $columnData text not null)
+      ''';
   }
 
   @override
@@ -40,26 +48,24 @@ class FollowEventReceivedDbProvider extends BaseDbProvider {
     return name;
   }
 
-  @override
-  tableSqlString() {
-    return tableBaseString(name, columnId) +
-    '''
-    $columnData text not null
-    ''';
-  }
-  ///插入数据
+  ///插入到数据库
   Future insert(String eventMapString) async {
     Database db = await getDataBase();
-    db.execute("delete from $name");//删除老数据
+
+    ///清空后再插入，因为只保存第一页面
+    db.execute("delete from $name");
     return await db.insert(name, toMap(eventMapString));
   }
-  ///查数据
-  Future<List<FollowEvent>> getFollowEvents() async {
+
+  ///获取事件数据
+  Future<List<FollowEvent>> getEvents() async {
     Database db = await getDataBase();
     List<Map> maps = await db.query(name, columns: [columnId, columnData]);
-    List<FollowEvent> list = List();
+    List<FollowEvent> list = new List();
     if (maps.length > 0) {
       FollowEventReceivedDbProvider provider = FollowEventReceivedDbProvider.fromMap(maps.first);
+
+      ///使用 compute 的 Isolate 优化 json decode
       List<dynamic> eventMap = await compute(CodeUtils.decodeListResult, provider.data);
 
       if (eventMap.length > 0) {

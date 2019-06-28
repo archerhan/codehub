@@ -141,7 +141,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
     animationController.forward();
 
     _refresh();
-//    _getBranchList();
+    _getBranchList();
     tarBarControl.footerButton = _getBottomWidget();
   }
 

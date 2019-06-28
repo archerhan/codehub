@@ -33,7 +33,7 @@ class RouteManager {
   }
   ///个人中心
   static goPerson(BuildContext context, String userName) {
-    NavigatorRouter(context, MyPage(userName));
+    NavigatorRouter(context, MyPage());
   }
   ///仓库详情
   static Future goReposDetail(

@@ -31,7 +31,6 @@ class MyFollowDao {
         }
         if (needDb) {
           await provider.insert(json.encode(data));
-          //todo:创建followevent的表
         }
         for(int i = 0; i < data.length; i++) {
           list.add(FollowEvent.fromJson(data[i]));
@@ -44,8 +43,7 @@ class MyFollowDao {
 
     }
     if (needDb) {
-      //todo:从表里面取出数据
-      List<FollowEvent> list = await provider.getFollowEvents();
+      List<FollowEvent> list = await provider.getEvents();
       if (list == null || list.length == 0) {
         return await next();
       }
@@ -82,7 +80,7 @@ class MyFollowDao {
     }
     if (needDb) {
       //从表里面取出数据
-      List<FollowEvent> list = await provider.getMyFollowEvent(userName);
+      List<FollowEvent> list = await provider.getEvents(userName);
       if (list == null || list.length == 0) {
         return await next();
       }

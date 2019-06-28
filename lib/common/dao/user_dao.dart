@@ -43,10 +43,10 @@ class UserDao {
     if (res != null && res.result) {
       await LocalStorage.save(GlobalConfig.USER_PWD_KEY, password);
       //请求user数据, 在适当的时机存储
-      var resultData = await getUserInfo(null);
+      var resultData = await getUserInfo(null, needDb: true);
       if (GlobalConfig.DEBUG) {
-//        print("user result " + resultData.result.toString());
-//        print(resultData.data);
+        print("user result " + resultData.result.toString());
+        print(resultData.data);
         print(res.data.toString());
       }
 
