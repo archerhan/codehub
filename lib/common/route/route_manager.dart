@@ -13,6 +13,7 @@ import 'package:codehub/common/route/size_route.dart';
 import 'package:codehub/page/repo/repo_detail_page.dart';
 import 'package:codehub/page/repo/push_detail_page.dart';
 import 'package:codehub/page/issue/issue_detail_page.dart';
+import 'package:codehub/page/common_list_page.dart';
 
 class RouteManager {
   ///替换
@@ -87,5 +88,20 @@ class RouteManager {
         data: MediaQueryData.fromWindow(WidgetsBinding.instance.window)
             .copyWith(textScaleFactor: 1),
         child: widget);
+  }
+
+  ///通用列表
+  static gotoCommonList(
+      BuildContext context, String title, String showType, String dataType,
+      {String userName, String reposName}) {
+    NavigatorRouter(
+        context,
+        CommonListPage(
+          title,
+          showType,
+          dataType,
+          userName: userName,
+          reposName: reposName,
+        ));
   }
 }

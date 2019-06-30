@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:codehub/common/redux/my_state.dart';
-import 'package:codehub/widget/user_icon_widget.dart';
+import 'package:codehub/widget/common/user_icon_widget.dart';
 import 'package:codehub/common/model/user.dart';
 import 'package:codehub/common/route/route_manager.dart';
 import 'package:codehub/common/dao/user_dao.dart';

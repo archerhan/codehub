@@ -5,14 +5,27 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:codehub/widget/common/common_option_widget.dart';
+
 
 class RepoDetailInfoPage extends StatefulWidget {
+  final String userName;
+  final String repoName;
+  final OptionControl titleOptionControl;
+
+  RepoDetailInfoPage(this.userName, this.repoName, this.titleOptionControl,{Key key}) : super(key: key);
 
   @override
   RepoDetailInfoPageState createState() => RepoDetailInfoPageState();
 }
 
-class RepoDetailInfoPageState extends State<RepoDetailInfoPage> {
+class RepoDetailInfoPageState extends State<RepoDetailInfoPage> with
+    AutomaticKeepAliveClientMixin<RepoDetailInfoPage>,
+    TickerProviderStateMixin {
+
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
     return Container(

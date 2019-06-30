@@ -10,7 +10,7 @@ import 'package:codehub/common/utils/common_utils.dart';
 import 'package:codehub/common/utils/event_utils.dart';
 import 'package:codehub/common/model/repo_commit.dart';
 import 'package:codehub/common/model/notification.dart' as Model;
-import 'package:codehub/widget/user_icon_widget.dart';
+import 'package:codehub/widget/common/user_icon_widget.dart';
 import 'package:codehub/widget/follow/card_item.dart';
 
 class FollowItem extends StatelessWidget {

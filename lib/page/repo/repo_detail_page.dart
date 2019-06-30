@@ -10,13 +10,13 @@ import 'package:codehub/page/repo/repo_detail_info_page.dart';
 import 'package:codehub/page/repo/repo_detail_readme_page.dart';
 import 'package:codehub/page/repo/repo_detail_issue_page.dart';
 import 'package:codehub/page/repo/repo_detail_file_page.dart';
-import 'package:codehub/widget/tabbar_page_widget.dart';
+import 'package:codehub/widget/common/tabbar_page_widget.dart';
 import 'package:codehub/common/model/repository.dart';
 import 'package:codehub/common/constant/global_style.dart';
-import 'package:codehub/widget/custom_title_bar.dart';
+import 'package:codehub/widget/common/custom_title_bar.dart';
 import 'package:codehub/widget/animation/curves_bezier.dart';
-import 'package:codehub/widget/custom_bottom_app_bar.dart';
-import 'package:codehub/widget/icon_text_widget.dart';
+import 'package:codehub/widget/common/custom_bottom_app_bar.dart';
+import 'package:codehub/widget/common/icon_text_widget.dart';
 import 'package:codehub/common/dao/repo_dao.dart';
 
 class RepositoryDetailPage extends StatefulWidget {

@@ -34,7 +34,7 @@ dependencies:
   scoped_model: ^1.0.1
   bezier: ^1.1.2
   flutter_statusbar: ^0.0.1
-
+  share: ^0.6.1+1
 
 dev_dependencies:
   flutter_test:
