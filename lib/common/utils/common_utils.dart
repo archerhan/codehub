@@ -3,12 +3,13 @@
  *  date : 2019-06-26 10:16
  *  description :
  */
-
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbar/flutter_statusbar.dart';
+import 'package:codehub/common/constant/global_style.dart';
+import 'package:codehub/widget/common/flex_button.dart';
 
 class CommonUtils {
-
   static final double MILLIS_LIMIT = 1000.0;
 
   static final double SECONDS_LIMIT = 60 * MILLIS_LIMIT;
@@ -23,7 +24,6 @@ class CommonUtils {
 
   ///日期格式转换
   static String getNewsTimeStr(DateTime date) {
-
     int subTime =
         DateTime.now().millisecondsSinceEpoch - date.millisecondsSinceEpoch;
 
@@ -41,6 +41,7 @@ class CommonUtils {
       return getDateStr(date);
     }
   }
+
   static String getDateStr(DateTime date) {
     if (date == null || date.toString() == null) {
       return "";
@@ -55,4 +56,67 @@ class CommonUtils {
         await FlutterStatusbar.height / MediaQuery.of(context).devicePixelRatio;
   }
 
+  static Future<Null> showCommitOptionDialog(
+    BuildContext context,
+    List<String> commitMaps,
+    ValueChanged<int> onTap, {
+    width = 250.0,
+    height = 400.0,
+    List<Color> colorList,
+  }) {
+    return CommonUtils.showCustomDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Center(
+            child: new Container(
+              width: width,
+              height: height,
+              padding: new EdgeInsets.all(4.0),
+              margin: new EdgeInsets.all(20.0),
+              decoration: new BoxDecoration(
+                color: Color(CustomColors.white),
+                //用一个BoxDecoration装饰器提供背景图片
+                borderRadius: BorderRadius.all(Radius.circular(4.0)),
+              ),
+              child: new ListView.builder(
+                  itemCount: commitMaps.length,
+                  itemBuilder: (context, index) {
+                    return FlexButton(
+                      maxLines: 1,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      fontSize: 14.0,
+                      color: colorList != null
+                          ? colorList[index]
+                          : Theme.of(context).primaryColor,
+                      text: commitMaps[index],
+                      textColor: Color(CustomColors.white),
+                      onPress: () {
+                        Navigator.pop(context);
+                        onTap(index);
+                      },
+                    );
+                  }),
+            ),
+          );
+        });
+  }
+
+  ///弹出 dialog
+  static Future<T> showCustomDialog<T>({
+    @required BuildContext context,
+    bool barrierDismissible = true,
+    WidgetBuilder builder,
+  }) {
+    return showDialog<T>(
+        context: context,
+        barrierDismissible: barrierDismissible,
+        builder: (context) {
+          return MediaQuery(
+
+              ///不受系统字体缩放影响
+              data: MediaQueryData.fromWindow(WidgetsBinding.instance.window)
+                  .copyWith(textScaleFactor: 1),
+              child: new SafeArea(child: builder(context)));
+        });
+  }
 }

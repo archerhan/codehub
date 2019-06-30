@@ -18,6 +18,7 @@ import 'package:codehub/widget/animation/curves_bezier.dart';
 import 'package:codehub/widget/common/custom_bottom_app_bar.dart';
 import 'package:codehub/widget/common/icon_text_widget.dart';
 import 'package:codehub/common/dao/repo_dao.dart';
+import 'package:codehub/widget/common/common_option_widget.dart';
 
 class RepositoryDetailPage extends StatefulWidget {
   final String userName;
@@ -38,6 +39,8 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
 
   /// 仓库底部状态，如 star、watch 控件的显示
   final TarWidgetControl tarBarControl = new TarWidgetControl();
+
+  final OptionControl titleOptionControl = OptionControl();
 
   ///设置四个页面的key, 用于在当前页面控制相应页面的行为
   GlobalKey<RepoDetailInfoPageState> infoListKey = GlobalKey<RepoDetailInfoPageState>();
@@ -133,7 +136,6 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
 
   @override
   void initState() {
-    // TODO: implement initState
 
     ///悬浮按键动画控制器
     animationController = new AnimationController(
@@ -148,16 +150,18 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
   @override
   Widget build(BuildContext context) {
     //跨tab共享状态
+
     return ScopedModel(
       model: reposDetailModel,
       child: ScopedModelDescendant<ReposDetailModel>(
         builder: (context, child, model) {
+          Widget widgetContent = CommonOptionWidget(titleOptionControl,otherList: null,);
           return CustomTabBarWidget(
             type: CustomTabBarWidget.TOP_TAB,
             tabItems: _renderTabItems(),
             resizeToAvoidBottomPadding: false,
             tabViews: <Widget>[
-              RepoDetailInfoPage(),
+              RepoDetailInfoPage(widget.userName,widget.reposName,titleOptionControl),
               RepoDetailReadmePage(),
               RepoDetailIssuePage(),
               RepoDetailFilePage()
