@@ -5,35 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bed87c1-5225-4f53-8825-5e2839c87211" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/widget/common/flex_button.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/widget/repo/card_item.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widget/common/common_refresh_state.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widget/common/common_refresh_widget.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widget/common/nested_refresh.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codehub.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codehub.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app.dill.track.dill" beforeDir="false" afterPath="$PROJECT_DIR$/build/app.dill.track.dill" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/flutter_assets/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/build/flutter_assets/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/flutter_assets/kernel_blob.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/App" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/App" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/_CodeSignature/CodeResources" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/_CodeSignature/CodeResources" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/kernel_blob.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Runner" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/Runner" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/_CodeSignature/CodeResources" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/Debug-iphonesimulator/Runner.app/_CodeSignature/CodeResources" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/App" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/App" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/_CodeSignature/CodeResources" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/_CodeSignature/CodeResources" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Frameworks/App.framework/flutter_assets/kernel_blob.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Runner" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/Runner" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/snapshot_blob.bin.d" beforeDir="false" afterPath="$PROJECT_DIR$/build/snapshot_blob.bin.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/_CodeSignature/CodeResources" beforeDir="false" afterPath="$PROJECT_DIR$/build/ios/iphonesimulator/Runner.app/_CodeSignature/CodeResources" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/snapshot_blob.bin.d.fingerprint" beforeDir="false" afterPath="$PROJECT_DIR$/build/snapshot_blob.bin.d.fingerprint" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/App.framework/flutter_assets/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/App.framework/flutter_assets/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/App.framework/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/App.framework/flutter_assets/kernel_blob.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Pods/Pods.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Pods/Pods.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Pods/Pods.xcodeproj/xcuserdata/archer.xcuserdatad/xcschemes/Pods-Runner.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Pods/Pods.xcodeproj/xcuserdata/archer.xcuserdatad/xcschemes/Pods-Runner.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Pods/Pods.xcodeproj/xcuserdata/archer.xcuserdatad/xcschemes/shared_preferences.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Pods/Pods.xcodeproj/xcuserdata/archer.xcuserdatad/xcschemes/shared_preferences.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Pods/Pods.xcodeproj/xcuserdata/archer.xcuserdatad/xcschemes/sqflite.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Pods/Pods.xcodeproj/xcuserdata/archer.xcuserdatad/xcschemes/sqflite.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Pods/Pods.xcodeproj/xcuserdata/archer.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Pods/Pods.xcodeproj/xcuserdata/archer.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Pods/Target Support Files/Pods-Runner/Pods-Runner-acknowledgements.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Pods/Target Support Files/Pods-Runner/Pods-Runner-acknowledgements.markdown" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Pods/Target Support Files/Pods-Runner/Pods-Runner-acknowledgements.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Pods/Target Support Files/Pods-Runner/Pods-Runner-acknowledgements.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Pods/Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Pods/Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/common/constant/global_config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/constant/global_config.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/common/dao/repo_dao.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/dao/repo_dao.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/common/utils/common_utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/utils/common_utils.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/page/repo/repo_detail_info_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/page/repo/repo_detail_info_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/page/repo/repo_detail_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/page/repo/repo_detail_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widget/repo/repo_header_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widget/repo/repo_header_item.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,21 +43,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/common/dao/repo_dao.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="143" column="12" selection-start-line="143" selection-start-column="12" selection-end-line="143" selection-end-column="12" />
-              <folding>
-                <element signature="e#75#92#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/page/repo/repo_detail_page.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-914">
+            <state relative-caret-position="15">
               <caret line="161" column="46" selection-start-line="161" selection-start-column="46" selection-end-line="161" selection-end-column="46" />
               <folding>
                 <element signature="e#80#119#0" expanded="true" />
@@ -70,24 +54,56 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/page/repo/repo_detail_info_page.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="45" column="11" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
+            <state relative-caret-position="152">
+              <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
               <folding>
-                <element signature="e#0#471#0" expanded="true" />
                 <element signature="e#85#124#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/widget/common/common_refresh_state.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="11" column="24" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="24" />
+              <folding>
+                <element signature="e#75#84#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/widget/common/common_refresh_widget.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="111">
+              <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="2" />
+              <folding>
+                <element signature="e#75#114#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/widget/follow/follow_item.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="96" column="24" selection-start-line="96" selection-start-column="24" selection-end-line="96" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/common/constant/global_config.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="16" lean-forward="true" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+            <state relative-caret-position="195">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
@@ -95,8 +111,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/widget/repo/repo_header_item.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="303" column="50" selection-start-line="303" selection-start-column="50" selection-end-line="303" selection-end-column="50" />
+            <state relative-caret-position="764">
+              <caret line="284" column="58" selection-start-line="284" selection-start-column="58" selection-end-line="284" selection-end-column="58" />
               <folding>
                 <element signature="e#84#123#0" expanded="true" />
               </folding>
@@ -107,7 +123,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/common/utils/common_utils.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
+            <state relative-caret-position="210">
               <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
               <folding>
                 <element signature="e#74#94#0" expanded="true" />
@@ -160,9 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lib/common/model/follow_event.dart" />
-        <option value="$PROJECT_DIR$/lib/common/model/push_commit.dart" />
-        <option value="$PROJECT_DIR$/lib/common/model/repo_commit.dart" />
         <option value="$PROJECT_DIR$/lib/common/model/commit_git_user.dart" />
         <option value="$PROJECT_DIR$/lib/common/model/commit_git_info.dart" />
         <option value="$PROJECT_DIR$/lib/common/model/repository.g.dart" />
@@ -201,7 +214,6 @@
         <option value="$PROJECT_DIR$/lib/page/common_list_page.dart" />
         <option value="$PROJECT_DIR$/lib/common/route/route_manager.dart" />
         <option value="$PROJECT_DIR$/lib/widget/repo/sliver_header_delegate.dart" />
-        <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/lib/widget/common/common_option_widget.dart" />
         <option value="$PROJECT_DIR$/lib/page/repo/repo_detail_page.dart" />
         <option value="$PROJECT_DIR$/lib/widget/repo/card_item.dart" />
@@ -209,8 +221,12 @@
         <option value="$PROJECT_DIR$/lib/widget/repo/repo_header_item.dart" />
         <option value="$PROJECT_DIR$/lib/common/utils/common_utils.dart" />
         <option value="$PROJECT_DIR$/lib/common/dao/repo_dao.dart" />
-        <option value="$PROJECT_DIR$/lib/page/repo/repo_detail_info_page.dart" />
         <option value="$PROJECT_DIR$/lib/common/constant/global_config.dart" />
+        <option value="$PROJECT_DIR$/pubspec.yaml" />
+        <option value="$PROJECT_DIR$/lib/widget/common/common_refresh_widget.dart" />
+        <option value="$PROJECT_DIR$/lib/widget/common/common_refresh_state.dart" />
+        <option value="$PROJECT_DIR$/lib/widget/common/nested_refresh.dart" />
+        <option value="$PROJECT_DIR$/lib/page/repo/repo_detail_info_page.dart" />
       </list>
     </option>
   </component>
@@ -230,9 +246,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -271,6 +284,13 @@
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
               <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="codehub" type="b2602c69:ProjectViewProjectNode" />
+              <item name="codehub" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="codehub" type="b2602c69:ProjectViewProjectNode" />
@@ -330,6 +350,13 @@
               <item name="codehub" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="widget" type="462c0819:PsiDirectoryNode" />
+              <item name="follow" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="codehub" type="b2602c69:ProjectViewProjectNode" />
+              <item name="codehub" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="widget" type="462c0819:PsiDirectoryNode" />
               <item name="repo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -337,67 +364,13 @@
               <item name="codehub" type="462c0819:PsiDirectoryNode" />
               <item name="resource" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="codehub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="codehub" type="462c0819:PsiDirectoryNode" />
-              <item name="resource" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="codehub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="codehub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Dart Packages" type="3dd79eb:DartTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="codehub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Dart Packages" type="3dd79eb:DartTreeStructureProvider$1" />
-              <item name="lib" type="e6ad2126:DartTreeStructureProvider$DartSdkOrLibraryRootNode" />
-            </path>
-            <path>
-              <item name="codehub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Dart Packages" type="3dd79eb:DartTreeStructureProvider$1" />
-              <item name="lib" type="e6ad2126:DartTreeStructureProvider$DartSdkOrLibraryRootNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="codehub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Dart Packages" type="3dd79eb:DartTreeStructureProvider$1" />
-              <item name="lib" type="e6ad2126:DartTreeStructureProvider$DartSdkOrLibraryRootNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="rendering" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="codehub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Dart Packages" type="3dd79eb:DartTreeStructureProvider$1" />
-              <item name="lib" type="e6ad2126:DartTreeStructureProvider$DartSdkOrLibraryRootNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="widgets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="codehub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Dart Packages" type="3dd79eb:DartTreeStructureProvider$1" />
-              <item name="lib" type="e6ad2126:DartTreeStructureProvider$DartSdkOrLibraryRootNode" />
-            </path>
-            <path>
-              <item name="codehub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Dart Packages" type="3dd79eb:DartTreeStructureProvider$1" />
-              <item name="lib" type="e6ad2126:DartTreeStructureProvider$DartSdkOrLibraryRootNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -478,18 +451,18 @@
       <window_info id="Resources Explorer" order="7" weight="0.235997" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Dart Analysis" order="0" weight="0.32950193" />
-      <window_info anchor="bottom" id="Run" order="1" sideWeight="0.49813294" weight="0.33333334" />
-      <window_info anchor="bottom" id="TODO" order="2" weight="0.32950193" />
-      <window_info anchor="bottom" id="Find" order="3" weight="0.32950193" />
-      <window_info anchor="bottom" id="Thumbnails" order="4" visible="true" weight="0.32950193" />
-      <window_info anchor="bottom" x="71" y="333" width="1339" height="258" id="Terminal" order="5" sideWeight="0.49813294" weight="0.32950193" />
-      <window_info anchor="bottom" id="Debug" order="6" sideWeight="0.49813294" weight="0.4431673" />
-      <window_info anchor="bottom" id="Flutter Performance" order="7" sideWeight="0.5011202" side_tool="true" weight="0.48020434" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" weight="0.32950193" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50186706" side_tool="true" weight="0.32950193" />
-      <window_info anchor="bottom" id="Logcat" order="10" weight="0.32950193" />
-      <window_info anchor="bottom" id="Android Profiler" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32950193" />
+      <window_info anchor="bottom" id="TODO" order="1" weight="0.32950193" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32950193" />
+      <window_info anchor="bottom" id="Thumbnails" order="3" visible="true" weight="0.32950193" />
+      <window_info anchor="bottom" x="71" y="333" width="1339" height="258" id="Terminal" order="4" sideWeight="0.49813294" weight="0.32950193" />
+      <window_info anchor="bottom" id="Debug" order="5" sideWeight="0.49813294" weight="0.4431673" />
+      <window_info anchor="bottom" id="Flutter Performance" order="6" sideWeight="0.5011202" side_tool="true" weight="0.48020434" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" weight="0.32950193" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50186706" side_tool="true" weight="0.32950193" />
+      <window_info anchor="bottom" id="Logcat" order="9" weight="0.32950193" />
+      <window_info anchor="bottom" id="Android Profiler" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="11" visible="true" weight="0.32950193" />
+      <window_info anchor="bottom" id="Run" order="12" sideWeight="0.49813294" weight="0.31417623" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
@@ -502,33 +475,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resource/font/iconfont.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resource/font/iconfont.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Library/Flutter/flutter/packages/flutter/lib/src/painting/image_provider.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="28" column="10" lean-forward="true" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#29224#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/network/http_manager.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="30" column="32" lean-forward="true" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resource/images/stars.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -678,16 +624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/widget/follow/follow_item.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="47" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#3906#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/page/my/me_page.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -699,13 +635,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/page/common_list_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -754,13 +683,6 @@
           <folding>
             <element signature="e#0#784#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -853,26 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/widget/repo/repo_header_item.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="303" column="50" selection-start-line="303" selection-start-column="50" selection-end-line="303" selection-end-column="50" />
-          <folding>
-            <element signature="e#84#123#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/common/utils/common_utils.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
-          <folding>
-            <element signature="e#74#94#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/network/api.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1763">
@@ -884,7 +786,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/common/dao/repo_dao.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
+        <state relative-caret-position="1965">
           <caret line="143" column="12" selection-start-line="143" selection-start-column="12" selection-end-line="143" selection-end-column="12" />
           <folding>
             <element signature="e#75#92#0" expanded="true" />
@@ -892,9 +794,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/common/utils/common_utils.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+          <folding>
+            <element signature="e#74#94#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/common/constant/global_config.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/widget/repo/repo_header_item.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="764">
+          <caret line="284" column="58" selection-start-line="284" selection-start-column="58" selection-end-line="284" selection-end-column="58" />
+          <folding>
+            <element signature="e#84#123#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/page/repo/repo_detail_page.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-914">
+        <state relative-caret-position="15">
           <caret line="161" column="46" selection-start-line="161" selection-start-column="46" selection-end-line="161" selection-end-column="46" />
           <folding>
             <element signature="e#80#119#0" expanded="true" />
@@ -902,21 +831,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/page/repo/repo_detail_info_page.dart">
+    <entry file="file://$PROJECT_DIR$/lib/widget/follow/follow_item.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="11" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
+        <state relative-caret-position="312">
+          <caret line="96" column="24" selection-start-line="96" selection-start-column="24" selection-end-line="96" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/page/common_list_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/common/model/repo_commit.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/widget/common/common_refresh_widget.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="2" />
           <folding>
-            <element signature="e#0#471#0" expanded="true" />
-            <element signature="e#85#124#0" expanded="true" />
+            <element signature="e#75#114#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/common/constant/global_config.dart">
+    <entry file="file://$PROJECT_DIR$/lib/widget/common/common_refresh_state.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="16" lean-forward="true" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        <state relative-caret-position="105">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="24" />
+          <folding>
+            <element signature="e#75#84#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/widget/common/nested_refresh.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#17610#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/page/repo/repo_detail_info_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
+          <folding>
+            <element signature="e#85#124#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
