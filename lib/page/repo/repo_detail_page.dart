@@ -82,7 +82,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
   }
 
   _refresh() {
-    this._getRepoStatus();
+//    this._getRepoStatus();
   }
   ///顶部item
   _renderTabItems() {

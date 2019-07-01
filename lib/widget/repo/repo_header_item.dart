@@ -29,55 +29,53 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
 
   double widgetHeight = 0;
 
-  ///仓库底部信息
+  ///底部仓库状态信息，比如star数量等
   _getBottomItem(IconData icon, String text, onPressed) {
-    return Expanded(
-      child: Center(
-        child: RawMaterialButton(
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-          constraints: const BoxConstraints(minWidth: 0.0, minHeight: 0.0),
-          child: IconTextWidget(
-            icon,
-            text,
-            CustomTextStyle.smallSubLightText,
-            Color(CustomColors.subLightTextColor),
-            15.0,
-            padding: 3.0,
-            mainAxisAlignment: MainAxisAlignment.center,
-          ),
-          onPressed: onPressed,
-        ),
-      ),
+    return new Container(
+      child: new Center(
+          child: new RawMaterialButton(
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+              constraints: const BoxConstraints(minWidth: 0.0, minHeight: 0.0),
+              child: new IconTextWidget(
+                icon,
+                text,
+                CustomTextStyle.smallSubLightText,
+                Color(CustomColors.subLightTextColor),
+                15.0,
+                padding: 3.0,
+                mainAxisAlignment: MainAxisAlignment.center,
+              ),
+              onPressed: onPressed)),
     );
   }
 
   ///单个话题item
   _renderTopicItem(BuildContext context, String item, index) {
-    return RawMaterialButton(
-      key: index == widget.repoHeaderItemViewModel.topics.length - 1
-          ? layoutLastTopicKey
-          : null,
-      onPressed: () {
-        RouteManager.gotoCommonList(context, item, "repository", "topics",
-            userName: item, reposName: "");
-      },
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      padding: const EdgeInsets.all(0.0),
-      constraints: const BoxConstraints(minHeight: 0.0, minWidth: 0.0),
-      child: Container(
-        padding: EdgeInsets.only(left: 5.0, right: 5.0, bottom: 2.5, top: 2.5),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(4.0)),
-          color: Colors.white30,
-          border: Border.all(color: Colors.white30, width: 0.0),
-        ),
-        child: Text(
-          item,
-          style: CustomTextStyle.smallSubLightText,
-        ),
-      ),
-    );
+    return new RawMaterialButton(
+        key: index == widget.repoHeaderItemViewModel.topics.length - 1
+            ? layoutLastTopicKey
+            : null,
+        onPressed: () {
+          RouteManager.gotoCommonList(context, item, "repository", "topics",
+              userName: item, reposName: "");
+        },
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: const EdgeInsets.all(0.0),
+        constraints: const BoxConstraints(minWidth: 0.0, minHeight: 0.0),
+        child: new Container(
+          padding:
+          EdgeInsets.only(left: 5.0, right: 5.0, top: 2.5, bottom: 2.5),
+          decoration: new BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(4.0)),
+            color: Colors.white30,
+            border: new Border.all(color: Colors.white30, width: 0.0),
+          ),
+          child: new Text(
+            item,
+            style: CustomTextStyle.smallSubLightText,
+          ),
+        ));
   }
 
   ///话题组控件
@@ -86,12 +84,12 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
         widget.repoHeaderItemViewModel.topics.length == 0) {
       return Container();
     }
-    List<Widget> list = List();
+    List<Widget> list = new List();
     for (int i = 0; i < widget.repoHeaderItemViewModel.topics.length; i++) {
       var item = widget.repoHeaderItemViewModel.topics[i];
       list.add(_renderTopicItem(context, item, i));
     }
-    return Container(
+    return new Container(
       key: layoutTopicContainerKey,
       alignment: Alignment.topLeft,
       margin: EdgeInsets.only(top: 5.0),
@@ -338,7 +336,7 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
                         ],
                       ),
                     ),
-                    _renderTopicGroup(context),
+//                    _renderTopicGroup(context),
                   ],
                 ),
               ),
