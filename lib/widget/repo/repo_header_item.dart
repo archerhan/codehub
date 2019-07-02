@@ -50,7 +50,6 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
     );
   }
 
-  ///单个话题item
   _renderTopicItem(BuildContext context, String item, index) {
     return new RawMaterialButton(
         key: index == widget.repoHeaderItemViewModel.topics.length - 1
@@ -77,6 +76,7 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
           ),
         ));
   }
+
 
   ///话题组控件
   _renderTopicGroup(BuildContext context) {
@@ -116,24 +116,26 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
   @override
   void didUpdateWidget(RepoHeaderItem oldWidget) {
     super.didUpdateWidget(oldWidget);
-    Future.delayed(Duration(seconds: 0), () {
+    ///如果没有tag列表，不需要处理
+    /*if(layoutTopicContainerKey.currentContext == null || layoutLastTopicKey.currentContext == null) {
+      return;
+    }*/
+    ///如果存在tag，根据tag去判断，修复溢出
+    new Future.delayed(Duration(seconds: 0), (){
       /// tag 所在 container
-      RenderBox renderBox2 =
-          layoutTopicContainerKey.currentContext?.findRenderObject();
-
+      RenderBox renderBox2 = layoutTopicContainerKey.currentContext?.findRenderObject();
       /// 最后面的一个tag
-      RenderBox renderBox3 =
-          layoutLastTopicKey.currentContext?.findRenderObject();
+      RenderBox renderBox3 = layoutLastTopicKey.currentContext?.findRenderObject();
       double overflow = ((renderBox3?.localToGlobal(Offset.zero)?.dy ?? 0) -
-              (renderBox2?.localToGlobal(Offset.zero)?.dy ?? 0)) -
+          (renderBox2?.localToGlobal(Offset.zero)?.dy ?? 0)) -
           (layoutLastTopicKey.currentContext?.size?.height ?? 0);
       var newSize;
-      if (overflow > 0) {
+      if(overflow > 0) {
         newSize = layoutKey.currentContext.size.height + overflow;
       } else {
         newSize = layoutKey.currentContext.size.height + 10.0;
       }
-      if (GlobalConfig.DEBUG) {
+      if(GlobalConfig.DEBUG) {
         print("newSize $newSize overflow $overflow");
       }
       if (widgetHeight != newSize && newSize > 0) {
@@ -158,6 +160,7 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
               image: DecorationImage(
                 image: NetworkImage(widget.repoHeaderItemViewModel.ownerPic ??
                     CustomIcons.DEFAULT_REMOTE_PIC),
+                fit: BoxFit.cover,
               ),
             ),
 
@@ -336,7 +339,7 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
                         ],
                       ),
                     ),
-//                    _renderTopicGroup(context),
+                    _renderTopicGroup(context),
                   ],
                 ),
               ),

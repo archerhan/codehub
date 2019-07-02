@@ -63,7 +63,10 @@ class RepoDetailInfoPageState extends State<RepoDetailInfoPage>
           needDb: false);
     }
     return await ReposDao.getRepositoryEventDao(
-        widget.userName, widget.repoName);
+        widget.userName, widget.repoName,
+        page: 1,
+        branch: ReposDetailModel.of(context).currentBranch,
+        needDb: false);
   }
 
   ///获取详情数据
@@ -71,7 +74,24 @@ class RepoDetailInfoPageState extends State<RepoDetailInfoPage>
     ReposDao.getRepositoryDetailDao(widget.userName, widget.repoName,
             ReposDetailModel.of(context).currentBranch)
         .then((result) {
-      print(result);
+      if (result != null && result.result) {
+        setState(() {
+          widget.titleOptionControl.url = result.data.htmlUrl;
+        });
+        ReposDetailModel.of(context).repository = result.data;
+        return result.next;
+      }
+      return new Future.value(null);
+    }).then((result) {
+      if (result != null && result.result) {
+        if (!isShow) {
+          return;
+        }
+        setState(() {
+          widget.titleOptionControl.url = result.data.htmlUrl;
+        });
+        ReposDetailModel.of(context).repository = result.data;
+      }
     });
   }
 
@@ -118,6 +138,7 @@ class RepoDetailInfoPageState extends State<RepoDetailInfoPage>
 
   @override
   requestLoadMore() async {
+    _getRepoDetail();
     return await _getDataLogic();
   }
 
@@ -165,11 +186,10 @@ class RepoDetailInfoPageState extends State<RepoDetailInfoPage>
                   widget.repoName, ReposDetailModel.of(context).repository),
               layoutListener: (size) {
                 setState(() {
-//                  headerSize = size.height;
+                  headerSize = size.height;
                 });
               },
-            )
-        ),
+            )),
       ),
 
       SliverPersistentHeader(
