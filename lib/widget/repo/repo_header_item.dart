@@ -31,7 +31,7 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
 
   ///底部仓库状态信息，比如star数量等
   _getBottomItem(IconData icon, String text, onPressed) {
-    return new Container(
+    return new Expanded(
       child: new Center(
           child: new RawMaterialButton(
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -260,6 +260,7 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
                       padding: EdgeInsets.all(0.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           ///star
                           _getBottomItem(CustomIcons.REPOS_ITEM_STAR,
@@ -279,8 +280,9 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
                           Container(
                             width: 0.3,
                             height: 25.0,
-                            color: Color(CustomColors.subLightTextColor),
-                            child: _getBottomItem(CustomIcons.REPOS_ITEM_FORK,
+                            color: Color(CustomColors.subLightTextColor)
+                          ),
+                            _getBottomItem(CustomIcons.REPOS_ITEM_FORK,
                                 widget.repoHeaderItemViewModel.repositoryFork,
                                 () {
                               RouteManager.gotoCommonList(
@@ -293,13 +295,12 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
                                   reposName: widget
                                       .repoHeaderItemViewModel.repositoryName);
                             }),
-                          ),
                           ///watch
                           Container(
                             width: 0.3,
                             height: 25.0,
-                            color: Color(CustomColors.subLightTextColor),
-                            child: _getBottomItem(CustomIcons.REPOS_ITEM_WATCH,
+                            color: Color(CustomColors.subLightTextColor)),
+                             _getBottomItem(CustomIcons.REPOS_ITEM_WATCH,
                                 widget.repoHeaderItemViewModel.repositoryWatch,
                                     () {
                                   RouteManager.gotoCommonList(
@@ -312,13 +313,12 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
                                       reposName: widget
                                           .repoHeaderItemViewModel.repositoryName);
                                 }),
-                          ),
                           ///issue
                           Container(
                             width: 0.3,
                             height: 25.0,
-                            color: Color(CustomColors.subLightTextColor),
-                            child: _getBottomItem(
+                            color: Color(CustomColors.subLightTextColor)),
+                             _getBottomItem(
                               CustomIcons.REPOS_ITEM_ISSUE,
                               widget.repoHeaderItemViewModel.repositoryIssue,
                                 (){
@@ -335,7 +335,6 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
 
                                 }
                             ),
-                          ),
                         ],
                       ),
                     ),
@@ -386,7 +385,7 @@ class RepoHeaderItemViewModel {
       return;
     }
     this.ownerPic = map.owner.avatar_url;
-    this.repositoryName = repositoryName;
+    this.repositoryName = repoName;
     this.allIssueCount = map.allIssueCount;
     this.topics = map.topics;
     this.openIssuesCount = map.openIssuesCount;

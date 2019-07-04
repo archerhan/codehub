@@ -62,7 +62,6 @@ mixin CommonRefreshState<T extends StatefulWidget> on State<T>, AutomaticKeepAli
       }
       await _lockToAwait();
     }
-
     isLoading = true;
     isRefreshing = true;
     page = 1;

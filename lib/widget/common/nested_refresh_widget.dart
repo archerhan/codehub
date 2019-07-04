@@ -177,7 +177,7 @@ class _NestedRefreshWidgetState extends State<NestedRefreshWidget> {
             if (p.metrics.pixels >=
                 p.metrics.maxScrollExtent) {
               if (this.refreshControl.needLoadMore.value) {
-                this.onRefresh?.call();
+                this.onLoadMore?.call();
               }
             }
           },

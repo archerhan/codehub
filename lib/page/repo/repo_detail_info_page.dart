@@ -54,17 +54,29 @@ class RepoDetailInfoPageState extends State<RepoDetailInfoPage>
 
   ///Fetch Data
 
+  ///主动触发下拉刷新
+  @override
+  showRefreshLoading(){
+    Future.delayed(Duration(seconds: 0),(){
+
+      refreshIKey.currentState.show().then((e){
+
+      });
+      return true;
+    });
+  }
+
   ///获取列表数据
   _getDataLogic() async {
     if (selectedIndex == 1) {
       return await ReposDao.getReposCommitsDao(widget.userName, widget.repoName,
-          page: 1,
+          page: page,
           branch: ReposDetailModel.of(context).currentBranch,
           needDb: false);
     }
     return await ReposDao.getRepositoryEventDao(
         widget.userName, widget.repoName,
-        page: 1,
+        page: page,
         branch: ReposDetailModel.of(context).currentBranch,
         needDb: false);
   }
@@ -106,6 +118,7 @@ class RepoDetailInfoPageState extends State<RepoDetailInfoPage>
           RouteManager.goPushDetailPage(
               context, widget.userName, widget.repoName, model.sha, false);
         },
+        needImage: false,
       );
     }
     return FollowItem(
@@ -132,14 +145,18 @@ class RepoDetailInfoPageState extends State<RepoDetailInfoPage>
 
   @override
   requestRefresh() async {
+
+
+    print("刷新");
     _getRepoDetail();
     return await _getDataLogic();
   }
 
   @override
   requestLoadMore() async {
-    _getRepoDetail();
+    print("加载更多");
     return await _getDataLogic();
+
   }
 
   @override
@@ -155,8 +172,8 @@ class RepoDetailInfoPageState extends State<RepoDetailInfoPage>
       builder: (context, child, model) {
         return NestedRefreshWidget(
           (BuildContext context, int index) => _renderEventItem(index),
-          onLoadMore,
           handleRefresh,
+          onLoadMore,
           pullLoadingWidgetControl,
           refreshKey: refreshIKey,
           headerSliverBuilder: (context, _) {
