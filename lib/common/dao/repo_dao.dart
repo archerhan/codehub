@@ -5,6 +5,7 @@
  */
 
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:codehub/network/api.dart';
 import 'package:codehub/network/http_manager.dart';
@@ -13,6 +14,10 @@ import 'package:dio/dio.dart';
 import 'package:codehub/common/model/repo_commit.dart';
 import 'package:codehub/common/model/follow_event.dart';
 import 'package:codehub/common/model/repository.dart';
+import 'package:codehub/common/db/provider/repo_event_db_provider.dart';
+import 'package:codehub/common/db/provider/repo_detail_db_provider.dart';
+import 'package:codehub/common/db/provider/repo_commit_db_provider.dart';
+
 
 
 class ReposDao {
@@ -52,7 +57,7 @@ class ReposDao {
 
   static getReposCommitsDao(userName, repoName, {page = 0, branch= "master", needDb = false}) async {
     String fullName = userName + "/" + repoName;
-
+    RepoCommitDbProvider provider = RepoCommitDbProvider();
     next()async {
       String url = Api.getReposCommits(userName, repoName) + Api.getPageParams("?", page) + "&sha=" + branch;
       var res = await httpManager.request(url, null, null, null);
@@ -66,7 +71,7 @@ class ReposDao {
           list.add(RepoCommit.fromJson(data[i]));
         }
         if (needDb) {
-          //处理插入数据库
+          provider.insert(fullName, branch, json.encode(data));
         }
         return DataResult(list, true);
       }
@@ -77,6 +82,12 @@ class ReposDao {
 
     if (needDb){
       //处理查询数据库
+      List<RepoCommit> list = await provider.getData(fullName, branch);
+      if (list == null) {
+        return await next();
+      }
+      DataResult dataResult = new DataResult(list, true, next: next());
+      return dataResult;
     }
 
     return await next();
@@ -84,7 +95,7 @@ class ReposDao {
   ///仓库活动事件
   static getRepositoryEventDao(userName, repoName,{page = 0,branch = "master", needDb = false}) async {
     String fullName = userName + '/' + repoName;
-
+    RepoEventDbProvider provider = RepoEventDbProvider();
     next() async {
       String url = Api.getReposEvent(userName, repoName) +
           Api.getPageParams("?", page);
@@ -99,7 +110,7 @@ class ReposDao {
           list.add(FollowEvent.fromJson(data[i]));
         }
         if (needDb) {
-          //插入操作
+          provider.insertEvent(fullName, json.encode(data));
         }
         return DataResult(list, true);
       }
@@ -108,14 +119,19 @@ class ReposDao {
       }
     }
     if (needDb) {
-      //查询数据库
+      List<FollowEvent> events = await provider.getEvents(fullName);
+      if (events == null) {
+        return await next();
+      }
+      DataResult dataResult = DataResult(events, true);
+      return dataResult;
     }
     return await next();
   }
   ///获取仓库详情
   static getRepositoryDetailDao(userName, repoName, branch, {needDb = false}) async {
     String fullName = userName + '/' + repoName;
-
+    RepoDetailDbProvider provider = RepoDetailDbProvider();
     next() async {
       String url = Api.getReposDetail(userName, repoName) + "?ref=" + branch;
       var res = await httpManager.request(url, null, {"Accept": 'application/vnd.github.mercy-preview+json'}, null);
@@ -131,6 +147,7 @@ class ReposDao {
         }
         if (needDb) {
           //插入数据
+          provider.insertDetail(fullName, json.encode(data));
         }
 //        saveHistoryDao(
 //            fullName, DateTime.now(), json.encode(repository.toJson()));
@@ -142,6 +159,13 @@ class ReposDao {
     }
     if (needDb) {
       //查询数据
+      Repository repository = await provider.getRepository(fullName);
+      if (repository == null) {
+        return await next();
+      }
+
+      DataResult dataResult = DataResult(repository, true);
+      return dataResult;
     }
     return await next();
 
