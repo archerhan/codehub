@@ -4,10 +4,12 @@
  *  description :
  */
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbar/flutter_statusbar.dart';
 import 'package:codehub/common/constant/global_style.dart';
 import 'package:codehub/widget/common/flex_button.dart';
+import 'package:codehub/common/route/route_manager.dart';
 
 class CommonUtils {
   static final double MILLIS_LIMIT = 1000.0;
@@ -118,5 +120,64 @@ class CommonUtils {
                   .copyWith(textScaleFactor: 1),
               child: new SafeArea(child: builder(context)));
         });
+  }
+  static const IMAGE_END = [".png", ".jpg", ".jpeg", ".gif", ".svg"];
+
+  static isImageEnd(path) {
+    bool image = false;
+    for (String item in IMAGE_END) {
+      if (path.indexOf(item) + item.length == path.length) {
+        image = true;
+      }
+    }
+    return image;
+  }
+  static launchUrl(context, String url) {
+    if (url == null && url.length == 0) return;
+    Uri parseUrl = Uri.parse(url);
+    bool isImage = isImageEnd(parseUrl.toString());
+    if (parseUrl.toString().endsWith("?raw=true")) {
+      isImage = isImageEnd(parseUrl.toString().replaceAll("?raw=true", ""));
+    }
+    if (isImage) {
+//      RouteManager.gotoPhotoViewPage(context, url);
+    print("查看图片未做, phone_view库有问题");
+      return;
+
+    }
+
+    if (parseUrl != null &&
+        parseUrl.host == "github.com" &&
+        parseUrl.path.length > 0) {
+      List<String> pathnames = parseUrl.path.split("/");
+      if (pathnames.length == 2) {
+        //解析人
+        String userName = pathnames[1];
+        RouteManager.goPerson(context, userName);
+      } else if (pathnames.length >= 3) {
+        String userName = pathnames[1];
+        String repoName = pathnames[2];
+        //解析仓库
+        if (pathnames.length == 3) {
+          RouteManager.goReposDetail(context, userName, repoName);
+        } else {
+          launchWebView(context, "", url);
+        }
+      }
+    } else if (url != null && url.startsWith("http")) {
+      launchWebView(context, "", url);
+    }
+  }
+  static void launchWebView(BuildContext context, String title, String url) {
+    if (url.startsWith("http")) {
+      RouteManager.goWebView(context, url, title);
+    } else {
+      RouteManager.goWebView(
+          context,
+          new Uri.dataFromString(url,
+              mimeType: 'text/html', encoding: Encoding.getByName("utf-8"))
+              .toString(),
+          title);
+    }
   }
 }

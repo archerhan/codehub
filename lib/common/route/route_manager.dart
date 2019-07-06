@@ -13,7 +13,8 @@ import 'package:codehub/common/route/size_route.dart';
 import 'package:codehub/page/repo/repo_detail_page.dart';
 import 'package:codehub/page/repo/push_detail_page.dart';
 import 'package:codehub/page/issue/issue_detail_page.dart';
-import 'package:codehub/page/common_list_page.dart';
+import 'package:codehub/page/common/common_list_page.dart';
+import 'package:codehub/page/common/common_webview.dart';
 
 class RouteManager {
   ///替换
@@ -103,5 +104,9 @@ class RouteManager {
           userName: userName,
           reposName: reposName,
         ));
+  }
+
+  static Future goWebView(BuildContext context, String url, String title){
+    return NavigatorRouter(context, CommonWebView(url, title));
   }
 }

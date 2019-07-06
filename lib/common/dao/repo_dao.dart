@@ -17,7 +17,7 @@ import 'package:codehub/common/model/repository.dart';
 import 'package:codehub/common/db/provider/repo_event_db_provider.dart';
 import 'package:codehub/common/db/provider/repo_detail_db_provider.dart';
 import 'package:codehub/common/db/provider/repo_commit_db_provider.dart';
-
+import 'package:codehub/common/db/provider/repo_readme_db_provider.dart';
 
 
 class ReposDao {
@@ -55,7 +55,7 @@ class ReposDao {
     }
   }
 
-  static getReposCommitsDao(userName, repoName, {page = 0, branch= "master", needDb = false}) async {
+  static getReposCommitsDao(userName, repoName, {page = 0, branch= "master", needDb = true}) async {
     String fullName = userName + "/" + repoName;
     RepoCommitDbProvider provider = RepoCommitDbProvider();
     next()async {
@@ -93,7 +93,7 @@ class ReposDao {
     return await next();
   }
   ///仓库活动事件
-  static getRepositoryEventDao(userName, repoName,{page = 0,branch = "master", needDb = false}) async {
+  static getRepositoryEventDao(userName, repoName,{page = 0,branch = "master", needDb = true}) async {
     String fullName = userName + '/' + repoName;
     RepoEventDbProvider provider = RepoEventDbProvider();
     next() async {
@@ -123,13 +123,13 @@ class ReposDao {
       if (events == null) {
         return await next();
       }
-      DataResult dataResult = DataResult(events, true);
+      DataResult dataResult = DataResult(events, true, next: next());
       return dataResult;
     }
     return await next();
   }
   ///获取仓库详情
-  static getRepositoryDetailDao(userName, repoName, branch, {needDb = false}) async {
+  static getRepositoryDetailDao(userName, repoName, branch, {needDb = true}) async {
     String fullName = userName + '/' + repoName;
     RepoDetailDbProvider provider = RepoDetailDbProvider();
     next() async {
@@ -164,7 +164,7 @@ class ReposDao {
         return await next();
       }
 
-      DataResult dataResult = DataResult(repository, true);
+      DataResult dataResult = DataResult(repository, true, next: next());
       return dataResult;
     }
     return await next();
@@ -191,6 +191,39 @@ class ReposDao {
       }
     }
     return DataResult(null, false);
+  }
+
+  static getRepositoryDetailReadmeDao(userName, repoName, branch, {needDb = true}) async {
+    RepoReadMeDbProvider provider = RepoReadMeDbProvider();
+    String fullName = userName + "/" + repoName;
+    next() async {
+      String url = Api.readmeFile(userName + '/' + repoName, branch);
+      var res = await httpManager.request(
+          url,
+          null,
+          {"Accept": 'application/vnd.github.VERSION.raw'},
+          new Options(contentType: ContentType.text));
+      if (res != null && res.result) {
+        if (needDb) {
+          provider.insert(fullName, branch, res.data);
+        }
+        return new DataResult(res.data, true);
+      }
+      return new DataResult(null, false);
+    }
+
+    if (needDb) {
+      //数据库查询
+      String readmeDataString = await provider.getReadmeDataString(fullName, branch);
+      if (readmeDataString != null && readmeDataString.length > 0) {
+        return DataResult(readmeDataString, true, next: next());
+      }
+      else {
+        return await next();
+      }
+    }
+
+    return await next();
   }
 
 }

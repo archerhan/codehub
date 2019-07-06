@@ -162,7 +162,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
             resizeToAvoidBottomPadding: false,
             tabViews: <Widget>[
               RepoDetailInfoPage(widget.userName,widget.reposName,titleOptionControl),
-              RepoDetailReadmePage(),
+              RepoDetailReadmePage(widget.userName, widget.reposName),
               RepoDetailIssuePage(),
               RepoDetailFilePage()
             ],
