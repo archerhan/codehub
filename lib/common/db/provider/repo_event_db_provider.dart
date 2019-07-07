@@ -25,8 +25,8 @@ class RepoEventDbProvider extends BaseDbProvider {
 
   RepoEventDbProvider();
 
-  Map<String, dynamic> toMap(String fullName, String data) {
-    Map<String, dynamic> map = {columnFullName : fullName, columnData : data};
+  Map<String, dynamic> toMap(String fullName, String dataMapString) {
+    Map<String, dynamic> map = {columnFullName : fullName, columnData : dataMapString};
     if (id != null) {
       map[columnId] = id;
     }

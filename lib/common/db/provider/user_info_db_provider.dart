@@ -25,8 +25,8 @@ class UserInfoDbProvider extends BaseDbProvider {
 
   UserInfoDbProvider();
 
-  Map<String, dynamic> toMap(String userName, String data) {
-    Map<String, dynamic> map = {columnUserName: userName, columnData: data};
+  Map<String, dynamic> toMap(String userName, String dataMapString) {
+    Map<String, dynamic> map = {columnUserName: userName, columnData: dataMapString};
     if (id != null) {
       map[columnId] = id;
     }

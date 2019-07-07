@@ -24,7 +24,7 @@ class RepoReadMeDbProvider extends BaseDbProvider {
   RepoReadMeDbProvider();
 
   Map<String, dynamic> toMap(String fullName,String branch, String dataMapString) {
-    Map<String, dynamic> map = {columnFullName : fullName, columnBranch : branch, columnData : data};
+    Map<String, dynamic> map = {columnFullName : fullName, columnBranch : branch, columnData : dataMapString};
     if (id != null) {
       map[columnId] = id;
     }
