@@ -20,6 +20,8 @@ class DbManager {
 
   ///初始化
   static init() async {
+    //打开log
+    Sqflite.setDebugModeOn(true);
     // open the database
     var databasesPath = await getDatabasesPath();
     var userRes= await UserDao.getUserInLocal();

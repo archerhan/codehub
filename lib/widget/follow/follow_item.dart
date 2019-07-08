@@ -52,19 +52,36 @@ class FollowItem extends StatelessWidget {
         child: FlatButton(
           onPressed: onPressed,
           child: Padding(
-            padding: EdgeInsets.only(left: 0.0, top: 10.0, right: 0.0, bottom: 10.0),
+            padding:
+                EdgeInsets.only(left: 0.0, top: 10.0, right: 0.0, bottom: 10.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Row(
                   children: <Widget>[
                     userImage,
-                    Expanded(child: Text(eventViewModel.actionUser, style: TextStyle(fontSize: 16.0,color: Theme.of(context).primaryColorDark),),),
-                    Text(eventViewModel.actionTime, style: TextStyle(fontSize: 12.0, color: Color(0xff959595)),)
+                    Expanded(
+                      child: Text(
+                        eventViewModel.actionUser,
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            color: Theme.of(context).primaryColorDark),
+                      ),
+                    ),
+                    Text(
+                      eventViewModel.actionTime,
+                      style:
+                          TextStyle(fontSize: 12.0, color: Color(0xff959595)),
+                    )
                   ],
                 ),
                 Container(
-                  child: Text(eventViewModel.actionTarget, style: TextStyle(fontSize: 14, color : Theme.of(context).primaryColorDark),),
+                  child: Text(
+                    eventViewModel.actionTarget,
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Theme.of(context).primaryColorDark),
+                  ),
                   margin: EdgeInsets.only(top: 6.0, bottom: 2.0),
                   alignment: Alignment.topLeft,
                 ),

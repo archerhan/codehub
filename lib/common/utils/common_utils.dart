@@ -180,4 +180,20 @@ class CommonUtils {
           title);
     }
   }
+
+  static getFullName(String repository_url) {
+    if (repository_url != null &&
+        repository_url.substring(repository_url.length - 1) == "/") {
+      repository_url = repository_url.substring(0, repository_url.length - 1);
+    }
+    String fullName = '';
+    if (repository_url != null) {
+      List<String> splicurl = repository_url.split("/");
+      if (splicurl.length > 2) {
+        fullName =
+            splicurl[splicurl.length - 2] + "/" + splicurl[splicurl.length - 1];
+      }
+    }
+    return fullName;
+  }
 }

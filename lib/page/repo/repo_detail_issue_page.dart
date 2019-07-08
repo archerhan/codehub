@@ -14,7 +14,6 @@ import 'package:codehub/widget/repo/sliver_header_delegate.dart';
 import 'package:codehub/common/dao/issue_dao.dart';
 
 
-
 class RepoDetailIssuePage extends StatefulWidget {
 
   final String userName;
@@ -65,8 +64,12 @@ class RepoDetailIssuePageState extends State<RepoDetailIssuePage>
 
   @override
   showRefreshLoading() {
-    // TODO: implement showRefreshLoading
-    return super.showRefreshLoading();
+    Future.delayed(Duration(seconds: 0),(){
+      refreshIKey.currentState.show().then((e){
+
+      });
+      return true;
+    });
   }
 
   @override
