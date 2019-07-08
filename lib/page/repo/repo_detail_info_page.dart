@@ -72,7 +72,7 @@ class RepoDetailInfoPageState extends State<RepoDetailInfoPage>
       return await ReposDao.getReposCommitsDao(widget.userName, widget.repoName,
           page: page,
           branch: ReposDetailModel.of(context).currentBranch,
-          needDb: false);
+          needDb: true);
     }
     return await ReposDao.getRepositoryEventDao(
         widget.userName, widget.repoName,

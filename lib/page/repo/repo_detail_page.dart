@@ -163,7 +163,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
             tabViews: <Widget>[
               RepoDetailInfoPage(widget.userName,widget.reposName,titleOptionControl),
               RepoDetailReadmePage(widget.userName, widget.reposName),
-              RepoDetailIssuePage(),
+              RepoDetailIssuePage(widget.userName, widget.reposName),
               RepoDetailFilePage()
             ],
             backgroundColor: CustomColors.primarySwatch,
