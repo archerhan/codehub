@@ -34,8 +34,9 @@ class RepoDetailIssuePageState extends State<RepoDetailIssuePage>
         AutomaticKeepAliveClientMixin<RepoDetailIssuePage>,
         SingleTickerProviderStateMixin,
         CommonRefreshState<RepoDetailIssuePage> {
+
   final GlobalKey<NestedScrollViewRefreshIndicatorState> refreshIKey =
-      GlobalKey<NestedScrollViewRefreshIndicatorState>();
+      new GlobalKey<NestedScrollViewRefreshIndicatorState>();
 
   ///搜索 issue 文本
   String searchText;
@@ -54,7 +55,7 @@ class RepoDetailIssuePageState extends State<RepoDetailIssuePage>
     if (searchString == null || searchString.length == 0) {
       return await IssueDao.getRepositoryIssueDao(
           widget.userName, widget.repoName, issueState,
-          page: page, needDb: false);
+          page: page, needDb: true);
     } else {
       return await IssueDao.searchRepositoryIssue(
           searchString, widget.userName, widget.repoName, this.issueState,
@@ -163,6 +164,7 @@ class RepoDetailIssuePageState extends State<RepoDetailIssuePage>
         onLoadMore,
         pullLoadingWidgetControl,
         refreshKey: refreshIKey,
+        scrollController: scrollController,
         headerSliverBuilder: (context, _) {
           return _sliverBuilder(context, _);
         },

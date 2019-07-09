@@ -108,27 +108,32 @@ class IssueItem extends StatelessWidget {
                   RouteManager.goPerson(context, issueItemViewModel.actionUser);
                 },
               ),
-              Expanded(
+              new Expanded(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        issueItemViewModel.actionUser,
-                        style: CustomTextStyle.smallTextBold,
-                      ),
+                    new Row(
+                      children: <Widget>[
+                        ///用户名
+                        new Expanded(
+                            child: new Text(issueItemViewModel.actionUser,
+                                style: CustomTextStyle.smallTextBold)),
+                        new Text(
+                          issueItemViewModel.actionTime,
+                          style: CustomTextStyle.smallSubText,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
-                    Text(
-                      issueItemViewModel.actionTime,
-                      style: CustomTextStyle.smallSubText,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+
+                    ///评论内容
                     _renderCommentText(),
-                    Padding(
-                      padding: EdgeInsets.only(top: 2.0),
+                    new Padding(
+                      padding: new EdgeInsets.only(
+                          left: 0.0, top: 2.0, right: 0.0, bottom: 0.0),
                     ),
-                    _renderBottomContainer()
+                    _renderBottomContainer(),
                   ],
                 ),
               ),

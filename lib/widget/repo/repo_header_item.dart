@@ -205,22 +205,22 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
                       //仓库类型+大小+license
                       children: <Widget>[
                         Text(
-                          widget.repoHeaderItemViewModel.repositoryType,
+                          widget.repoHeaderItemViewModel.repositoryType ?? "--",
                           style: CustomTextStyle.smallSubLightText,
                         ),
                         Text(
-                          widget.repoHeaderItemViewModel.repositorySize,
+                          widget.repoHeaderItemViewModel.repositorySize ?? "--",
                           style: CustomTextStyle.smallSubLightText,
                         ),
                         Text(
-                          widget.repoHeaderItemViewModel.license,
+                          widget.repoHeaderItemViewModel.license ?? "--",
                           style: CustomTextStyle.smallSubLightText,
                         ),
                       ],
                     ),
                     Container(
                       child: Text(
-                        widget.repoHeaderItemViewModel.repositoryDes,
+                        widget.repoHeaderItemViewModel.repositoryDes ?? "---",
                         style: CustomTextStyle.smallSubLightText,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,

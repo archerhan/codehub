@@ -47,7 +47,7 @@ class RepoIssueDbProvider extends BaseDbProvider {
     return tableBaseString(name, columnId) +
         '''
         $columnFullName text not null,
-        $columnState text not null,
+        $columnState text,
         $columnData text not null)
       ''';
   }
