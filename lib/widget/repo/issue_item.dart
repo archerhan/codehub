@@ -35,7 +35,7 @@ class IssueItem extends StatelessWidget {
       this.hideBottom = false,
       this.limitComment = true});
 
-  _renderBottonContainer() {
+  _renderBottomContainer() {
     Color issueStateColor =
         issueItemViewModel.state == "open" ? Colors.green : Colors.red;
     return hideBottom
@@ -72,7 +72,7 @@ class IssueItem extends StatelessWidget {
           );
   }
 
-  _renderCommemtText() {
+  _renderCommentText() {
     return (limitComment)
         ? Container(
             child: Text(
@@ -124,11 +124,11 @@ class IssueItem extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    _renderCommemtText(),
+                    _renderCommentText(),
                     Padding(
                       padding: EdgeInsets.only(top: 2.0),
                     ),
-                    _renderBottonContainer()
+                    _renderBottomContainer()
                   ],
                 ),
               ),

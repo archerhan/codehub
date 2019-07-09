@@ -54,4 +54,29 @@ class IssueDao {
     }
     return await next();
   }
+
+  static searchRepositoryIssue(q, name, reposName, state, {page = 1}) async {
+    String qu;
+    if (state == null || state == 'all') {
+      qu = q + "+repo%3A${name}%2F${reposName}";
+    } else {
+      qu = q + "+repo%3A${name}%2F${reposName}+state%3A${state}";
+    }
+    String url = Api.repositoryIssueSearch(qu) + Api.getPageParams("&", page);
+    var res = await httpManager.request(url, null, null, null);
+    if (res != null && res.result) {
+      List<Issue> list = new List();
+      var data = res.data["items"];
+      if (data == null || data.length == 0) {
+        return new DataResult(null, false);
+      }
+      for (int i = 0; i < data.length; i++) {
+        list.add(Issue.fromJson(data[i]));
+      }
+      return new DataResult(list, true);
+    } else {
+      return new DataResult(null, false);
+    }
+  }
+
 }
