@@ -12,6 +12,8 @@ class GlobalConfig {
   static const USE_PROXY = false;
   static const PROXY_IP = "PROXY 192.168.0.110:8888";
 
+
+  
   //分页
   static const PAGE_SIZE = 20;
 
