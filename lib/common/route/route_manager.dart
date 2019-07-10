@@ -15,6 +15,8 @@ import 'package:codehub/page/repo/push_detail_page.dart';
 import 'package:codehub/page/issue/issue_detail_page.dart';
 import 'package:codehub/page/common/common_list_page.dart';
 import 'package:codehub/page/common/common_webview.dart';
+import 'package:codehub/page/repo/repo_code_detail_web_page.dart';
+
 
 class RouteManager {
   ///替换
@@ -109,4 +111,46 @@ class RouteManager {
   static Future goWebView(BuildContext context, String url, String title){
     return NavigatorRouter(context, CommonWebView(url, title));
   }
+
+  ///根据平台跳转文件代码详情Web
+  static gotoCodeDetailPlatform(BuildContext context,
+      {String title,
+        String userName,
+        String reposName,
+        String path,
+        String data,
+        String branch,
+        String htmlUrl}) {
+    RouteManager.gotoCodeDetailPageWeb(
+      context,
+      title: title,
+      reposName: reposName,
+      userName: userName,
+      data: data,
+      path: path,
+      branch: branch,
+    );
+  }
+  ///文件代码详情Web
+  static gotoCodeDetailPageWeb(BuildContext context,
+      {String title,
+        String userName,
+        String reposName,
+        String path,
+        String data,
+        String branch,
+        String htmlUrl}) {
+    NavigatorRouter(
+        context,
+        new CodeDetailPageWeb(
+          title: title,
+          userName: userName,
+          reposName: reposName,
+          path: path,
+          data: data,
+          branch: branch,
+          htmlUrl: htmlUrl,
+        ));
+  }
+
 }

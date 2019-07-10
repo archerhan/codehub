@@ -20,7 +20,10 @@ Notification _$NotificationFromJson(Map<String, dynamic> json) {
       json['repository'] == null
           ? null
           : Repository.fromJson(json['repository'] as Map<String, dynamic>),
-      json['subject']);
+      json['subject'] == null
+          ? null
+          : NotificationSubject.fromJson(
+              json['subject'] as Map<String, dynamic>));
 }
 
 Map<String, dynamic> _$NotificationToJson(Notification instance) =>

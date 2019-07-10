@@ -18,6 +18,7 @@ import 'package:codehub/common/db/provider/repo_event_db_provider.dart';
 import 'package:codehub/common/db/provider/repo_detail_db_provider.dart';
 import 'package:codehub/common/db/provider/repo_commit_db_provider.dart';
 import 'package:codehub/common/db/provider/repo_readme_db_provider.dart';
+import 'package:codehub/common/model/file.dart';
 
 
 class ReposDao {
@@ -192,7 +193,7 @@ class ReposDao {
     }
     return DataResult(null, false);
   }
-
+  //readme
   static getRepositoryDetailReadmeDao(userName, repoName, branch, {needDb = true}) async {
     RepoReadMeDbProvider provider = RepoReadMeDbProvider();
     String fullName = userName + "/" + repoName;
@@ -224,6 +225,40 @@ class ReposDao {
     }
 
     return await next();
+  }
+  ///获取仓库文件列表
+  static getReposFileDirDao(userName, reposName,
+      {path = '', branch, text = false, isHtml = false}) async {
+    String url = Api.reposDataDir(userName, reposName,path,branch);
+    var res = await httpManager.request(url, null,  isHtml
+        ? {"Accept": 'application/vnd.github.html'}
+        : {"Accept": 'application/vnd.github.VERSION.raw'}, Options(contentType: text ? ContentType.text : ContentType.json));
+    if (res != null && res.result) {
+      if (text) {
+        return DataResult(res.data, true);
+      }
+      List<FileModel> list = new List();
+      var data = res.data;
+      if (data == null || data.length == 0) {
+        return new DataResult(null, false);
+      }
+      List<FileModel> dirs = [];
+      List<FileModel> files = [];
+      for (int i = 0; i < data.length; i++) {
+        FileModel file = FileModel.fromJson(data[i]);
+        if (file.type == 'file') {
+          files.add(file);
+        } else {
+          dirs.add(file);
+        }
+      }
+      list.addAll(dirs);
+      list.addAll(files);
+      return new DataResult(list, true);
+    }
+    else {
+      return DataResult(null, false);
+    }
   }
 
 }

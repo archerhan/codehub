@@ -164,7 +164,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
               RepoDetailInfoPage(widget.userName,widget.reposName,titleOptionControl),
               RepoDetailReadmePage(widget.userName, widget.reposName),
               RepoDetailIssuePage(widget.userName, widget.reposName),
-              RepoDetailFilePage()
+              RepoDetailFilePage(widget.userName, widget.reposName),
             ],
             backgroundColor: CustomColors.primarySwatch,
             indicatorColor: Color(CustomColors.white),
