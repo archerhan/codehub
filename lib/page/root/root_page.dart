@@ -18,7 +18,11 @@ class RootController extends StatefulWidget {
   _RootControllerState createState() => _RootControllerState();
 }
 
-class _RootControllerState extends State<RootController> with SingleTickerProviderStateMixin {
+class _RootControllerState extends State<RootController>
+    with
+        SingleTickerProviderStateMixin,
+        WidgetsBindingObserver
+{
 
   int bottomSelectedIndex = 0;
 
@@ -68,6 +72,24 @@ class _RootControllerState extends State<RootController> with SingleTickerProvid
       bottomSelectedIndex = index;
       pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
     });
+  }
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        print("resumed");
+        break;
+      case AppLifecycleState.inactive:
+        print("inactive");
+        break;
+      case AppLifecycleState.paused:
+        print("paused");
+        break;
+      case AppLifecycleState.suspending:
+        print("suspending");
+        break;
+    }
+    super.didChangeAppLifecycleState(state);
   }
 
   @override

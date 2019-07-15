@@ -13,17 +13,28 @@ import 'package:codehub/common/redux/my_state.dart';
 import 'package:codehub/widget/follow/follow_item.dart';
 import 'package:codehub/common/utils/event_utils.dart';
 
+
 class MyFollowPage extends StatefulWidget {
   @override
   _MyFollowPageState createState() => _MyFollowPageState();
 }
 
-class _MyFollowPageState extends State<MyFollowPage> with AutomaticKeepAliveClientMixin {
+class _MyFollowPageState extends State<MyFollowPage>
+    with
+        AutomaticKeepAliveClientMixin,
+        WidgetsBindingObserver
+{
   var loadingTag = 0; //表尾标记
   var _followList = <FollowEvent>[];
   var _page = 0;
   Store<MyState> _getStore() {
     return StoreProvider.of(context);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+//    super.didChangeAppLifecycleState(state);
   }
 
   @override

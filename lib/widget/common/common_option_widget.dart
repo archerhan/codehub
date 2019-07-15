@@ -10,6 +10,7 @@ import 'package:codehub/common/utils/common_utils.dart';
 import 'package:share/share.dart';
 import 'package:codehub/common/constant/global_style.dart';
 
+
 class CommonOptionWidget extends StatelessWidget {
   final List<OptionModel> otherList;
   final OptionControl control;
