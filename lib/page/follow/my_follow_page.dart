@@ -44,7 +44,7 @@ class _MyFollowPageState extends State<MyFollowPage>
   }
 
   Future<Null> refresh() async {
-    await Future.delayed(const Duration(milliseconds: 500), () {
+    await Future.delayed(const Duration(seconds:0), () {
       _fetchData();
     });
   }
@@ -52,7 +52,7 @@ class _MyFollowPageState extends State<MyFollowPage>
   ///Fetch data
   _fetchData() async {
     await MyFollowDao.getMyFollowReceived(_getStore().state.userInfo.login,
-            page: _page, needDb: true)
+            page: _page, needDb: false)
         .then((res) {
       if (res.data != null && res.data.length > 0) {
         for (var item in res.data) {
