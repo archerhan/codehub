@@ -26,9 +26,7 @@ User _updateLoaded(User user, action) {
   return user;
 }
 
-class FetchUserAction {
-
-}
+class FetchUserAction {}
 
 ///定一个 UpdateUserAction ，用于发起 userInfo 的的改变
 ///类名随你喜欢定义，只要通过上面TypedReducer绑定就好
@@ -38,7 +36,6 @@ class UpdateUserAction {
 }
 
 class UserInfoMiddleware implements MiddlewareClass<MyState> {
-
   @override
   void call(Store<MyState> store, dynamic action, NextDispatcher next) {
     if (action is UpdateUserAction) {
@@ -53,9 +50,9 @@ class UserInfoEpic implements EpicClass<MyState> {
   @override
   Stream<dynamic> call(Stream<dynamic> actions, EpicStore<MyState> store) {
     return Observable(actions)
-    // to UpdateUserAction actions
+        // to UpdateUserAction actions
         .ofType(TypeToken<FetchUserAction>())
-    // Don't start  until the 10ms
+        // Don't start  until the 10ms
         .debounce(((_) => TimerStream(true, const Duration(milliseconds: 10))))
         .switchMap((action) => _loadUserInfo());
   }

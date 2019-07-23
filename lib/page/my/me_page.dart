@@ -7,10 +7,9 @@
 import 'package:flutter/material.dart';
 
 class MyPage extends StatefulWidget {
-
   static final String routeName = "my";
   final String userName;
-  MyPage({this.userName,Key key}):super(key: key);
+  MyPage({this.userName, Key key}) : super(key: key);
 
   @override
   _MyPageState createState() => _MyPageState();

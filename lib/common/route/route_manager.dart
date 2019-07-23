@@ -17,28 +17,32 @@ import 'package:codehub/page/common/common_list_page.dart';
 import 'package:codehub/page/common/common_webview.dart';
 import 'package:codehub/page/repo/repo_code_detail_web_page.dart';
 
-
 class RouteManager {
   ///替换
   static pushReplacementNamed(BuildContext context, String routeName) {
     Navigator.pushReplacementNamed(context, routeName);
   }
+
   ///切换无参数页面
   static pushNamed(BuildContext context, String routeName) {
     Navigator.pushNamed(context, routeName);
   }
+
   ///主页(关注, 动态, 我的)
   static goHome(BuildContext context) {
     Navigator.pushReplacementNamed(context, RootController.routeName);
   }
+
   ///登录页
   static goLogin(BuildContext context) {
     Navigator.pushReplacementNamed(context, LoginPage.routeName);
   }
+
   ///个人中心
   static goPerson(BuildContext context, String userName) {
     NavigatorRouter(context, MyPage());
   }
+
   ///仓库详情
   static Future goReposDetail(
       BuildContext context, String userName, String reposName) {
@@ -76,18 +80,17 @@ class RouteManager {
         ));
   }
 
-
-
   ///公共打开方式
   static NavigatorRouter(BuildContext context, Widget widget) {
-    return Navigator.push(context, CupertinoPageRoute(builder: (context) => pageContainer(widget)));
+    return Navigator.push(context,
+        CupertinoPageRoute(builder: (context) => pageContainer(widget)));
   }
 
   ///Page页面的容器，做一次通用自定义
   static Widget pageContainer(widget) {
     return MediaQuery(
 
-      ///不受系统字体缩放影响
+        ///不受系统字体缩放影响
         data: MediaQueryData.fromWindow(WidgetsBinding.instance.window)
             .copyWith(textScaleFactor: 1),
         child: widget);
@@ -108,19 +111,19 @@ class RouteManager {
         ));
   }
 
-  static Future goWebView(BuildContext context, String url, String title){
+  static Future goWebView(BuildContext context, String url, String title) {
     return NavigatorRouter(context, CommonWebView(url, title));
   }
 
   ///根据平台跳转文件代码详情Web
   static gotoCodeDetailPlatform(BuildContext context,
       {String title,
-        String userName,
-        String reposName,
-        String path,
-        String data,
-        String branch,
-        String htmlUrl}) {
+      String userName,
+      String reposName,
+      String path,
+      String data,
+      String branch,
+      String htmlUrl}) {
     RouteManager.gotoCodeDetailPageWeb(
       context,
       title: title,
@@ -131,15 +134,16 @@ class RouteManager {
       branch: branch,
     );
   }
+
   ///文件代码详情Web
   static gotoCodeDetailPageWeb(BuildContext context,
       {String title,
-        String userName,
-        String reposName,
-        String path,
-        String data,
-        String branch,
-        String htmlUrl}) {
+      String userName,
+      String reposName,
+      String path,
+      String data,
+      String branch,
+      String htmlUrl}) {
     NavigatorRouter(
         context,
         new CodeDetailPageWeb(
@@ -152,5 +156,4 @@ class RouteManager {
           htmlUrl: htmlUrl,
         ));
   }
-
 }

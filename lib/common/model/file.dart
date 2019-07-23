@@ -25,18 +25,19 @@ class FileModel {
   String type;
 
   FileModel(
-      this.name,
-      this.path,
-      this.sha,
-      this.size,
-      this.url,
-      this.htmlUrl,
-      this.gitUrl,
-      this.downloadUrl,
-      this.type,
-      );
+    this.name,
+    this.path,
+    this.sha,
+    this.size,
+    this.url,
+    this.htmlUrl,
+    this.gitUrl,
+    this.downloadUrl,
+    this.type,
+  );
 
-  factory FileModel.fromJson(Map<String, dynamic> json) => _$FileModelFromJson(json);
+  factory FileModel.fromJson(Map<String, dynamic> json) =>
+      _$FileModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$FileModelToJson(this);
 }

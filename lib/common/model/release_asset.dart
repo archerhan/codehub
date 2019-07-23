@@ -28,20 +28,20 @@ class ReleaseAsset {
   String downloadUrl;
 
   ReleaseAsset(
-      this.id,
-      this.name,
-      this.label,
-      this.uploader,
-      this.contentType,
-      this.state,
-      this.size,
-      this.downloadCout,
-      this.createdAt,
-      this.updatedAt,
-      this.downloadUrl,
-      );
+    this.id,
+    this.name,
+    this.label,
+    this.uploader,
+    this.contentType,
+    this.state,
+    this.size,
+    this.downloadCout,
+    this.createdAt,
+    this.updatedAt,
+    this.downloadUrl,
+  );
 
-  factory ReleaseAsset.fromJson(Map<String, dynamic> json) => _$ReleaseAssetFromJson(json);
+  factory ReleaseAsset.fromJson(Map<String, dynamic> json) =>
+      _$ReleaseAssetFromJson(json);
   Map<String, dynamic> toJson() => _$ReleaseAssetToJson(this);
 }
-

@@ -20,7 +20,7 @@ class CustomBottomAppBar extends StatelessWidget {
   final List<Widget> rowContents;
 
   static final List<FloatingActionButtonLocation> kCenterLocations =
-  <FloatingActionButtonLocation>[
+      <FloatingActionButtonLocation>[
     FloatingActionButtonLocation.centerDocked,
     FloatingActionButtonLocation.centerFloat,
   ];

@@ -22,13 +22,13 @@ class FlexButton extends StatelessWidget {
 
   FlexButton(
       {Key key,
-        this.text,
-        this.color,
-        this.textColor,
-        this.onPress,
-        this.fontSize = 20.0,
-        this.mainAxisAlignment = MainAxisAlignment.center,
-        this.maxLines = 1})
+      this.text,
+      this.color,
+      this.textColor,
+      this.onPress,
+      this.fontSize = 20.0,
+      this.mainAxisAlignment = MainAxisAlignment.center,
+      this.maxLines = 1})
       : super(key: key);
 
   @override

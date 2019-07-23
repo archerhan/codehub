@@ -4,6 +4,7 @@
  *  description :
  */
 import 'package:flutter/material.dart';
+
 ///支持顶部和顶部的TabBar控件
 ///配合AutomaticKeepAliveClientMixin可以keep住
 class CustomTabBarWidget extends StatefulWidget {
@@ -58,15 +59,15 @@ class CustomTabBarWidget extends StatefulWidget {
 
   @override
   _CustomTabBarState createState() => new _CustomTabBarState(
-    type,
-    tabViews,
-    indicatorColor,
-    title,
-    drawer,
-    floatingActionButton,
-    tarWidgetControl,
-    onPageChanged,
-  );
+        type,
+        tabViews,
+        indicatorColor,
+        title,
+        drawer,
+        floatingActionButton,
+        tarWidgetControl,
+        onPageChanged,
+      );
 }
 
 class _CustomTabBarState extends State<CustomTabBarWidget>
@@ -90,15 +91,15 @@ class _CustomTabBarState extends State<CustomTabBarWidget>
   final ValueChanged<int> _onPageChanged;
 
   _CustomTabBarState(
-      this._type,
-      this._tabViews,
-      this._indicatorColor,
-      this._title,
-      this._drawer,
-      this._floatingActionButton,
-      this._tarWidgetControl,
-      this._onPageChanged,
-      ) : super();
+    this._type,
+    this._tabViews,
+    this._indicatorColor,
+    this._title,
+    this._drawer,
+    this._floatingActionButton,
+    this._tarWidgetControl,
+    this._onPageChanged,
+  ) : super();
 
   TabController _tabController;
 
@@ -106,7 +107,7 @@ class _CustomTabBarState extends State<CustomTabBarWidget>
   void initState() {
     super.initState();
     _tabController =
-    new TabController(vsync: this, length: widget.tabItems.length);
+        new TabController(vsync: this, length: widget.tabItems.length);
   }
 
   ///整个页面dispose时，记得把控制器也dispose掉，释放内存
@@ -123,10 +124,10 @@ class _CustomTabBarState extends State<CustomTabBarWidget>
       return new Scaffold(
         resizeToAvoidBottomPadding: widget.resizeToAvoidBottomPadding,
         floatingActionButton:
-        SafeArea(child: _floatingActionButton ?? Container()),
+            SafeArea(child: _floatingActionButton ?? Container()),
         floatingActionButtonLocation: widget.floatingActionButtonLocation,
         persistentFooterButtons:
-        _tarWidgetControl == null ? null : _tarWidgetControl.footerButton,
+            _tarWidgetControl == null ? null : _tarWidgetControl.footerButton,
         appBar: new AppBar(
           backgroundColor: Theme.of(context).primaryColor,
           title: _title,

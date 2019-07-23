@@ -8,7 +8,6 @@ import 'package:codehub/page/login/login_page.dart';
 import 'package:codehub/common/route/route_manager.dart';
 import 'package:codehub/page/welcome/welcome_page.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -25,27 +24,25 @@ class MyApp extends StatelessWidget {
 
   MyApp({Key key}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
     return StoreProvider(
       store: store,
       child: StoreBuilder<MyState>(
-        builder: (context, store){
+        builder: (context, store) {
           return MaterialApp(
             title: 'codehub',
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
             routes: {
-              WelcomePage.routeName : (context) {
+              WelcomePage.routeName: (context) {
                 return WelcomePage();
               },
-              RootController.routeName : (context) {
+              RootController.routeName: (context) {
                 return RouteManager.pageContainer(RootController());
               },
-              LoginPage.routeName : (context) {
+              LoginPage.routeName: (context) {
                 return RouteManager.pageContainer(LoginPage());
               }
             },

@@ -20,7 +20,6 @@ class HttpManager {
   final TokenInterceptor _tokenInterceptor = TokenInterceptor();
 
   HttpManager() {
-
     _dio.interceptors.add(new HeaderInterceptor());
     _dio.interceptors.add(_tokenInterceptor);
     _dio.interceptors.add(new LogsInterceptor());
@@ -28,27 +27,25 @@ class HttpManager {
     _dio.interceptors.add(new ErrorInterceptor(_dio));
 
     if (GlobalConfig.USE_PROXY) {
-      (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) {
+      (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+          (client) {
         client.findProxy = (uri) {
-
           // 用1个开关设置是否开启代理
           return GlobalConfig.DEBUG ? GlobalConfig.PROXY_IP : 'DIRECT';
         };
       };
     }
-
   }
 
-
-  request(url, params, Map<String, dynamic> header, Options options,{noTip = false}) async {
+  request(url, params, Map<String, dynamic> header, Options options,
+      {noTip = false}) async {
     Map<String, dynamic> headers = new HashMap();
     if (header != null) {
       headers.addAll(header);
     }
     if (options != null) {
       options.headers = headers;
-    }
-    else {
+    } else {
       options = new Options(method: "get");
       options.headers = headers;
     }
@@ -57,14 +54,18 @@ class HttpManager {
       Response errorResponse;
       if (e.response != null) {
         errorResponse = e.response;
-      }
-      else {
+      } else {
         errorResponse = new Response(statusCode: 666);
       }
-      if (e.type == DioErrorType.CONNECT_TIMEOUT || e.type == DioErrorType.RECEIVE_TIMEOUT) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT ||
+          e.type == DioErrorType.RECEIVE_TIMEOUT) {
         errorResponse.statusCode = StatusCode.NETWORK_TIMEOUT;
       }
-      return new ResultData(StatusCode.errorHandleFunction(errorResponse.statusCode, e.message, noTip), false, errorResponse.statusCode);
+      return new ResultData(
+          StatusCode.errorHandleFunction(
+              errorResponse.statusCode, e.message, noTip),
+          false,
+          errorResponse.statusCode);
     }
 
     Response response;

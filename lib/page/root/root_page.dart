@@ -11,7 +11,6 @@ import 'package:codehub/page/trending/trending_repositories_page.dart';
 import 'package:codehub/page/my/me_page.dart';
 import 'package:codehub/page/login/login_page.dart';
 
-
 class RootController extends StatefulWidget {
   static final String routeName = "home";
   @override
@@ -19,27 +18,18 @@ class RootController extends StatefulWidget {
 }
 
 class _RootControllerState extends State<RootController>
-    with
-        SingleTickerProviderStateMixin,
-        WidgetsBindingObserver
-{
-
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   int bottomSelectedIndex = 0;
 
   List<BottomNavigationBarItem> buildBottomNavBarItems() {
     return [
       BottomNavigationBarItem(
-          icon: new Icon(Icons.home),
-          title: new Text('关注')
-      ),
+          icon: new Icon(Icons.home), title: new Text('关注')),
       BottomNavigationBarItem(
         icon: new Icon(Icons.search),
         title: new Text('趋势'),
       ),
-      BottomNavigationBarItem(
-          icon: Icon(Icons.info_outline),
-          title: Text('我的')
-      )
+      BottomNavigationBarItem(icon: Icon(Icons.info_outline), title: Text('我的'))
     ];
   }
 
@@ -61,6 +51,7 @@ class _RootControllerState extends State<RootController>
       ],
     );
   }
+
   void pageChanged(int index) {
     setState(() {
       bottomSelectedIndex = index;
@@ -70,9 +61,11 @@ class _RootControllerState extends State<RootController>
   void bottomTapped(int index) {
     setState(() {
       bottomSelectedIndex = index;
-      pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
+      pageController.animateToPage(index,
+          duration: Duration(milliseconds: 500), curve: Curves.ease);
     });
   }
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     switch (state) {
@@ -110,7 +103,3 @@ class _RootControllerState extends State<RootController>
     );
   }
 }
-
-
-
-

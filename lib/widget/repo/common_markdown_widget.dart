@@ -25,21 +25,21 @@ class CommonMarkdownWidget extends StatelessWidget {
 
   _getCommonSheet(BuildContext context, Color codeBackground) {
     MarkdownStyleSheet markdownStyleSheet =
-    MarkdownStyleSheet.fromTheme(Theme.of(context));
+        MarkdownStyleSheet.fromTheme(Theme.of(context));
     return markdownStyleSheet
         .copyWith(
-        codeblockDecoration: new BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(4.0)),
-            color: codeBackground,
-            border: new Border.all(
-                color: Color(CustomColors.subTextColor), width: 0.3)))
+            codeblockDecoration: new BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                color: codeBackground,
+                border: new Border.all(
+                    color: Color(CustomColors.subTextColor), width: 0.3)))
         .copyWith(
-        blockquoteDecoration: new BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(4.0)),
-            color: Color(CustomColors.subTextColor),
-            border: new Border.all(
-                color: Color(CustomColors.subTextColor), width: 0.3)),
-        blockquote: CustomTextStyle.smallTextWhite);
+            blockquoteDecoration: new BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                color: Color(CustomColors.subTextColor),
+                border: new Border.all(
+                    color: Color(CustomColors.subTextColor), width: 0.3)),
+            blockquote: CustomTextStyle.smallTextWhite);
   }
 
   _getStyleSheetDark(BuildContext context) {
@@ -153,7 +153,7 @@ class CommonMarkdownWidget extends StatelessWidget {
               String srcString = srcMatch.group(0);
               if (srcString != null && srcString.contains("http")) {
                 String newSrc = srcString.substring(
-                    srcString.indexOf("http"), srcString.length - 1) +
+                        srcString.indexOf("http"), srcString.length - 1) +
                     "?raw=true";
 
                 ///增加点击
@@ -164,7 +164,7 @@ class CommonMarkdownWidget extends StatelessWidget {
           mdDataCode = mdDataCode.replaceAll(imageTag, match);
         }
       }
-    } catch(e) {
+    } catch (e) {
       print(e.toString());
     }
     return mdDataCode;

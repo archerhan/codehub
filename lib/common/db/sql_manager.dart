@@ -24,11 +24,11 @@ class DbManager {
     Sqflite.setDebugModeOn(true);
     // open the database
     var databasesPath = await getDatabasesPath();
-    var userRes= await UserDao.getUserInLocal();
+    var userRes = await UserDao.getUserInLocal();
     String dbName = _NAME;
-    if(userRes != null && userRes.result) {
+    if (userRes != null && userRes.result) {
       User user = userRes.data;
-      if(user != null && user.login != null) {
+      if (user != null && user.login != null) {
         dbName = user.login + "_" + _NAME;
       }
     }
@@ -36,7 +36,8 @@ class DbManager {
     if (Platform.isIOS) {
       path = databasesPath + "/" + dbName;
     }
-    _database = await openDatabase(path, version: _VERSION, onCreate: (Database db, int version) async {
+    _database = await openDatabase(path, version: _VERSION,
+        onCreate: (Database db, int version) async {
       print("数据库创建成功PATH=$path");
       // When creating the db, create the table
       //await db.execute("CREATE TABLE Test (id INTEGER PRIMARY KEY, name TEXT, value INTEGER, num REAL)");
@@ -46,7 +47,8 @@ class DbManager {
   ///表是否存在
   static isTableExits(String tableName) async {
     await getCurrentDatabase();
-    var res = await _database.rawQuery("select * from Sqlite_master where type = 'table' and name = '$tableName'");
+    var res = await _database.rawQuery(
+        "select * from Sqlite_master where type = 'table' and name = '$tableName'");
     return res != null && res.length > 0;
   }
 
@@ -64,4 +66,3 @@ class DbManager {
     _database = null;
   }
 }
-

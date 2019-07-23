@@ -38,24 +38,24 @@ class Release {
   List<ReleaseAsset> assets;
 
   Release(
-      this.id,
-      this.tagName,
-      @JsonKey(name: "target_commitish") this.targetCommitish,
-      this.name,
-      this.body,
-      this.bodyHtml,
-      this.tarballUrl,
-      this.zipballUrl,
-      this.draft,
-      this.preRelease,
-      this.createdAt,
-      this.publishedAt,
-      this.author,
-      this.assets,
-      );
+    this.id,
+    this.tagName,
+    @JsonKey(name: "target_commitish") this.targetCommitish,
+    this.name,
+    this.body,
+    this.bodyHtml,
+    this.tarballUrl,
+    this.zipballUrl,
+    this.draft,
+    this.preRelease,
+    this.createdAt,
+    this.publishedAt,
+    this.author,
+    this.assets,
+  );
 
-  factory Release.fromJson(Map<String, dynamic> json) => _$ReleaseFromJson(json);
+  factory Release.fromJson(Map<String, dynamic> json) =>
+      _$ReleaseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ReleaseToJson(this);
 }
-

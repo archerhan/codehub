@@ -43,18 +43,24 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
   final OptionControl titleOptionControl = OptionControl();
 
   ///设置四个页面的key, 用于在当前页面控制相应页面的行为
-  GlobalKey<RepoDetailInfoPageState> infoListKey = GlobalKey<RepoDetailInfoPageState>();
-  GlobalKey<RepoDetailReadmePageState> readmeKey = GlobalKey<RepoDetailReadmePageState>();
-  GlobalKey<RepoDetailIssuePageState> issueListKey = GlobalKey<RepoDetailIssuePageState>();
-  GlobalKey<RepoDetailFilePageState> fileListKey = GlobalKey<RepoDetailFilePageState>();
+  GlobalKey<RepoDetailInfoPageState> infoListKey =
+      GlobalKey<RepoDetailInfoPageState>();
+  GlobalKey<RepoDetailReadmePageState> readmeKey =
+      GlobalKey<RepoDetailReadmePageState>();
+  GlobalKey<RepoDetailIssuePageState> issueListKey =
+      GlobalKey<RepoDetailIssuePageState>();
+  GlobalKey<RepoDetailFilePageState> fileListKey =
+      GlobalKey<RepoDetailFilePageState>();
 
   ///分支名字列表
   List<String> branchList = List();
+
   ///仓库底部状态
   BottomStatusModel bottomStatusModel;
 
   _getRepoStatus() async {
-    var result = await ReposDao.getRepositoryStatusDao(widget.userName, widget.reposName);
+    var result = await ReposDao.getRepositoryStatusDao(
+        widget.userName, widget.reposName);
     String watchText = result.data["watch"] ? "UnWatch" : "Watch";
     String starText = result.data["star"] ? "UnStar" : "Star";
     IconData watchIcon = result.data["watch"]
@@ -63,7 +69,8 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
     IconData starIcon = result.data["star"]
         ? CustomIcons.REPOS_ITEM_STARED
         : CustomIcons.REPOS_ITEM_STAR;
-    BottomStatusModel model = BottomStatusModel(watchText, starText, watchIcon, starIcon, result.data["watch"], result.data["star"]);
+    BottomStatusModel model = BottomStatusModel(watchText, starText, watchIcon,
+        starIcon, result.data["watch"], result.data["star"]);
     setState(() {
       bottomStatusModel = model;
       tarBarControl.footerButton = _getBottomWidget();
@@ -73,7 +80,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
   ///获取分支数据
   _getBranchList() async {
     var result =
-    await ReposDao.getBranchesDao(widget.userName, widget.reposName);
+        await ReposDao.getBranchesDao(widget.userName, widget.reposName);
     if (result != null && result.result) {
       setState(() {
         branchList = result.data;
@@ -84,6 +91,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
   _refresh() {
 //    this._getRepoStatus();
   }
+
   ///顶部item
   _renderTabItems() {
     var itemList = ['动态', '详情', 'ISSUE', '文件'];
@@ -120,23 +128,22 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
     );
   }
 
-  _getBottomWidget(){
-    List<Widget> bottomWidget =
-    <Widget>[
+  _getBottomWidget() {
+    List<Widget> bottomWidget = <Widget>[
       ///star
       _renderBottomItem("Star", CustomIcons.REPOS_ITEM_STAR, null),
+
       ///watch
       _renderBottomItem("Watch", CustomIcons.REPOS_ITEM_WATCH, null),
+
       ///fork
       _renderBottomItem("Fork", CustomIcons.REPOS_ITEM_FORK, null),
-
     ];
     return bottomWidget;
   }
 
   @override
   void initState() {
-
     ///悬浮按键动画控制器
     animationController = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 800));
@@ -155,13 +162,17 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
       model: reposDetailModel,
       child: ScopedModelDescendant<ReposDetailModel>(
         builder: (context, child, model) {
-          Widget widgetContent = CommonOptionWidget(titleOptionControl,otherList: null,);
+          Widget widgetContent = CommonOptionWidget(
+            titleOptionControl,
+            otherList: null,
+          );
           return CustomTabBarWidget(
             type: CustomTabBarWidget.TOP_TAB,
             tabItems: _renderTabItems(),
             resizeToAvoidBottomPadding: false,
             tabViews: <Widget>[
-              RepoDetailInfoPage(widget.userName,widget.reposName,titleOptionControl),
+              RepoDetailInfoPage(
+                  widget.userName, widget.reposName, titleOptionControl),
               RepoDetailReadmePage(widget.userName, widget.reposName),
               RepoDetailIssuePage(widget.userName, widget.reposName),
               RepoDetailFilePage(widget.userName, widget.reposName),

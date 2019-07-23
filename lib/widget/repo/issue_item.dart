@@ -156,8 +156,6 @@ class IssueItemViewModel {
   String number = "---";
   String id = "";
 
-
-
   IssueItemViewModel();
 
   IssueItemViewModel.fromMap(Issue issueMap, {needTitle = true}) {

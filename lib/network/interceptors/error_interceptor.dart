@@ -17,9 +17,11 @@ class ErrorInterceptor extends InterceptorsWrapper {
   onRequest(RequestOptions options) async {
     var connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
-      return _dio.resolve(ResultData(StatusCode.errorHandleFunction(StatusCode.NETWORK_ERROR, "", false),false,StatusCode.NETWORK_ERROR));
+      return _dio.resolve(ResultData(
+          StatusCode.errorHandleFunction(StatusCode.NETWORK_ERROR, "", false),
+          false,
+          StatusCode.NETWORK_ERROR));
     }
     return options;
   }
-
 }

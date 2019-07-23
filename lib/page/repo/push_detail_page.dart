@@ -4,11 +4,7 @@
  *  description :
  */
 
-
 import 'package:flutter/material.dart';
-
-
-
 
 class PushDetailPage extends StatefulWidget {
   final String userName;
@@ -19,7 +15,8 @@ class PushDetailPage extends StatefulWidget {
 
   final bool needHomeIcon;
 
-  PushDetailPage(this.sha, this.userName, this.reposName, {this.needHomeIcon = false});
+  PushDetailPage(this.sha, this.userName, this.reposName,
+      {this.needHomeIcon = false});
   @override
   _PushDetailPageState createState() => _PushDetailPageState();
 }

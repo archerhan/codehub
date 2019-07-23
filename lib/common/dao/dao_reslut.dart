@@ -6,14 +6,8 @@
 import 'dart:async';
 
 class DataResult {
-
-  DataResult(
-      this.data,
-      this.result,
-      {this.next});
+  DataResult(this.data, this.result, {this.next});
   var data;
   bool result;
   Future next;
-
 }
-

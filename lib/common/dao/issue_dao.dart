@@ -14,23 +14,32 @@ import 'package:codehub/network/http_manager.dart';
 import 'package:codehub/common/model/issue.dart';
 import 'package:codehub/common/db/provider/repo_issue_db_provider.dart';
 
-
 class IssueDao {
   ///获取issue列表数据
-  static getRepositoryIssueDao(userName, repoName, state, {sort, direction, page = 0,needDb = false}) async {
+  static getRepositoryIssueDao(userName, repoName, state,
+      {sort, direction, page = 0, needDb = false}) async {
     String fullName = userName + "/" + repoName;
     String dbState = state ?? "*";
     RepoIssueDbProvider provider = RepoIssueDbProvider();
     next() async {
-      String url = Api.getReposIssue(userName, repoName, state, sort, direction) + Api.getPageParams("&", page);
-      var res = await httpManager.request(url, null, {"Accept": 'application/vnd.github.html,application/vnd.github.VERSION.raw'}, null);
+      String url =
+          Api.getReposIssue(userName, repoName, state, sort, direction) +
+              Api.getPageParams("&", page);
+      var res = await httpManager.request(
+          url,
+          null,
+          {
+            "Accept":
+                'application/vnd.github.html,application/vnd.github.VERSION.raw'
+          },
+          null);
       if (res != null && res.result) {
         List<Issue> list = List();
         var data = res.data;
         if (data == null || data.length == 0) {
           return DataResult(null, false);
         }
-        for (int i = 0; i < data.length; i++){
+        for (int i = 0; i < data.length; i++) {
           list.add(Issue.fromJson(data[i]));
         }
         if (needDb) {
@@ -38,23 +47,23 @@ class IssueDao {
           provider.insert(fullName, state, json.encode(data));
         }
         return DataResult(list, true);
-      }
-      else {
+      } else {
         return DataResult(null, true);
       }
     }
+
     if (needDb) {
       //取数据
       List<Issue> list = await provider.getData(fullName, dbState);
       if (list == null || list.length == 0) {
         return await next();
-      }
-      else {
+      } else {
         return DataResult(list, true, next: next());
       }
     }
     return await next();
   }
+
   ///搜索issue
   static searchRepositoryIssue(q, name, reposName, state, {page = 1}) async {
     String qu;
@@ -79,31 +88,35 @@ class IssueDao {
       return new DataResult(null, false);
     }
   }
+
   ///根据number获取issue详情
   static getIssueInfo(userName, repoName, number, {needDb = false}) async {
     next() async {
       String url = Api.getIssueInfo(userName, repoName, number);
-      var res = await httpManager.request(url, null, {"Accept": 'application/vnd.github.VERSION.raw'}, null);
+      var res = await httpManager.request(
+          url, null, {"Accept": 'application/vnd.github.VERSION.raw'}, null);
       if (res != null && res.result) {
         if (needDb) {
           //
         }
         return DataResult(Issue.fromJson(res.data), true);
-      }
-      else {
+      } else {
         return DataResult(null, false);
       }
     }
-    if (needDb) {
-      
-    }
+
+    if (needDb) {}
     return await next();
   }
+
   ///issue的回复列表
-  static getIssueComment(userName, repoName, number, {page = 0, needDb = false}) async {
+  static getIssueComment(userName, repoName, number,
+      {page = 0, needDb = false}) async {
     next() async {
-      String url = Api.getIssueComment(userName, repoName, number) + Api.getPageParams("?", page);
-      var res = await httpManager.request(url, null, {"Accept": 'application/vnd.github.VERSION.raw'}, null);
+      String url = Api.getIssueComment(userName, repoName, number) +
+          Api.getPageParams("?", page);
+      var res = await httpManager.request(
+          url, null, {"Accept": 'application/vnd.github.VERSION.raw'}, null);
       if (res != null && res.result) {
         List<Issue> issueList = List();
         if (res.data == null || res.data.length == 0) {
@@ -120,10 +133,10 @@ class IssueDao {
         return DataResult(null, false);
       }
     }
+
     if (needDb) {
       //查询操作
     }
     return await next();
   }
-
 }

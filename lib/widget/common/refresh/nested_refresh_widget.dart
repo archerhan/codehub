@@ -7,8 +7,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart'; //加载小动画
 import 'package:codehub/common/constant/global_style.dart';
-import 'package:codehub/widget/common/nested_refresh.dart';
-import 'package:codehub/widget/common/common_refresh_widget.dart';
+import 'package:codehub/widget/common/refresh/nested_refresh.dart';
+import 'package:codehub/widget/common/refresh/common_refresh_widget.dart';
 
 class NestedRefreshWidget extends StatefulWidget {
   ///item builder
@@ -31,15 +31,8 @@ class NestedRefreshWidget extends StatefulWidget {
   final Key refreshKey;
 
   NestedRefreshWidget(
-      this.itemBuilder,
-      this.onLoadMore,
-      this.onRefresh,
-      this.refreshControl,
-      {
-        this.refreshKey,
-        this.headerSliverBuilder,
-        this.scrollController
-      });
+      this.itemBuilder, this.onLoadMore, this.onRefresh, this.refreshControl,
+      {this.refreshKey, this.headerSliverBuilder, this.scrollController});
 
   @override
   _NestedRefreshWidgetState createState() => _NestedRefreshWidgetState(
@@ -173,16 +166,15 @@ class _NestedRefreshWidgetState extends State<NestedRefreshWidget> {
         physics: const AlwaysScrollableScrollPhysics(),
         headerSliverBuilder: widget.headerSliverBuilder,
         body: NotificationListener(
-          onNotification: (ScrollNotification p){
-            if (p.metrics.pixels >=
-                p.metrics.maxScrollExtent) {
+          onNotification: (ScrollNotification p) {
+            if (p.metrics.pixels >= p.metrics.maxScrollExtent) {
               if (this.refreshControl.needLoadMore.value) {
                 this.onLoadMore?.call();
               }
             }
           },
           child: ListView.builder(
-            itemBuilder: (_, index){
+            itemBuilder: (_, index) {
               return _getItem(index);
             },
             itemCount: _getListCount(),
@@ -193,4 +185,3 @@ class _NestedRefreshWidgetState extends State<NestedRefreshWidget> {
     );
   }
 }
-

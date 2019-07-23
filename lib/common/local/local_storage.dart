@@ -4,6 +4,7 @@
  *  description :
  */
 import 'package:shared_preferences/shared_preferences.dart';
+
 class LocalStorage {
   static save(String key, value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -20,5 +21,3 @@ class LocalStorage {
     prefs.remove(key);
   }
 }
-
-

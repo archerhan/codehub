@@ -32,12 +32,11 @@ class _WelcomePageState extends State<WelcomePage> {
 
     Store<MyState> store = StoreProvider.of(context);
     CommonUtils.initStatusBarHeight(context);
-    Future.delayed(Duration(seconds: 2, milliseconds: 500),(){
-      UserDao.initUserInfo(store).then((res){
-        if(res != null && res.result) {
+    Future.delayed(Duration(seconds: 2, milliseconds: 500), () {
+      UserDao.initUserInfo(store).then((res) {
+        if (res != null && res.result) {
           RouteManager.goHome(context);
-        }
-        else {
+        } else {
           RouteManager.goLogin(context);
         }
         return true;
@@ -55,7 +54,8 @@ class _WelcomePageState extends State<WelcomePage> {
           child: Stack(
             children: <Widget>[
               Center(
-                child: Image(image: AssetImage("resource/images/white_temple.jpg")),
+                child: Image(
+                    image: AssetImage("resource/images/white_temple.jpg")),
               ),
             ],
           ),

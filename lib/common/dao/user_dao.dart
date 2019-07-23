@@ -16,9 +16,8 @@ import 'package:codehub/common/db/provider/user_info_db_provider.dart';
 import 'package:codehub/common/redux/user_redux.dart';
 import 'package:redux/redux.dart';
 
-
 class UserDao {
-  static login(userName, password,Store store) async {
+  static login(userName, password, Store store) async {
     String type = userName + ":" + password;
     var bytes = utf8.encode(type);
     var base64Str = base64.encode(bytes);
@@ -38,7 +37,8 @@ class UserDao {
     Options options = Options();
     options.headers["Authorization"] = base64Str;
     options.method = "post";
-    var res = await httpManager.request(Api.getAuthorization(), json.encode(requestParam), null, options);
+    var res = await httpManager.request(
+        Api.getAuthorization(), json.encode(requestParam), null, options);
     var resultData = res;
     if (res != null && res.result) {
       await LocalStorage.save(GlobalConfig.USER_PWD_KEY, password);
@@ -51,10 +51,8 @@ class UserDao {
       }
 
       store.dispatch(UpdateUserAction(resultData.data));
-
     }
     return DataResult(resultData, res.result);
-
   }
 
   static initUserInfo(Store store) async {
@@ -63,17 +61,18 @@ class UserDao {
     if (res != null && res.result && token != null) {
       store.dispatch(UpdateUserAction(res.data));
     }
-    return DataResult(res.data,(res.result && token != null));
+    return DataResult(res.data, (res.result && token != null));
   }
 
-  static getUserInfo(userName , {needDb = true}) async {
+  static getUserInfo(userName, {needDb = true}) async {
     UserInfoDbProvider provider = new UserInfoDbProvider();
     next() async {
       var res;
       if (userName == null) {
         res = await httpManager.request(Api.getMyUserInfo(), null, null, null);
       } else {
-        res = await httpManager.request(Api.getUserInfo(userName), null, null, null);
+        res = await httpManager.request(
+            Api.getUserInfo(userName), null, null, null);
       }
       if (res != null && res.result) {
         String starred = "---";
@@ -108,6 +107,7 @@ class UserDao {
     }
     return await next();
   }
+
   //获取本地存储的user
   static getUserInLocal() async {
     var userText = await LocalStorage.get(GlobalConfig.USER_INFO);
@@ -115,8 +115,7 @@ class UserDao {
       var userMap = json.decode(userText);
       User user = User.fromJson(userMap);
       return DataResult(user, true);
-    }
-    else {
+    } else {
       return DataResult(null, false);
     }
   }
@@ -147,39 +146,4 @@ class UserDao {
       }
     }
   }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

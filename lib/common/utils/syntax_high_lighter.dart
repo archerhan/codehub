@@ -10,13 +10,13 @@ import 'package:flutter/material.dart';
 class SyntaxHighlighterStyle {
   SyntaxHighlighterStyle(
       {this.baseStyle,
-        this.numberStyle,
-        this.commentStyle,
-        this.keywordStyle,
-        this.stringStyle,
-        this.punctuationStyle,
-        this.classStyle,
-        this.constantStyle});
+      this.numberStyle,
+      this.commentStyle,
+      this.keywordStyle,
+      this.stringStyle,
+      this.punctuationStyle,
+      this.classStyle,
+      this.constantStyle});
 //123
   static SyntaxHighlighterStyle defaultStyle() {
     return new SyntaxHighlighterStyle(
@@ -26,7 +26,7 @@ class SyntaxHighlighterStyle {
         keywordStyle: new TextStyle(color: Color.fromRGBO(228, 125, 246, 1.0)),
         stringStyle: new TextStyle(color: Color.fromRGBO(150, 190, 118, 1.0)),
         punctuationStyle:
-        new TextStyle(color: Color.fromRGBO(212, 212, 212, 1.0)),
+            new TextStyle(color: Color.fromRGBO(212, 212, 212, 1.0)),
         classStyle: new TextStyle(color: Color.fromRGBO(150, 190, 118, 1.0)),
         constantStyle: new TextStyle(color: Colors.brown[500]));
   }
@@ -187,7 +187,6 @@ class DartSyntaxHighlighter extends SyntaxCostomHighlighter {
           continue;
         }
 
-
         // Line comments
         if (_scanner.scan("//")) {
           int startComment = _scanner.lastMatch.start;
@@ -200,7 +199,6 @@ class DartSyntaxHighlighter extends SyntaxCostomHighlighter {
             eof = true;
             endComment = _src.length;
           }
-
 
           _spans.add(new _HighlightSpan(
               _HighlightType.comment, startComment, endComment));
@@ -223,7 +221,6 @@ class DartSyntaxHighlighter extends SyntaxCostomHighlighter {
             endComment = _src.length;
           }
 
-
           _spans.add(new _HighlightSpan(
               _HighlightType.comment, startComment, endComment));
 
@@ -238,15 +235,12 @@ class DartSyntaxHighlighter extends SyntaxCostomHighlighter {
           continue;
         }
 
-
         // Raw r'String'
         if (_scanner.scan(new RegExp(r"r'.*'"))) {
           _spans.add(new _HighlightSpan(_HighlightType.string,
               _scanner.lastMatch.start, _scanner.lastMatch.end));
           continue;
         }
-
-
 
         // Multiline """String"""
         if (_scanner.scan(new RegExp(r'"""(?:[^"\\]|\\(.|\n))*"""'))) {
@@ -255,15 +249,12 @@ class DartSyntaxHighlighter extends SyntaxCostomHighlighter {
           continue;
         }
 
-
-
         // Multiline '''String'''
         if (_scanner.scan(new RegExp(r"'''(?:[^'\\]|\\(.|\n))*'''"))) {
           _spans.add(new _HighlightSpan(_HighlightType.string,
               _scanner.lastMatch.start, _scanner.lastMatch.end));
           continue;
         }
-
 
         // "String"
         if (_scanner.scan(new RegExp(r'"(?:[^"\\]|\\.)*"'))) {
@@ -279,7 +270,6 @@ class DartSyntaxHighlighter extends SyntaxCostomHighlighter {
           continue;
         }
 
-
         // Double
         if (_scanner.scan(new RegExp(r"\d+\.\d+"))) {
           _spans.add(new _HighlightSpan(_HighlightType.number,
@@ -294,14 +284,12 @@ class DartSyntaxHighlighter extends SyntaxCostomHighlighter {
           continue;
         }
 
-
         // Punctuation
         if (_scanner.scan(new RegExp(r"[\[\]{}().!=<>&\|\?\+\-\*/%\^~;:,]"))) {
           _spans.add(new _HighlightSpan(_HighlightType.punctuation,
               _scanner.lastMatch.start, _scanner.lastMatch.end));
           continue;
         }
-
 
         //中文
         if (_scanner.scan(new RegExp(r"[\u4e00-\u9fa5]"))) {
@@ -310,14 +298,12 @@ class DartSyntaxHighlighter extends SyntaxCostomHighlighter {
           continue;
         }
 
-
         // Metadata
         if (_scanner.scan(new RegExp(r"@\w+"))) {
           _spans.add(new _HighlightSpan(_HighlightType.keyword,
               _scanner.lastMatch.start, _scanner.lastMatch.end));
           continue;
         }
-
 
         // Words
         if (_scanner.scan(new RegExp(r"\w+"))) {
@@ -360,7 +346,6 @@ class DartSyntaxHighlighter extends SyntaxCostomHighlighter {
     } catch (e) {
       print(e.toString());
     }
-
 
     _simplify();
     return true;

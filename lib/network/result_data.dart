@@ -5,11 +5,7 @@
  */
 
 class ResultData {
-  ResultData(
-      this.data,
-      this.result,
-      this.code,
-      {this.headers});
+  ResultData(this.data, this.result, this.code, {this.headers});
 
   var data;
   bool result;

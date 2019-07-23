@@ -87,9 +87,7 @@ class User {
   int collaborators;
   bool two_factor_authentication;
 
-
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 

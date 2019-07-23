@@ -8,15 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class SliverHeaderDelegate extends SliverPersistentHeaderDelegate {
-
-  SliverHeaderDelegate({
-    @required this.minHeight,
-    @required this.maxHeight,
-    @required this.snapConfig,
-    this.child,
-    this.builder,
-    this.changeSize = false
-  });
+  SliverHeaderDelegate(
+      {@required this.minHeight,
+      @required this.maxHeight,
+      @required this.snapConfig,
+      this.child,
+      this.builder,
+      this.changeSize = false});
 
   final double minHeight;
   final double maxHeight;
@@ -51,7 +49,6 @@ class SliverHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   FloatingHeaderSnapConfiguration get snapConfiguration => snapConfig;
-
 }
 
 typedef Widget Builder(

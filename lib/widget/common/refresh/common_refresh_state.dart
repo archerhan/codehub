@@ -7,9 +7,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:codehub/common/constant/global_config.dart';
-import 'package:codehub/widget/common/common_refresh_widget.dart';
+import 'package:codehub/widget/common/refresh/common_refresh_widget.dart';
 
-mixin CommonRefreshState<T extends StatefulWidget> on State<T>, AutomaticKeepAliveClientMixin<T> {
+mixin CommonRefreshState<T extends StatefulWidget>
+    on State<T>, AutomaticKeepAliveClientMixin<T> {
   bool isShow = false;
   bool isLoading = false;
   int page = 1;
@@ -17,36 +18,35 @@ mixin CommonRefreshState<T extends StatefulWidget> on State<T>, AutomaticKeepAli
   bool isLoadMoring = false;
   final List dataList = List();
   final RefreshWidgetControl pullLoadingWidgetControl = RefreshWidgetControl();
-  final GlobalKey<RefreshIndicatorState> refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
+  final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
 
   _lockToAwait() async {
     doDelayed() async {
-      await Future.delayed(Duration(seconds: 1)).then((_)async {
-        if(isLoading){
+      await Future.delayed(Duration(seconds: 1)).then((_) async {
+        if (isLoading) {
           return await doDelayed();
-        }
-        else {
+        } else {
           return null;
         }
       });
     }
+
     await doDelayed();
   }
 
-  showRefreshLoading(){
-    Future.delayed(Duration(seconds: 0), (){
-      refreshIndicatorKey.currentState.show().then((e){
-
-      });
+  showRefreshLoading() {
+    Future.delayed(Duration(seconds: 0), () {
+      refreshIndicatorKey.currentState.show().then((e) {});
       return true;
     });
   }
 
   @protected
-  resolveRefreshResult(res){
+  resolveRefreshResult(res) {
     if (res != null && res.result) {
       pullLoadingWidgetControl.dataList.clear();
-      if (isShow){
+      if (isShow) {
         setState(() {
           pullLoadingWidgetControl.dataList.addAll(res.data);
         });
@@ -57,7 +57,7 @@ mixin CommonRefreshState<T extends StatefulWidget> on State<T>, AutomaticKeepAli
   @protected
   Future<Null> handleRefresh() async {
     if (isLoading) {
-      if(isRefreshing) {
+      if (isRefreshing) {
         return null;
       }
       await _lockToAwait();
@@ -81,7 +81,7 @@ mixin CommonRefreshState<T extends StatefulWidget> on State<T>, AutomaticKeepAli
   @protected
   Future<Null> onLoadMore() async {
     if (isLoading) {
-      if(isLoadMoring) {
+      if (isLoadMoring) {
         return null;
       }
       await _lockToAwait();
@@ -107,7 +107,9 @@ mixin CommonRefreshState<T extends StatefulWidget> on State<T>, AutomaticKeepAli
   resolveDataResult(res) {
     if (isShow) {
       setState(() {
-        pullLoadingWidgetControl.needLoadMore.value = (res != null && res.data != null && res.data.length == GlobalConfig.PAGE_SIZE);
+        pullLoadingWidgetControl.needLoadMore.value = (res != null &&
+            res.data != null &&
+            res.data.length == GlobalConfig.PAGE_SIZE);
       });
     }
   }
@@ -120,6 +122,7 @@ mixin CommonRefreshState<T extends StatefulWidget> on State<T>, AutomaticKeepAli
       });
     }
   }
+
   ///下拉刷新数据
   @protected
   requestRefresh() async {}

@@ -100,44 +100,45 @@ class Repository {
   int allIssueCount;
 
   Repository(
-      this.id,
-      this.size,
-      this.name,
-      this.fullName,
-      this.htmlUrl,
-      this.description,
-      this.language,
-      this.license,
-      this.defaultBranch,
-      this.createdAt,
-      this.updatedAt,
-      this.pushedAt,
-      this.gitUrl,
-      this.sshUrl,
-      this.cloneUrl,
-      this.svnUrl,
-      this.stargazersCount,
-      this.watchersCount,
-      this.forksCount,
-      this.openIssuesCount,
-      this.subscribersCount,
-      this.private,
-      this.fork,
-      this.hasIssues,
-      this.hasProjects,
-      this.hasDownloads,
-      this.hasWiki,
-      this.hasPages,
-      this.owner,
-      this.parent,
-      this.permissions,
-      this.topics,
-      );
+    this.id,
+    this.size,
+    this.name,
+    this.fullName,
+    this.htmlUrl,
+    this.description,
+    this.language,
+    this.license,
+    this.defaultBranch,
+    this.createdAt,
+    this.updatedAt,
+    this.pushedAt,
+    this.gitUrl,
+    this.sshUrl,
+    this.cloneUrl,
+    this.svnUrl,
+    this.stargazersCount,
+    this.watchersCount,
+    this.forksCount,
+    this.openIssuesCount,
+    this.subscribersCount,
+    this.private,
+    this.fork,
+    this.hasIssues,
+    this.hasProjects,
+    this.hasDownloads,
+    this.hasWiki,
+    this.hasPages,
+    this.owner,
+    this.parent,
+    this.permissions,
+    this.topics,
+  );
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. We pass the map to the generated _$UserFromJson constructor.
   /// The constructor is named after the source class, in this case User.
-  factory Repository.fromJson(Map<String, dynamic> json) => _$RepositoryFromJson(json);
+  factory Repository.fromJson(Map<String, dynamic> json) =>
+      _$RepositoryFromJson(json);
 
   Map<String, dynamic> toJson() => _$RepositoryToJson(this);
 

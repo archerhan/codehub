@@ -6,6 +6,7 @@
 
 import 'package:codehub/common/event/http_error_event.dart';
 import 'package:codehub/common/event/index.dart';
+
 class StatusCode {
   ///网络错误
   static const NETWORK_ERROR = -1;

@@ -12,7 +12,6 @@ import 'package:codehub/common/model/follow_event.dart';
 import 'package:flutter/foundation.dart';
 
 class RepoEventDbProvider extends BaseDbProvider {
-
   final String name = "RepoEvent";
 
   final String columnId = "_id";
@@ -26,14 +25,17 @@ class RepoEventDbProvider extends BaseDbProvider {
   RepoEventDbProvider();
 
   Map<String, dynamic> toMap(String fullName, String dataMapString) {
-    Map<String, dynamic> map = {columnFullName : fullName, columnData : dataMapString};
+    Map<String, dynamic> map = {
+      columnFullName: fullName,
+      columnData: dataMapString
+    };
     if (id != null) {
       map[columnId] = id;
     }
     return map;
   }
 
-  RepoEventDbProvider.fromMap(Map map){
+  RepoEventDbProvider.fromMap(Map map) {
     id = map[columnId];
     fullName = map[fullName];
     data = map[data];
@@ -43,17 +45,21 @@ class RepoEventDbProvider extends BaseDbProvider {
   tableName() {
     return name;
   }
+
   @override
   tableSqlString() {
     return tableBaseString(name, columnId) +
-    '''
+        '''
     $columnFullName text not null,
     $columnData text not null)
     ''';
   }
 
   Future _getProvider(Database db, String fullName) async {
-    List<Map<String, dynamic>> maps = await db.query(name, columns: [columnId,columnFullName,columnData], where: "$columnFullName = ?", whereArgs: [fullName]);
+    List<Map<String, dynamic>> maps = await db.query(name,
+        columns: [columnId, columnFullName, columnData],
+        where: "$columnFullName = ?",
+        whereArgs: [fullName]);
     if (maps.length > 0) {
       RepoEventDbProvider provider = RepoEventDbProvider.fromMap(maps.first);
       return provider;
@@ -65,7 +71,8 @@ class RepoEventDbProvider extends BaseDbProvider {
     Database db = await getDataBase();
     var provider = await _getProvider(db, fullName);
     if (provider != null) {
-      await db.delete(name, where: "$columnFullName = ?",whereArgs: [fullName]);
+      await db
+          .delete(name, where: "$columnFullName = ?", whereArgs: [fullName]);
     }
     return await db.insert(name, toMap(fullName, dataMapString));
   }
@@ -73,11 +80,12 @@ class RepoEventDbProvider extends BaseDbProvider {
   Future<List<FollowEvent>> getEvents(String fullName) async {
     Database db = await getDataBase();
     var provider = await _getProvider(db, fullName);
-    if  (provider != null) {
+    if (provider != null) {
       List<FollowEvent> list = List();
-      List<dynamic> eventMap = await compute(CodeUtils.decodeListResult, provider.data as String);
+      List<dynamic> eventMap =
+          await compute(CodeUtils.decodeListResult, provider.data as String);
       if (eventMap.length > 0) {
-        for(var item in eventMap) {
+        for (var item in eventMap) {
           list.add(item);
         }
       }
@@ -86,5 +94,3 @@ class RepoEventDbProvider extends BaseDbProvider {
     return null;
   }
 }
-
-

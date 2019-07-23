@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:codehub/common/redux/middleware/epic_store.dart';
 
-
 /// A function that transforms one stream of actions into another
 /// stream of actions.
 ///

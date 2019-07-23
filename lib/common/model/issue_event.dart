@@ -10,7 +10,7 @@ import 'package:codehub/common/model/user.dart';
 part 'issue_event.g.dart';
 
 @JsonSerializable()
-class IssueEvent{
+class IssueEvent {
   int id;
   User user;
   @JsonKey(name: "created_at")
@@ -28,18 +28,19 @@ class IssueEvent{
   String htmlUrl;
 
   IssueEvent(
-      this.id,
-      this.user,
-      this.createdAt,
-      this.updatedAt,
-      this.authorAssociation,
-      this.body,
-      this.bodyHtml,
-      this.type,
-      this.htmlUrl,
-      );
+    this.id,
+    this.user,
+    this.createdAt,
+    this.updatedAt,
+    this.authorAssociation,
+    this.body,
+    this.bodyHtml,
+    this.type,
+    this.htmlUrl,
+  );
 
-  factory IssueEvent.fromJson(Map<String, dynamic> json) => _$IssueEventFromJson(json);
+  factory IssueEvent.fromJson(Map<String, dynamic> json) =>
+      _$IssueEventFromJson(json);
 
   Map<String, dynamic> toJson() => _$IssueEventToJson(this);
 }

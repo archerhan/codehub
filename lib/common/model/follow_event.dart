@@ -25,17 +25,18 @@ class FollowEvent {
   DateTime createdAt;
 
   FollowEvent(
-      this.id,
-      this.type,
-      this.actor,
-      this.repo,
-      this.org,
-      this.payload,
-      this.isPublic,
-      this.createdAt,
-      );
+    this.id,
+    this.type,
+    this.actor,
+    this.repo,
+    this.org,
+    this.payload,
+    this.isPublic,
+    this.createdAt,
+  );
 
-  factory FollowEvent.fromJson(Map<String, dynamic> json) => _$FollowEventFromJson(json);
+  factory FollowEvent.fromJson(Map<String, dynamic> json) =>
+      _$FollowEventFromJson(json);
 
   Map<String, dynamic> toJson() => _$FollowEventToJson(this);
 }

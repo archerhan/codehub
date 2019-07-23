@@ -17,18 +17,22 @@ class CustomTitleBar extends StatelessWidget {
 
   final Widget rightWidget;
 
-  CustomTitleBar(this.title, {this.iconData, this.onPressed, this.needRightLocalIcon = false, this.rightWidget});
+  CustomTitleBar(this.title,
+      {this.iconData,
+      this.onPressed,
+      this.needRightLocalIcon = false,
+      this.rightWidget});
   @override
   Widget build(BuildContext context) {
     Widget widget = rightWidget;
     if (rightWidget == null) {
       widget = (needRightLocalIcon)
           ? new IconButton(
-          icon: new Icon(
-            iconData,
-            size: 19.0,
-          ),
-          onPressed: onPressed)
+              icon: new Icon(
+                iconData,
+                size: 19.0,
+              ),
+              onPressed: onPressed)
           : new Container();
     }
     return Container(

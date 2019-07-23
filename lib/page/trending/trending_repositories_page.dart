@@ -5,6 +5,7 @@
  */
 
 import 'package:flutter/material.dart';
+
 class TrendingRepositories extends StatefulWidget {
   @override
   _TrendingRepositoriesState createState() => _TrendingRepositoriesState();

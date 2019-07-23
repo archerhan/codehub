@@ -25,7 +25,10 @@ class MyFollowEventDbProvider extends BaseDbProvider {
   MyFollowEventDbProvider();
 
   Map<String, dynamic> toMap(String userName, String eventMapString) {
-    Map<String, dynamic> map = {columnUserName: userName, columnData: eventMapString};
+    Map<String, dynamic> map = {
+      columnUserName: userName,
+      columnData: eventMapString
+    };
     if (id != null) {
       map[columnId] = id;
     }
@@ -53,9 +56,13 @@ class MyFollowEventDbProvider extends BaseDbProvider {
   }
 
   Future _getProvider(Database db, String userName) async {
-    List<Map> maps = await db.query(name, columns: [columnId, columnData, columnUserName], where: "$columnUserName = ?", whereArgs: [userName]);
+    List<Map> maps = await db.query(name,
+        columns: [columnId, columnData, columnUserName],
+        where: "$columnUserName = ?",
+        whereArgs: [userName]);
     if (maps.length > 0) {
-      MyFollowEventDbProvider provider = MyFollowEventDbProvider.fromMap(maps.first);
+      MyFollowEventDbProvider provider =
+          MyFollowEventDbProvider.fromMap(maps.first);
       return provider;
     }
     return null;
@@ -66,7 +73,8 @@ class MyFollowEventDbProvider extends BaseDbProvider {
     Database db = await getDataBase();
     var provider = await _getProvider(db, userName);
     if (provider != null) {
-      await db.delete(name, where: "$columnUserName = ?", whereArgs: [userName]);
+      await db
+          .delete(name, where: "$columnUserName = ?", whereArgs: [userName]);
     }
     return await db.insert(name, toMap(userName, eventMapString));
   }
@@ -79,7 +87,8 @@ class MyFollowEventDbProvider extends BaseDbProvider {
       List<FollowEvent> list = new List();
 
       ///使用 compute 的 Isolate 优化 json decode
-      List<dynamic> eventMap = await compute(CodeUtils.decodeListResult, provider.data as String);
+      List<dynamic> eventMap =
+          await compute(CodeUtils.decodeListResult, provider.data as String);
 
       if (eventMap.length > 0) {
         for (var item in eventMap) {

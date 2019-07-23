@@ -10,14 +10,14 @@ class Api {
   static const String host = "https://api.github.com/";
   static const String hostWeb = "https://github.com/";
 
-
   ///获取授权  post
   static getAuthorization() {
     return "${host}authorizations";
   }
 
   ///搜索 get
-  static search(q, sort, order, type, page, [pageSize = GlobalConfig.PAGE_SIZE]) {
+  static search(q, sort, order, type, page,
+      [pageSize = GlobalConfig.PAGE_SIZE]) {
     if (type == 'user') {
       return "${host}search/users?q=$q&page=$page&per_page=$pageSize";
     }
@@ -169,12 +169,18 @@ class Api {
 
   ///仓库路径下的内容 get
   static reposDataDir(reposOwner, repos, path, [branch = 'master']) {
-    return "${host}repos/$reposOwner/$repos/contents/$path" + ((branch == null) ? "" : ("?ref=" + branch));
+    return "${host}repos/$reposOwner/$repos/contents/$path" +
+        ((branch == null) ? "" : ("?ref=" + branch));
   }
 
   ///README 文件地址 get
   static readmeFile(reposNameFullName, curBranch) {
-    return host + "repos/" + reposNameFullName + "/" + "readme" + ((curBranch == null) ? "" : ("?ref=" + curBranch));
+    return host +
+        "repos/" +
+        reposNameFullName +
+        "/" +
+        "readme" +
+        ((curBranch == null) ? "" : ("?ref=" + curBranch));
   }
 
   ///我的用户信息 GET
@@ -250,7 +256,8 @@ class Api {
 
   ///通知 get
   static getNotifation(all, participating) {
-    if ((all == null && participating == null) || (all == false && participating == false)) {
+    if ((all == null && participating == null) ||
+        (all == false && participating == false)) {
       return "${host}notifications";
     }
     all ??= false;
@@ -288,28 +295,4 @@ class Api {
       return "";
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -10,7 +10,7 @@ import 'package:codehub/common/model/commit_git_user.dart';
 part 'commit_git_info.g.dart';
 
 @JsonSerializable()
-class CommitGitInfo  {
+class CommitGitInfo {
   String message;
   String url;
   @JsonKey(name: "comment_count")
@@ -19,15 +19,15 @@ class CommitGitInfo  {
   CommitGitUser committer;
 
   CommitGitInfo(
-      this.message,
-      this.url,
-      this.commentCount,
-      this.author,
-      this.committer,
-      );
+    this.message,
+    this.url,
+    this.commentCount,
+    this.author,
+    this.committer,
+  );
 
-  factory CommitGitInfo.fromJson(Map<String, dynamic> json) => _$CommitGitInfoFromJson(json);
-
+  factory CommitGitInfo.fromJson(Map<String, dynamic> json) =>
+      _$CommitGitInfoFromJson(json);
 
   Map<String, dynamic> toJson() => _$CommitGitInfoToJson(this);
 }

@@ -13,17 +13,13 @@ import 'package:codehub/common/redux/my_state.dart';
 import 'package:codehub/widget/follow/follow_item.dart';
 import 'package:codehub/common/utils/event_utils.dart';
 
-
 class MyFollowPage extends StatefulWidget {
   @override
   _MyFollowPageState createState() => _MyFollowPageState();
 }
 
 class _MyFollowPageState extends State<MyFollowPage>
-    with
-        AutomaticKeepAliveClientMixin,
-        WidgetsBindingObserver
-{
+    with AutomaticKeepAliveClientMixin, WidgetsBindingObserver {
   var loadingTag = 0; //表尾标记
   var _followList = <FollowEvent>[];
   var _page = 0;
@@ -44,7 +40,7 @@ class _MyFollowPageState extends State<MyFollowPage>
   }
 
   Future<Null> refresh() async {
-    await Future.delayed(const Duration(seconds:0), () {
+    await Future.delayed(const Duration(seconds: 0), () {
       _fetchData();
     });
   }
@@ -52,7 +48,7 @@ class _MyFollowPageState extends State<MyFollowPage>
   ///Fetch data
   _fetchData() async {
     await MyFollowDao.getMyFollowReceived(_getStore().state.userInfo.login,
-            page: _page, needDb: false)
+            page: _page, needDb: true)
         .then((res) {
       if (res.data != null && res.data.length > 0) {
         for (var item in res.data) {
@@ -79,6 +75,7 @@ class _MyFollowPageState extends State<MyFollowPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return RefreshIndicator(
       onRefresh: refresh,
       child: ListView.separated(

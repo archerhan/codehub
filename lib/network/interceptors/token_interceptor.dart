@@ -25,7 +25,7 @@ class TokenInterceptor extends InterceptorsWrapper {
 
   @override
   //在返回结果中保存授权码
-  onResponse(Response response) async{
+  onResponse(Response response) async {
     try {
       var responseJson = response.data;
       if (response.statusCode == 201 && responseJson["token"] != null) {
@@ -50,12 +50,10 @@ class TokenInterceptor extends InterceptorsWrapper {
       String basic = await LocalStorage.get(GlobalConfig.USER_BASIC_CODE_KEY);
       if (basic == null) {
         print("请输入用户名或密码");
-      }
-      else {
+      } else {
         return "Basic $basic";
       }
-    }
-    else {
+    } else {
       this._token = token;
       return token;
     }

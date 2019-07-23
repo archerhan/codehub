@@ -20,21 +20,23 @@ import 'package:codehub/common/db/provider/repo_commit_db_provider.dart';
 import 'package:codehub/common/db/provider/repo_readme_db_provider.dart';
 import 'package:codehub/common/model/file.dart';
 
-
 class ReposDao {
-
-
   ///获取用户对当前仓库的star、watch状态
   static getRepositoryStatusDao(userName, reposName) async {
     //star
     String urls = Api.resolveStarRepos(userName, reposName);
     //watch
     String urlw = Api.resolveWatcherRepos(userName, reposName);
-    var starRes = await httpManager.request(urls, null, null, Options(contentType: ContentType.text),noTip: true);
-    var watchRes = await httpManager.request(urlw, null, null, Options(contentType: ContentType.text), noTip: true);
-    var data = {"star" : starRes.result,"watch" : watchRes.result};
+    var starRes = await httpManager.request(
+        urls, null, null, Options(contentType: ContentType.text),
+        noTip: true);
+    var watchRes = await httpManager.request(
+        urlw, null, null, Options(contentType: ContentType.text),
+        noTip: true);
+    var data = {"star": starRes.result, "watch": watchRes.result};
     return DataResult(data, true);
   }
+
   ///获取当前仓库所有分支
   static getBranchesDao(userName, reposName) async {
     String url = Api.getbranches(userName, reposName);
@@ -45,22 +47,25 @@ class ReposDao {
       if (dataList == null || dataList.length == 0) {
         return DataResult(null, false);
       }
-      for(int i = 0; i < dataList.length; i++) {
+      for (int i = 0; i < dataList.length; i++) {
         var data = dataList[i];
         list.add(data['name']);
       }
       return DataResult(list, true);
-    }
-    else {
+    } else {
       return DataResult(null, false);
     }
   }
 
-  static getReposCommitsDao(userName, repoName, {page = 0, branch= "master", needDb = true}) async {
+  static getReposCommitsDao(userName, repoName,
+      {page = 0, branch = "master", needDb = true}) async {
     String fullName = userName + "/" + repoName;
     RepoCommitDbProvider provider = RepoCommitDbProvider();
-    next()async {
-      String url = Api.getReposCommits(userName, repoName) + Api.getPageParams("?", page) + "&sha=" + branch;
+    next() async {
+      String url = Api.getReposCommits(userName, repoName) +
+          Api.getPageParams("?", page) +
+          "&sha=" +
+          branch;
       var res = await httpManager.request(url, null, null, null);
       if (res != null && res.result) {
         List<RepoCommit> list = List();
@@ -68,20 +73,19 @@ class ReposDao {
         if (data == null && data.length == 0) {
           return DataResult(null, false);
         }
-        for(int i = 0; i < data.length; i++) {
+        for (int i = 0; i < data.length; i++) {
           list.add(RepoCommit.fromJson(data[i]));
         }
         if (needDb) {
           provider.insert(fullName, branch, json.encode(data));
         }
         return DataResult(list, true);
-      }
-      else {
+      } else {
         return DataResult(null, false);
       }
     }
 
-    if (needDb){
+    if (needDb) {
       //处理查询数据库
       List<RepoCommit> list = await provider.getData(fullName, branch);
       if (list == null) {
@@ -93,13 +97,15 @@ class ReposDao {
 
     return await next();
   }
+
   ///仓库活动事件
-  static getRepositoryEventDao(userName, repoName,{page = 0,branch = "master", needDb = true}) async {
+  static getRepositoryEventDao(userName, repoName,
+      {page = 0, branch = "master", needDb = true}) async {
     String fullName = userName + '/' + repoName;
     RepoEventDbProvider provider = RepoEventDbProvider();
     next() async {
-      String url = Api.getReposEvent(userName, repoName) +
-          Api.getPageParams("?", page);
+      String url =
+          Api.getReposEvent(userName, repoName) + Api.getPageParams("?", page);
       var res = await httpManager.request(url, null, null, null);
       if (res != null && res.result) {
         List<FollowEvent> list = List();
@@ -114,11 +120,11 @@ class ReposDao {
           provider.insertEvent(fullName, json.encode(data));
         }
         return DataResult(list, true);
-      }
-      else {
+      } else {
         return DataResult(null, false);
       }
     }
+
     if (needDb) {
       List<FollowEvent> events = await provider.getEvents(fullName);
       if (events == null) {
@@ -129,20 +135,24 @@ class ReposDao {
     }
     return await next();
   }
+
   ///获取仓库详情
-  static getRepositoryDetailDao(userName, repoName, branch, {needDb = true}) async {
+  static getRepositoryDetailDao(userName, repoName, branch,
+      {needDb = true}) async {
     String fullName = userName + '/' + repoName;
     RepoDetailDbProvider provider = RepoDetailDbProvider();
     next() async {
       String url = Api.getReposDetail(userName, repoName) + "?ref=" + branch;
-      var res = await httpManager.request(url, null, {"Accept": 'application/vnd.github.mercy-preview+json'}, null);
+      var res = await httpManager.request(url, null,
+          {"Accept": 'application/vnd.github.mercy-preview+json'}, null);
       if (res != null && res.result && res.data.length > 0) {
         var data = res.data;
         if (data == null || data.length == 0) {
           return DataResult(null, false);
         }
         Repository repo = Repository.fromJson(data);
-        var issueResult = await ReposDao.getRepositoryIssueStatusDao(userName, repoName);
+        var issueResult =
+            await ReposDao.getRepositoryIssueStatusDao(userName, repoName);
         if (issueResult != null && issueResult.result) {
           repo.allIssueCount = int.parse(issueResult.data);
         }
@@ -153,11 +163,11 @@ class ReposDao {
 //        saveHistoryDao(
 //            fullName, DateTime.now(), json.encode(repository.toJson()));
         return DataResult(repo, true);
-      }
-      else {
+      } else {
         return DataResult(null, false);
       }
     }
+
     if (needDb) {
       //查询数据
       Repository repository = await provider.getRepository(fullName);
@@ -169,15 +179,15 @@ class ReposDao {
       return dataResult;
     }
     return await next();
-
   }
+
   ///获取Issue总数
   static getRepositoryIssueStatusDao(userName, repoName) async {
-    String url = Api.getReposIssue(userName, repoName, null, null, null) +
-        "&per_page=1";
+    String url =
+        Api.getReposIssue(userName, repoName, null, null, null) + "&per_page=1";
     var res = await httpManager.request(url, null, null, null);
     if (res != null && res.result && res.headers != null) {
-      try{
+      try {
         List<String> link = res.headers['link'];
         if (link != null) {
           int indexStart = link[0].lastIndexOf("page=") + 5;
@@ -187,14 +197,16 @@ class ReposDao {
             return new DataResult(count, true);
           }
         }
-      } catch (e){
+      } catch (e) {
         print(e);
       }
     }
     return DataResult(null, false);
   }
+
   //readme
-  static getRepositoryDetailReadmeDao(userName, repoName, branch, {needDb = true}) async {
+  static getRepositoryDetailReadmeDao(userName, repoName, branch,
+      {needDb = true}) async {
     RepoReadMeDbProvider provider = RepoReadMeDbProvider();
     String fullName = userName + "/" + repoName;
     next() async {
@@ -215,24 +227,29 @@ class ReposDao {
 
     if (needDb) {
       //数据库查询
-      String readmeDataString = await provider.getReadmeDataString(fullName, branch);
+      String readmeDataString =
+          await provider.getReadmeDataString(fullName, branch);
       if (readmeDataString != null && readmeDataString.length > 0) {
         return DataResult(readmeDataString, true, next: next());
-      }
-      else {
+      } else {
         return await next();
       }
     }
 
     return await next();
   }
+
   ///获取仓库文件列表
   static getReposFileDirDao(userName, reposName,
       {path = '', branch, text = false, isHtml = false}) async {
-    String url = Api.reposDataDir(userName, reposName,path,branch);
-    var res = await httpManager.request(url, null,  isHtml
-        ? {"Accept": 'application/vnd.github.html'}
-        : {"Accept": 'application/vnd.github.VERSION.raw'}, Options(contentType: text ? ContentType.text : ContentType.json));
+    String url = Api.reposDataDir(userName, reposName, path, branch);
+    var res = await httpManager.request(
+        url,
+        null,
+        isHtml
+            ? {"Accept": 'application/vnd.github.html'}
+            : {"Accept": 'application/vnd.github.VERSION.raw'},
+        Options(contentType: text ? ContentType.text : ContentType.json));
     if (res != null && res.result) {
       if (text) {
         return DataResult(res.data, true);
@@ -255,12 +272,8 @@ class ReposDao {
       list.addAll(dirs);
       list.addAll(files);
       return new DataResult(list, true);
-    }
-    else {
+    } else {
       return DataResult(null, false);
     }
   }
-
 }
-
-

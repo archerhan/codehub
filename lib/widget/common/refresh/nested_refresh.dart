@@ -152,11 +152,11 @@ class NestedScrollViewRefreshIndicatorState
   double _dragOffset;
 
   static final Animatable<double> _threeQuarterTween =
-  Tween<double>(begin: 0.0, end: 0.75);
+      Tween<double>(begin: 0.0, end: 0.75);
   static final Animatable<double> _kDragSizeFactorLimitTween =
-  Tween<double>(begin: 0.0, end: _kDragSizeFactorLimit);
+      Tween<double>(begin: 0.0, end: _kDragSizeFactorLimit);
   static final Animatable<double> _oneToZeroTween =
-  Tween<double>(begin: 1.0, end: 0.0);
+      Tween<double>(begin: 1.0, end: 0.0);
 
   @override
   void initState() {
@@ -175,10 +175,10 @@ class NestedScrollViewRefreshIndicatorState
     final ThemeData theme = Theme.of(context);
     _valueColor = _positionController.drive(
       ColorTween(
-          begin: (widget.color ?? theme.accentColor).withOpacity(0.0),
-          end: (widget.color ?? theme.accentColor).withOpacity(1.0))
+              begin: (widget.color ?? theme.accentColor).withOpacity(0.0),
+              end: (widget.color ?? theme.accentColor).withOpacity(1.0))
           .chain(CurveTween(
-          curve: const Interval(0.0, 1.0 / _kDragSizeFactorLimit))),
+              curve: const Interval(0.0, 1.0 / _kDragSizeFactorLimit))),
     );
     super.didChangeDependencies();
   }
@@ -253,7 +253,7 @@ class NestedScrollViewRefreshIndicatorState
           _dismiss(_RefreshIndicatorMode.canceled);
           break;
         default:
-        // do nothing
+          // do nothing
           break;
       }
     }
@@ -345,7 +345,7 @@ class NestedScrollViewRefreshIndicatorState
     _mode = _RefreshIndicatorMode.snap;
     _positionController
         .animateTo(1.0 / _kDragSizeFactorLimit,
-        duration: _kIndicatorSnapDuration)
+            duration: _kIndicatorSnapDuration)
         .then<void>((void value) {
       if (mounted && _mode == _RefreshIndicatorMode.snap) {
         assert(widget.onRefresh != null);
@@ -360,7 +360,7 @@ class NestedScrollViewRefreshIndicatorState
             FlutterError.reportError(FlutterErrorDetails(
               exception: FlutterError('The onRefresh callback returned null.\n'
                   'The RefreshIndicator onRefresh callback must return a Future.'),
-              context:  DiagnosticsNode.message('when calling onRefresh'),
+              context: DiagnosticsNode.message('when calling onRefresh'),
               library: 'material library',
             ));
           return true;

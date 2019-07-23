@@ -21,7 +21,6 @@ MyState appReducer(MyState state, action) {
   return MyState(
     ///通过 UserReducer 将 GSYState 内的 userInfo 和 action 关联在一起
     userInfo: UserReducer(state.userInfo, action),
-
   );
 }
 

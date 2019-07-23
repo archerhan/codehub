@@ -64,7 +64,7 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
         constraints: const BoxConstraints(minWidth: 0.0, minHeight: 0.0),
         child: new Container(
           padding:
-          EdgeInsets.only(left: 5.0, right: 5.0, top: 2.5, bottom: 2.5),
+              EdgeInsets.only(left: 5.0, right: 5.0, top: 2.5, bottom: 2.5),
           decoration: new BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(4.0)),
             color: Colors.white30,
@@ -76,7 +76,6 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
           ),
         ));
   }
-
 
   ///话题组控件
   _renderTopicGroup(BuildContext context) {
@@ -116,26 +115,30 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
   @override
   void didUpdateWidget(RepoHeaderItem oldWidget) {
     super.didUpdateWidget(oldWidget);
+
     ///如果没有tag列表，不需要处理
     /*if(layoutTopicContainerKey.currentContext == null || layoutLastTopicKey.currentContext == null) {
       return;
     }*/
     ///如果存在tag，根据tag去判断，修复溢出
-    new Future.delayed(Duration(seconds: 0), (){
+    new Future.delayed(Duration(seconds: 0), () {
       /// tag 所在 container
-      RenderBox renderBox2 = layoutTopicContainerKey.currentContext?.findRenderObject();
+      RenderBox renderBox2 =
+          layoutTopicContainerKey.currentContext?.findRenderObject();
+
       /// 最后面的一个tag
-      RenderBox renderBox3 = layoutLastTopicKey.currentContext?.findRenderObject();
+      RenderBox renderBox3 =
+          layoutLastTopicKey.currentContext?.findRenderObject();
       double overflow = ((renderBox3?.localToGlobal(Offset.zero)?.dy ?? 0) -
-          (renderBox2?.localToGlobal(Offset.zero)?.dy ?? 0)) -
+              (renderBox2?.localToGlobal(Offset.zero)?.dy ?? 0)) -
           (layoutLastTopicKey.currentContext?.size?.height ?? 0);
       var newSize;
-      if(overflow > 0) {
+      if (overflow > 0) {
         newSize = layoutKey.currentContext.size.height + overflow;
       } else {
         newSize = layoutKey.currentContext.size.height + 10.0;
       }
-      if(GlobalConfig.DEBUG) {
+      if (GlobalConfig.DEBUG) {
         print("newSize $newSize overflow $overflow");
       }
       if (widgetHeight != newSize && newSize > 0) {
@@ -276,65 +279,79 @@ class _RepoHeaderItemState extends State<RepoHeaderItem> {
                                 reposName: widget
                                     .repoHeaderItemViewModel.repositoryName);
                           }),
+
                           ///fork
                           Container(
-                            width: 0.3,
-                            height: 25.0,
-                            color: Color(CustomColors.subLightTextColor)
-                          ),
-                            _getBottomItem(CustomIcons.REPOS_ITEM_FORK,
-                                widget.repoHeaderItemViewModel.repositoryFork,
-                                () {
-                              RouteManager.gotoCommonList(
-                                  context,
-                                  widget.repoHeaderItemViewModel.repositoryName,
-                                  "repository",
-                                  "repo_fork",
-                                  userName:
-                                      widget.repoHeaderItemViewModel.ownerName,
-                                  reposName: widget
-                                      .repoHeaderItemViewModel.repositoryName);
-                            }),
+                              width: 0.3,
+                              height: 25.0,
+                              color: Color(CustomColors.subLightTextColor)),
+                          _getBottomItem(CustomIcons.REPOS_ITEM_FORK,
+                              widget.repoHeaderItemViewModel.repositoryFork,
+                              () {
+                            RouteManager.gotoCommonList(
+                                context,
+                                widget.repoHeaderItemViewModel.repositoryName,
+                                "repository",
+                                "repo_fork",
+                                userName:
+                                    widget.repoHeaderItemViewModel.ownerName,
+                                reposName: widget
+                                    .repoHeaderItemViewModel.repositoryName);
+                          }),
+
                           ///watch
                           Container(
-                            width: 0.3,
-                            height: 25.0,
-                            color: Color(CustomColors.subLightTextColor)),
-                             _getBottomItem(CustomIcons.REPOS_ITEM_WATCH,
-                                widget.repoHeaderItemViewModel.repositoryWatch,
-                                    () {
-                                  RouteManager.gotoCommonList(
-                                      context,
-                                      widget.repoHeaderItemViewModel.repositoryName,
-                                      "user",
-                                      "repo_watcher",
-                                      userName:
-                                      widget.repoHeaderItemViewModel.ownerName,
-                                      reposName: widget
-                                          .repoHeaderItemViewModel.repositoryName);
-                                }),
+                              width: 0.3,
+                              height: 25.0,
+                              color: Color(CustomColors.subLightTextColor)),
+                          _getBottomItem(CustomIcons.REPOS_ITEM_WATCH,
+                              widget.repoHeaderItemViewModel.repositoryWatch,
+                              () {
+                            RouteManager.gotoCommonList(
+                                context,
+                                widget.repoHeaderItemViewModel.repositoryName,
+                                "user",
+                                "repo_watcher",
+                                userName:
+                                    widget.repoHeaderItemViewModel.ownerName,
+                                reposName: widget
+                                    .repoHeaderItemViewModel.repositoryName);
+                          }),
+
                           ///issue
                           Container(
-                            width: 0.3,
-                            height: 25.0,
-                            color: Color(CustomColors.subLightTextColor)),
-                             _getBottomItem(
-                              CustomIcons.REPOS_ITEM_ISSUE,
+                              width: 0.3,
+                              height: 25.0,
+                              color: Color(CustomColors.subLightTextColor)),
+                          _getBottomItem(CustomIcons.REPOS_ITEM_ISSUE,
                               widget.repoHeaderItemViewModel.repositoryIssue,
-                                (){
-                                if (widget.repoHeaderItemViewModel.allIssueCount == null || widget.repoHeaderItemViewModel.allIssueCount == 0) {
-                                  return;
-                                }
-                                List<String> list = [
-                                  "所有Issue " + widget.repoHeaderItemViewModel.allIssueCount.toString(),
-                                  "打开的Issue " + widget.repoHeaderItemViewModel.openIssuesCount.toString(),
-                                  "关闭的Issue" + (widget.repoHeaderItemViewModel.allIssueCount - widget.repoHeaderItemViewModel.openIssuesCount).toString()
-                                ];
+                              () {
+                            if (widget.repoHeaderItemViewModel.allIssueCount ==
+                                    null ||
+                                widget.repoHeaderItemViewModel.allIssueCount ==
+                                    0) {
+                              return;
+                            }
+                            List<String> list = [
+                              "所有Issue " +
+                                  widget.repoHeaderItemViewModel.allIssueCount
+                                      .toString(),
+                              "打开的Issue " +
+                                  widget.repoHeaderItemViewModel.openIssuesCount
+                                      .toString(),
+                              "关闭的Issue" +
+                                  (widget.repoHeaderItemViewModel
+                                              .allIssueCount -
+                                          widget.repoHeaderItemViewModel
+                                              .openIssuesCount)
+                                      .toString()
+                            ];
 
-                                CommonUtils.showCommitOptionDialog(context, list, (index){print("点击了 $index" + list[index]);});
-
-                                }
-                            ),
+                            CommonUtils.showCommitOptionDialog(context, list,
+                                (index) {
+                              print("点击了 $index" + list[index]);
+                            });
+                          }),
                         ],
                       ),
                     ),

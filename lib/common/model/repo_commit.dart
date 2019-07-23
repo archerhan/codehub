@@ -25,16 +25,17 @@ class RepoCommit {
   List<RepoCommit> parents;
 
   RepoCommit(
-      this.sha,
-      this.url,
-      this.htmlUrl,
-      this.commentsUrl,
-      this.commit,
-      this.author,
-      this.committer,
-      this.parents,
-      );
+    this.sha,
+    this.url,
+    this.htmlUrl,
+    this.commentsUrl,
+    this.commit,
+    this.author,
+    this.committer,
+    this.parents,
+  );
 
-  factory RepoCommit.fromJson(Map<String, dynamic> json) => _$RepoCommitFromJson(json);
+  factory RepoCommit.fromJson(Map<String, dynamic> json) =>
+      _$RepoCommitFromJson(json);
   Map<String, dynamic> toJson() => _$RepoCommitToJson(this);
 }

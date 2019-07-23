@@ -16,7 +16,8 @@ class NotificationSubject {
 
   NotificationSubject(this.title, this.url, this.type);
 
-  factory NotificationSubject.fromJson(Map<String, dynamic> json) => _$NotificationSubjectFromJson(json);
+  factory NotificationSubject.fromJson(Map<String, dynamic> json) =>
+      _$NotificationSubjectFromJson(json);
 
   Map<String, dynamic> toJson() => _$NotificationSubjectToJson(this);
 }

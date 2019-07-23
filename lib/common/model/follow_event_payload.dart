@@ -14,7 +14,6 @@ part 'follow_event_payload.g.dart';
 
 @JsonSerializable()
 class EventPayload {
-
   @JsonKey(name: "push_id")
   int pushId;
   int size;
@@ -40,7 +39,8 @@ class EventPayload {
 
   EventPayload();
 
-  factory EventPayload.fromJson(Map<String, dynamic> json) => _$EventPayloadFromJson(json);
+  factory EventPayload.fromJson(Map<String, dynamic> json) =>
+      _$EventPayloadFromJson(json);
 
   Map<String, dynamic> toJson() => _$EventPayloadToJson(this);
 }

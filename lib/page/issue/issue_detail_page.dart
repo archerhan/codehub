@@ -29,10 +29,9 @@ class IssueDetailPage extends StatefulWidget {
   _IssueDetailPageState createState() => _IssueDetailPageState();
 }
 
-class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAliveClientMixin{
-
+class _IssueDetailPageState extends State<IssueDetailPage>
+    with AutomaticKeepAliveClientMixin {
   final OptionControl titleOptionControl = OptionControl();
-
 
   _getDataLogic() async {
     return await IssueDao.getIssueComment(
@@ -43,61 +42,57 @@ class _IssueDetailPageState extends State<IssueDetailPage> with AutomaticKeepAli
     IssueDao.getIssueInfo(widget.userName, widget.reposName, widget.issueNum)
         .then((res) {
       print(res);
-    }).then((res) {
-      
-    });
+    }).then((res) {});
   }
 
   Future<Null> refresh() async {
-    await Future.delayed(Duration(milliseconds: 500), (){
-     _getDataLogic();
-     _getHeaderInfo();
+    await Future.delayed(Duration(milliseconds: 500), () {
+      _getDataLogic();
+      _getHeaderInfo();
     });
-
   }
 
   @override
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    Widget widgetContent = widget.needHomeIcon ? null : CommonOptionWidget(titleOptionControl);
+    Widget widgetContent =
+        widget.needHomeIcon ? null : CommonOptionWidget(titleOptionControl);
     return Scaffold(
-      appBar: AppBar(
-        title: CustomTitleBar(
-          widget.reposName,
-          rightWidget:widgetContent,
-          needRightLocalIcon: widget.needHomeIcon,
-          iconData: CustomIcons.HOME,
-          onPressed: (){
-            RouteManager.goReposDetail(context, widget.userName, widget.reposName);
-          },
+        appBar: AppBar(
+          title: CustomTitleBar(
+            widget.reposName,
+            rightWidget: widgetContent,
+            needRightLocalIcon: widget.needHomeIcon,
+            iconData: CustomIcons.HOME,
+            onPressed: () {
+              RouteManager.goReposDetail(
+                  context, widget.userName, widget.reposName);
+            },
+          ),
         ),
-      ),
-      body: RefreshIndicator(
-        onRefresh: refresh,
-        child: ListView.separated(
-          itemCount: 10,
-          itemBuilder: (context, index){
-            return Container(
-              height: 44,
-              child: Center(
-                child: Text("This is index"),
+        body: RefreshIndicator(
+            onRefresh: refresh,
+            child: ListView.separated(
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return Container(
+                  height: 44,
+                  child: Center(
+                    child: Text("This is index"),
+                  ),
+                );
+              },
+              separatorBuilder: (context, index) => Divider(
+                height: 1,
               ),
-            );
-          },
-          separatorBuilder: (context, index)=>Divider(height: 1,),
-        )
-      )
-    );
+            )));
   }
-
 
   @override
   bool get wantKeepAlive => true;
-
-  
-
 }

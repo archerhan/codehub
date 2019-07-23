@@ -34,7 +34,6 @@ class RepoDetailIssuePageState extends State<RepoDetailIssuePage>
         AutomaticKeepAliveClientMixin<RepoDetailIssuePage>,
         SingleTickerProviderStateMixin,
         CommonRefreshState<RepoDetailIssuePage> {
-
   final GlobalKey<NestedScrollViewRefreshIndicatorState> refreshIKey =
       new GlobalKey<NestedScrollViewRefreshIndicatorState>();
 

@@ -7,7 +7,6 @@
 import 'dart:convert';
 
 class CodeUtils {
-
   static List<dynamic> decodeListResult(String data) {
     return json.decode(data);
   }
@@ -19,5 +18,4 @@ class CodeUtils {
   static String encodeToString(String data) {
     return json.encode(data);
   }
-
 }

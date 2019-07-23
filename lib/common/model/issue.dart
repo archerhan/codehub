@@ -7,7 +7,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:codehub/common/model/user.dart';
 
-
 part 'issue.g.dart';
 
 @JsonSerializable()
@@ -38,25 +37,23 @@ class Issue {
   @JsonKey(name: "closed_by")
   User closeBy;
 
-
-
   Issue(
-      this.id,
-      this.number,
-      this.title,
-      this.state,
-      this.locked,
-      this.commentNum,
-      this.createdAt,
-      this.updatedAt,
-      this.closedAt,
-      this.body,
-      this.bodyHtml,
-      this.user,
-      this.repoUrl,
-      this.htmlUrl,
-      this.closeBy,
-      );
+    this.id,
+    this.number,
+    this.title,
+    this.state,
+    this.locked,
+    this.commentNum,
+    this.createdAt,
+    this.updatedAt,
+    this.closedAt,
+    this.body,
+    this.bodyHtml,
+    this.user,
+    this.repoUrl,
+    this.htmlUrl,
+    this.closeBy,
+  );
 
   factory Issue.fromJson(Map<String, dynamic> json) => _$IssueFromJson(json);
 

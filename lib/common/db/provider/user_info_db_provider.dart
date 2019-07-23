@@ -11,7 +11,6 @@ import 'package:sqflite/sqflite.dart';
 import 'package:codehub/common/utils/code_utils.dart';
 import 'package:flutter/foundation.dart';
 
-
 class UserInfoDbProvider extends BaseDbProvider {
   final String name = 'UserInfo';
 
@@ -26,7 +25,10 @@ class UserInfoDbProvider extends BaseDbProvider {
   UserInfoDbProvider();
 
   Map<String, dynamic> toMap(String userName, String dataMapString) {
-    Map<String, dynamic> map = {columnUserName: userName, columnData: dataMapString};
+    Map<String, dynamic> map = {
+      columnUserName: userName,
+      columnData: dataMapString
+    };
     if (id != null) {
       map[columnId] = id;
     }
@@ -54,8 +56,10 @@ class UserInfoDbProvider extends BaseDbProvider {
   }
 
   Future _getUserProvider(Database db, String userName) async {
-    List<Map<String, dynamic>> maps =
-    await db.query(name, columns: [columnId, columnUserName, columnData], where: "$columnUserName = ?", whereArgs: [userName]);
+    List<Map<String, dynamic>> maps = await db.query(name,
+        columns: [columnId, columnUserName, columnData],
+        where: "$columnUserName = ?",
+        whereArgs: [userName]);
     if (maps.length > 0) {
       UserInfoDbProvider provider = UserInfoDbProvider.fromMap(maps.first);
       return provider;
@@ -68,7 +72,8 @@ class UserInfoDbProvider extends BaseDbProvider {
     Database db = await getDataBase();
     var userProvider = await _getUserProvider(db, userName);
     if (userProvider != null) {
-      await db.delete(name, where: "$columnUserName = ?", whereArgs: [userName]);
+      await db
+          .delete(name, where: "$columnUserName = ?", whereArgs: [userName]);
     }
     return await db.insert(name, toMap(userName, eventMapString));
   }
@@ -81,10 +86,9 @@ class UserInfoDbProvider extends BaseDbProvider {
     Database db = await getDataBase();
     var userProvider = await _getUserProvider(db, userName);
     if (userProvider != null) {
-
-
       ///使用 compute 的 Isolate 优化 json decode
-      var mapData = await compute(CodeUtils.decodeMapResult, userProvider.data as String);
+      var mapData =
+          await compute(CodeUtils.decodeMapResult, userProvider.data as String);
       return User.fromJson(mapData);
     }
     return null;

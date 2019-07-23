@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart'; //加载小动画
 import 'package:codehub/common/constant/global_style.dart';
 
-
 class CommonRefreshWidget extends StatefulWidget {
   ///item builder
   final IndexedWidgetBuilder itemBuilder;
@@ -157,9 +156,7 @@ class _CommonRefreshWidgetState extends State<CommonRefreshWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           FlatButton(
-            onPressed: (){
-
-            },
+            onPressed: () {},
             child: Image(
               image: AssetImage(CustomIcons.DEFAULT_USER_ICON),
               width: 70,
@@ -167,7 +164,10 @@ class _CommonRefreshWidgetState extends State<CommonRefreshWidget> {
             ),
           ),
           Container(
-            child: Text("暂无数据", style: CustomTextStyle.normalText,),
+            child: Text(
+              "暂无数据",
+              style: CustomTextStyle.normalText,
+            ),
           )
         ],
       ),
@@ -181,7 +181,7 @@ class _CommonRefreshWidgetState extends State<CommonRefreshWidget> {
       onRefresh: onRefresh,
       child: ListView.builder(
         physics: const AlwaysScrollableScrollPhysics(),
-        itemBuilder: (context, index){
+        itemBuilder: (context, index) {
           return _getItem(index);
         },
         itemCount: _getListCount(),

@@ -63,10 +63,12 @@ class FollowEventReceivedDbProvider extends BaseDbProvider {
     List<Map> maps = await db.query(name, columns: [columnId, columnData]);
     List<FollowEvent> list = new List();
     if (maps.length > 0) {
-      FollowEventReceivedDbProvider provider = FollowEventReceivedDbProvider.fromMap(maps.first);
+      FollowEventReceivedDbProvider provider =
+          FollowEventReceivedDbProvider.fromMap(maps.first);
 
       ///使用 compute 的 Isolate 优化 json decode
-      List<dynamic> eventMap = await compute(CodeUtils.decodeListResult, provider.data);
+      List<dynamic> eventMap =
+          await compute(CodeUtils.decodeListResult, provider.data);
 
       if (eventMap.length > 0) {
         for (var item in eventMap) {
@@ -76,5 +78,4 @@ class FollowEventReceivedDbProvider extends BaseDbProvider {
     }
     return list;
   }
-
 }

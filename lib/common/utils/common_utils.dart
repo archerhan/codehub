@@ -121,6 +121,7 @@ class CommonUtils {
               child: new SafeArea(child: builder(context)));
         });
   }
+
   static const IMAGE_END = [".png", ".jpg", ".jpeg", ".gif", ".svg"];
 
   static isImageEnd(path) {
@@ -132,6 +133,7 @@ class CommonUtils {
     }
     return image;
   }
+
   static launchUrl(context, String url) {
     if (url == null && url.length == 0) return;
     Uri parseUrl = Uri.parse(url);
@@ -141,9 +143,8 @@ class CommonUtils {
     }
     if (isImage) {
 //      RouteManager.gotoPhotoViewPage(context, url);
-    print("查看图片未做, phone_view库有问题");
+      print("查看图片未做, phone_view库有问题");
       return;
-
     }
 
     if (parseUrl != null &&
@@ -168,6 +169,7 @@ class CommonUtils {
       launchWebView(context, "", url);
     }
   }
+
   static void launchWebView(BuildContext context, String title, String url) {
     if (url.startsWith("http")) {
       RouteManager.goWebView(context, url, title);
@@ -175,7 +177,7 @@ class CommonUtils {
       RouteManager.goWebView(
           context,
           new Uri.dataFromString(url,
-              mimeType: 'text/html', encoding: Encoding.getByName("utf-8"))
+                  mimeType: 'text/html', encoding: Encoding.getByName("utf-8"))
               .toString(),
           title);
     }

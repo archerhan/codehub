@@ -10,7 +10,6 @@ import 'package:sqflite/sqflite.dart';
 import 'package:codehub/common/model/repository.dart';
 import 'package:flutter/foundation.dart';
 
-
 class RepoDetailDbProvider extends BaseDbProvider {
   final name = "RepoDetail";
   final columnId = "_id";
@@ -23,8 +22,11 @@ class RepoDetailDbProvider extends BaseDbProvider {
 
   RepoDetailDbProvider();
 
-  Map<String, dynamic> toMap(String fullName, String dataMapString){
-    Map<String, dynamic> map = {columnFullName : fullName, columnData : dataMapString};
+  Map<String, dynamic> toMap(String fullName, String dataMapString) {
+    Map<String, dynamic> map = {
+      columnFullName: fullName,
+      columnData: dataMapString
+    };
     if (id != null) {
       map[columnId] = id;
     }
@@ -38,9 +40,12 @@ class RepoDetailDbProvider extends BaseDbProvider {
   }
 
   //有值才返回provider
-  Future _getProvider(Database db,String fullName) async {
+  Future _getProvider(Database db, String fullName) async {
     db = await getDataBase();
-    List<Map<String, dynamic>> maps = await db.query(name, columns: [columnId, columnFullName, columnData],where: "$columnFullName = ?", whereArgs: [fullName]);
+    List<Map<String, dynamic>> maps = await db.query(name,
+        columns: [columnId, columnFullName, columnData],
+        where: "$columnFullName = ?",
+        whereArgs: [fullName]);
     if (maps.length > 0) {
       RepoDetailDbProvider provider = RepoDetailDbProvider.fromMap(maps.first);
       return provider;
@@ -56,7 +61,7 @@ class RepoDetailDbProvider extends BaseDbProvider {
   @override
   tableSqlString() {
     return tableBaseString(name, columnId) +
-    '''
+        '''
     $columnFullName text not null,
     $columnData text not null)
     ''';
@@ -66,7 +71,8 @@ class RepoDetailDbProvider extends BaseDbProvider {
     Database db = await getDataBase();
     var provider = await _getProvider(db, fullName);
     if (provider != null) {
-      await db.delete(name, where: "$columnFullName = ?", whereArgs: [fullName]);
+      await db
+          .delete(name, where: "$columnFullName = ?", whereArgs: [fullName]);
     }
     return await db.insert(name, toMap(fullName, dataMapString));
   }
@@ -76,14 +82,12 @@ class RepoDetailDbProvider extends BaseDbProvider {
     Database db = await getDataBase();
     var provider = await _getProvider(db, fullName);
     if (provider != null) {
-
-
       ///使用 compute 的 Isolate 优化 json decode
-      var mapData = await compute(CodeUtils.decodeMapResult, provider.data as String);
+      var mapData =
+          await compute(CodeUtils.decodeMapResult, provider.data as String);
 
       return Repository.fromJson(mapData);
     }
     return null;
   }
-
 }

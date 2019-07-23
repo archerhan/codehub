@@ -6,9 +6,7 @@
 
 import 'package:flutter/material.dart';
 
-
 class CodeDetailPageWeb extends StatefulWidget {
-
   final String userName;
 
   final String reposName;
@@ -25,12 +23,12 @@ class CodeDetailPageWeb extends StatefulWidget {
 
   CodeDetailPageWeb(
       {this.title,
-        this.userName,
-        this.reposName,
-        this.path,
-        this.data,
-        this.branch,
-        this.htmlUrl});
+      this.userName,
+      this.reposName,
+      this.path,
+      this.data,
+      this.branch,
+      this.htmlUrl});
 
   @override
   _CodeDetailPageWebState createState() => _CodeDetailPageWebState();

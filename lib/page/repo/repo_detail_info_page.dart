@@ -56,12 +56,9 @@ class RepoDetailInfoPageState extends State<RepoDetailInfoPage>
 
   ///主动触发下拉刷新
   @override
-  showRefreshLoading(){
-    Future.delayed(Duration(seconds: 0),(){
-
-      refreshIKey.currentState.show().then((e){
-
-      });
+  showRefreshLoading() {
+    Future.delayed(Duration(seconds: 0), () {
+      refreshIKey.currentState.show().then((e) {});
       return true;
     });
   }
@@ -145,8 +142,6 @@ class RepoDetailInfoPageState extends State<RepoDetailInfoPage>
 
   @override
   requestRefresh() async {
-
-
     print("刷新");
     _getRepoDetail();
     return await _getDataLogic();
@@ -156,7 +151,6 @@ class RepoDetailInfoPageState extends State<RepoDetailInfoPage>
   requestLoadMore() async {
     print("加载更多");
     return await _getDataLogic();
-
   }
 
   @override

@@ -1,4 +1,3 @@
-
 /**
  *  author : archer
  *  date : 2019-06-20 10:25
@@ -9,7 +8,6 @@ import 'package:dio/dio.dart';
 import 'package:codehub/common/constant/global_config.dart';
 
 class LogsInterceptor extends InterceptorsWrapper {
-
   @override
   onRequest(RequestOptions options) {
     if (GlobalConfig.DEBUG) {
@@ -41,4 +39,3 @@ class LogsInterceptor extends InterceptorsWrapper {
     return err;
   }
 }
-
