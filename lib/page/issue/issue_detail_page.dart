@@ -10,7 +10,7 @@ import 'package:codehub/widget/common/custom_title_bar.dart';
 import 'package:codehub/widget/common/common_option_widget.dart';
 import 'package:codehub/common/constant/global_style.dart';
 import 'package:codehub/common/route/route_manager.dart';
-import 'package:codehub/widget/common/common_refresh_widget.dart';
+import 'package:codehub/widget/common/refresh/common_refresh_widget.dart';
 
 class IssueDetailPage extends StatefulWidget {
   final String userName;

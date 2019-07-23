@@ -12,8 +12,8 @@ import 'package:codehub/common/utils/common_utils.dart';
 import 'package:codehub/common/route/route_manager.dart';
 import 'package:codehub/page/repo/repo_detail_page.dart';
 import 'package:codehub/widget/repo/card_item.dart';
-import 'package:codehub/widget/common/common_refresh_state.dart';
-import 'package:codehub/widget/common/common_refresh_widget.dart';
+import 'package:codehub/widget/common/refresh/common_refresh_state.dart';
+import 'package:codehub/widget/common/refresh/common_refresh_widget.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 

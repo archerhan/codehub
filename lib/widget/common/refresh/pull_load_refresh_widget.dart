@@ -3,7 +3,6 @@ import 'package:codehub/widget/common/refresh/refresh_sliver.dart' as IOS;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:codehub/common/constant/global_style.dart';
-import 'package:codehub/common/utils/common_utils.dart';
 import 'package:codehub/widget/common/refresh/custom_bounce_scroll_physics.dart';
 import 'package:codehub/widget/common/refresh/flare_pull_controller.dart';
 

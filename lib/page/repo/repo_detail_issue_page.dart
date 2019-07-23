@@ -6,10 +6,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:codehub/widget/common/common_refresh_state.dart';
-import 'package:codehub/widget/common/common_refresh_widget.dart';
-import 'package:codehub/widget/common/nested_refresh.dart';
-import 'package:codehub/widget/common/nested_refresh_widget.dart';
+import 'package:codehub/widget/common/refresh/common_refresh_state.dart';
+import 'package:codehub/widget/common/refresh/common_refresh_widget.dart';
+import 'package:codehub/widget/common/refresh/nested_refresh.dart';
+import 'package:codehub/widget/common/refresh/nested_refresh_widget.dart';
 import 'package:codehub/widget/repo/sliver_header_delegate.dart';
 import 'package:codehub/common/dao/issue_dao.dart';
 import 'package:codehub/widget/repo/issue_item.dart';
