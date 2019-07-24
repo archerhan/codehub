@@ -10,7 +10,9 @@ import 'package:codehub/widget/common/custom_title_bar.dart';
 import 'package:codehub/widget/common/common_option_widget.dart';
 import 'package:codehub/common/constant/global_style.dart';
 import 'package:codehub/common/route/route_manager.dart';
-import 'package:codehub/widget/common/refresh/common_refresh_widget.dart';
+import 'package:codehub/widget/common/refresh/pull_load_refresh_widget.dart';
+import 'package:codehub/widget/common/refresh/common_refresh_state.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class IssueDetailPage extends StatefulWidget {
   final String userName;
@@ -21,7 +23,11 @@ class IssueDetailPage extends StatefulWidget {
 
   final bool needHomeIcon;
 
-  final RefreshWidgetControl refreshWidgetControl = RefreshWidgetControl();
+  final PullLoadWidgetControl refreshWidgetControl = PullLoadWidgetControl();
+
+  final ScrollController scrollController = ScrollController();
+
+  final GlobalKey<EasyRefreshState> refreshIndicatorKey = GlobalKey<EasyRefreshState>();
 
   IssueDetailPage(this.userName, this.reposName, this.issueNum,
       {this.needHomeIcon = false});
@@ -34,24 +40,41 @@ class _IssueDetailPageState extends State<IssueDetailPage>
   final OptionControl titleOptionControl = OptionControl();
 
   _getDataLogic() async {
-    return await IssueDao.getIssueComment(
-        widget.userName, widget.reposName, widget.issueNum);
+    await IssueDao.getIssueComment(widget.userName, widget.reposName, widget.issueNum).then((res){
+        print(res);
+
+    });
+
   }
 
   _getHeaderInfo() async {
-    IssueDao.getIssueInfo(widget.userName, widget.reposName, widget.issueNum)
+
+    await IssueDao.getIssueInfo(widget.userName, widget.reposName, widget.issueNum)
         .then((res) {
-      print(res);
+      // print(res);
     }).then((res) {});
   }
 
   Future<Null> refresh() async {
-    await Future.delayed(Duration(milliseconds: 500), () {
+                       print("下拉刷新啦");
+
+    await Future.delayed(Duration(milliseconds: 0), () {
       _getDataLogic();
       _getHeaderInfo();
     });
   }
 
+  Future<Null> loadMore() async {
+                       print("上拉加载啦");
+
+    await Future.delayed(Duration(seconds:0),(){
+      _getDataLogic().then((res){
+
+      });
+    });
+  }
+
+  
   @override
   void initState() {
     super.initState();
@@ -75,22 +98,38 @@ class _IssueDetailPageState extends State<IssueDetailPage>
             },
           ),
         ),
-        body: RefreshIndicator(
-            onRefresh: refresh,
-            child: ListView.separated(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: 44,
-                  child: Center(
-                    child: Text("This is index"),
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) => Divider(
-                height: 1,
-              ),
-            )));
+        body: EasyRefresh(
+          key: widget.refreshIndicatorKey,
+          child: ListView.builder(
+            itemCount:10,
+            itemExtent: 44,
+            itemBuilder: (BuildContext context, int index){
+              return Container(
+                child: Center(
+                  child: Text('this is an item'),
+                ),
+              );
+            },
+          ),
+          onRefresh: refresh,
+          loadMore: loadMore,
+        ),
+        // body: PullLoadWidget(
+        //   (context, index){
+        //     return Container(
+        //       height: 44,
+        //       child: Center(
+        //         child: Text("this is an item"),
+        //       ),
+        //     );
+        //   },
+        //   widget.refreshWidgetControl,
+        //   loadMore,
+        //   refresh,
+        //   scrollController: widget.scrollController,
+        //   refreshKey: widget.refreshIndicatorKey,
+        // ),
+    );
   }
 
   @override
