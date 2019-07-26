@@ -12,7 +12,7 @@ import 'package:codehub/widget/common/refresh/nested_refresh.dart';
 import 'package:codehub/widget/common/refresh/nested_refresh_widget.dart';
 import 'package:codehub/widget/repo/sliver_header_delegate.dart';
 import 'package:codehub/common/dao/issue_dao.dart';
-import 'package:codehub/widget/repo/issue_item.dart';
+import 'package:codehub/widget/issue/issue_item.dart';
 import 'package:codehub/common/route/route_manager.dart';
 import 'package:codehub/common/constant/global_style.dart';
 import 'package:codehub/widget/common/custom_search_bar_widget.dart';

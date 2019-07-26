@@ -56,7 +56,7 @@ class _IssueDetailPageState extends State<IssueDetailPage>
   }
 
   Future<Null> refresh() async {
-                       print("下拉刷新啦");
+    print("下拉刷新啦");
 
     await Future.delayed(Duration(milliseconds: 0), () {
       _getDataLogic();
@@ -65,7 +65,7 @@ class _IssueDetailPageState extends State<IssueDetailPage>
   }
 
   Future<Null> loadMore() async {
-                       print("上拉加载啦");
+    print("上拉加载啦");
 
     await Future.delayed(Duration(seconds:0),(){
       _getDataLogic().then((res){
