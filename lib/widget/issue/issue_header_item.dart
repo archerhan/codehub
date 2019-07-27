@@ -3,7 +3,7 @@
  * @Author: ArcherHan
  * @Date: 2019-07-26 17:46:20
  * @LastEditors: ArcherHan
- * @LastEditTime: 2019-07-27 14:35:04
+ * @LastEditTime: 2019-07-27 21:46:53
  */
 
 import 'package:codehub/widget/issue/issue_item.dart';
@@ -23,11 +23,12 @@ class IssueHeaderItem extends StatelessWidget {
   _renderAuthorWithTime() {
     return Container(
       color: Colors.yellow,
-      height: 30.0,
+      height: 40.0,
       width: 300,
       child: Padding(
-        padding: EdgeInsets.all(5),
+        padding: EdgeInsets.all(0),
         child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Expanded(
             flex: 2,
@@ -55,6 +56,7 @@ class IssueHeaderItem extends StatelessWidget {
     Color issueStatusColor =
         "open" == "open" ? Colors.green : Colors.red;
     return Container(
+      height: 30,
       color: Colors.purple,
       child: Row(
       children: <Widget>[
@@ -67,17 +69,25 @@ class IssueHeaderItem extends StatelessWidget {
   }
   _renderIssueDetail(){
     return Container(
+      height: 50,
       color: Colors.cyan,
-      child: Center(
-        child: Text("this is the issue detailetail,this s is the issue detail",textAlign: TextAlign.left,overflow: TextOverflow.ellipsis,maxLines:3,),
-      ),
+      // padding: EdgeInsets.only(right: 10),
+    
+        child: Text(
+          "this is the issue detailetailailthis s is the iss444",
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+          maxLines:3,
+          style: TextStyle(
+            fontSize: 14
+          ),
+          ),
     );
   }
   @override
   Widget build(BuildContext context) {
     return CardItem(
       child: Row(
-        // crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           UserIcon(
             height: 50,
@@ -92,18 +102,6 @@ class IssueHeaderItem extends StatelessWidget {
             
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Expanded(
-              //   flex: 1,
-              //   child: _renderAuthorWithTime(),
-              // ),
-              // Expanded(
-              //   flex: 1,
-              //   child: _renderIssueStatusInfo(),
-              // ),
-              // Expanded(
-              //   flex: 3,
-              //   child: _renderIssueDetail(),
-              // ),
               _renderAuthorWithTime(),
               _renderIssueStatusInfo(),
               _renderIssueDetail()
