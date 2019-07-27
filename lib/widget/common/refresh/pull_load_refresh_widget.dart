@@ -37,9 +37,10 @@ class PullLoadWidget extends StatefulWidget {
   _PullLoadWidgetState createState() => _PullLoadWidgetState();
 }
 
-class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullController{
-
-  final GlobalKey<IOS.CupertinoSliverRefreshControlState> sliverRefreshKey = GlobalKey<IOS.CupertinoSliverRefreshControlState>();
+class _PullLoadWidgetState extends State<PullLoadWidget>
+    with FlarePullController {
+  final GlobalKey<IOS.CupertinoSliverRefreshControlState> sliverRefreshKey =
+      GlobalKey<IOS.CupertinoSliverRefreshControlState>();
 
   ScrollController _scrollController;
   bool isRefreshing = false;
@@ -51,13 +52,13 @@ class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullControlle
   @override
   void initState() {
     _scrollController = widget.scrollController ?? ScrollController();
+
     ///增加滑动监听
-    _scrollController.addListener((){
+    _scrollController.addListener(() {
       ///判断当前滑动位置是否达到触发条件
-      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
-        if (widget.control.needLoadMore) {
-          
-        }
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        if (widget.control.needLoadMore) {}
       }
     });
 
@@ -76,7 +77,7 @@ class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullControlle
     super.initState();
   }
 
-    ///根据配置状态返回实际列表数量
+  ///根据配置状态返回实际列表数量
   ///实际上这里可以根据你的需要做更多的处理
   ///比如多个头部，是否需要空页面，是否需要显示加载更多。
   _getListCount() {
@@ -123,7 +124,7 @@ class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullControlle
   }
 
   _lockToAwait() async {
-        ///if loading, lock to await
+    ///if loading, lock to await
     doDelayed() async {
       await Future.delayed(Duration(seconds: 1)).then((_) async {
         if (widget.control.isLoading) {
@@ -161,7 +162,7 @@ class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullControlle
       }
       await _lockToAwait();
     }
-        isLoadMoring = true;
+    isLoadMoring = true;
     widget.control.isLoading = true;
     await widget.onLoadMore?.call();
     isLoadMoring = false;
@@ -169,13 +170,12 @@ class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullControlle
     return null;
   }
 
-
   @override
   Widget build(BuildContext context) {
     ///使用ios模式的下拉刷新，单独渲染
     if (widget.useIos) {
-      return NotificationListener (
-        onNotification: (ScrollNotification notification){
+      return NotificationListener(
+        onNotification: (ScrollNotification notification) {
           ///通知 CupertinoSliverRefreshControl 当前的拖拽状态
           sliverRefreshKey.currentState.notifyScrollNotification(notification);
           return false;
@@ -183,9 +183,8 @@ class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullControlle
         child: CustomScrollView(
           controller: _scrollController,
           physics: const CustomBounceScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-            refreshHeight: iosRefreshHeight
-          ),
+              parent: AlwaysScrollableScrollPhysics(),
+              refreshHeight: iosRefreshHeight),
           slivers: <Widget>[
             IOS.CupertinoSliverRefreshControl(
               key: sliverRefreshKey,
@@ -196,10 +195,11 @@ class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullControlle
             ),
             SliverSafeArea(
               sliver: SliverList(
-                delegate: SliverChildBuilderDelegate((BuildContext context, int index){
-                  return _getItem(index);
-                },
-                childCount: _getListCount(),
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return _getItem(index);
+                  },
+                  childCount: _getListCount(),
                 ),
               ),
             ),
@@ -210,17 +210,21 @@ class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullControlle
     return RefreshIndicator(
       ///GlobalKey，用户外部获取RefreshIndicator的State，做显示刷新
       key: widget.refreshKey,
+
       ///下拉刷新
       onRefresh: handleRefresh,
       child: ListView.builder(
         ///保持ListView任何情况都能滚动，解决在RefreshIndicator的兼容问题。
         physics: const AlwaysScrollableScrollPhysics(),
+
         ///根据状态返回子控件
-        itemBuilder: (BuildContext context, int index){
+        itemBuilder: (BuildContext context, int index) {
           return _getItem(index);
         },
+
         ///根据状态返回数量
         itemCount: _getListCount(),
+
         ///滑动监听
         controller: _scrollController,
       ),
@@ -242,8 +246,7 @@ class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullControlle
                 height: 70.0),
           ),
           Container(
-            child: Text("暂无数据",
-                style: CustomTextStyle.normalText),
+            child: Text("暂无数据", style: CustomTextStyle.normalText),
           ),
         ],
       ),
@@ -291,7 +294,7 @@ class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullControlle
   bool get getPlayAuto => playAuto;
 
   @override
-  double  get refreshTriggerPullDistance => iosRefreshHeight;
+  double get refreshTriggerPullDistance => iosRefreshHeight;
 
   Widget buildSimpleRefreshIndicator(
     BuildContext context,
@@ -324,11 +327,10 @@ class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullControlle
             controller: this,
             animation: "Earth Moving"
             //animation: "idle"
-        ),
+            ),
       ),
     );
   }
-
 }
 
 ///数据控制逻辑写在这里
