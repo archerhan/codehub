@@ -3,7 +3,7 @@
  * @Author: ArcherHan
  * @Date: 2019-07-26 17:46:20
  * @LastEditors: ArcherHan
- * @LastEditTime: 2019-07-27 21:46:53
+ * @LastEditTime: 2019-07-29 11:00:14
  */
 
 import 'package:codehub/widget/issue/issue_item.dart';
@@ -22,90 +22,108 @@ class IssueHeaderItem extends StatelessWidget {
 
   _renderAuthorWithTime() {
     return Container(
-      color: Colors.yellow,
-      height: 40.0,
-      width: 300,
       child: Padding(
         padding: EdgeInsets.all(0),
         child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            flex: 2,
-            child: Container(
-              color: Colors.green,
-                child: Text("userName"),
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              flex: 2,
+              child: Container(
+                child: Text("userName",style: TextStyle(fontSize: 22,color: Colors.white),),
+              ),
             ),
-          ),
-          
-          Expanded(
-            flex: 1,
-            child: Container(
-              color: Colors.red,
-                child: Text("time",textAlign: TextAlign.right,),
+            Expanded(
+              flex: 1,
+              child: Container(
+                child: Text(
+                  "time",
+                  textAlign: TextAlign.right,
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-      ),
-      
     );
   }
 
   _renderIssueStatusInfo() {
-    Color issueStatusColor =
-        "open" == "open" ? Colors.green : Colors.red;
+    Color issueStatusColor = "open" == "open" ? Colors.green : Colors.red;
     return Container(
-      height: 30,
-      color: Colors.purple,
-      child: Row(
-      children: <Widget>[
-        IconTextWidget(CustomIcons.ISSUE_ITEM_COMMENT, "open",
-            TextStyle(color: issueStatusColor), issueStatusColor, 12),
-      ],
-    )
-    );
-
+        height: 30,
+        child: Row(
+          children: <Widget>[
+            IconTextWidget(CustomIcons.ISSUE_ITEM_ISSUE, " open",
+                TextStyle(color: issueStatusColor), issueStatusColor, 12),
+            Text(" #90",style: TextStyle(color: Colors.white,fontSize: 12)),
+            IconTextWidget(CustomIcons.ISSUE_ITEM_COMMENT,"number",TextStyle(color: Colors.white),Colors.white,12),
+          ],
+        ));
   }
-  _renderIssueDetail(){
+
+  _renderIssueDetail() {
+    return Container(
+      child: Text(
+        "this is the imnm,nnkk s is t达到发he imnm,nnkk s is,nnkk s is t达到发he imnm,nnkk s is,nnkk s is t达到发he imnm,nnkk s is,nnkk s is t达到发he imnm,nnkk s is,nnkk s is t达到发he imnm,nnkk s is t达到发he imnm,nnkk s is t达到发he imnm,nnkk s is t达到发he imnm,nnkk s is t达到发he iss444",
+        textAlign: TextAlign.left,
+        style: TextStyle(fontSize: 12,color: Colors.white),
+      ),
+    );
+  }
+  _renderClosedByInfo(){
     return Container(
       height: 50,
-      color: Colors.cyan,
-      // padding: EdgeInsets.only(right: 10),
-    
-        child: Text(
-          "this is the issue detailetailailthis s is the iss444",
-          textAlign: TextAlign.center,
-          overflow: TextOverflow.ellipsis,
-          maxLines:3,
-          style: TextStyle(
-            fontSize: 14
-          ),
-          ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Text(
+              "this is a test sentence",
+              textAlign: TextAlign.right,
+              style: TextStyle(color: Colors.grey),
+            ),
+          )
+        ],
+      ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return CardItem(
+      color: Colors.black87,
+      margin: EdgeInsets.all(10),
       child: Row(
+        crossAxisAlignment:CrossAxisAlignment.start,
         children: <Widget>[
-          UserIcon(
-            height: 50,
-            width: 50,
-            image: "https://avatars0.githubusercontent.com/u/28807639?s=400&u=a456773f327cc2f7f7263b645b3945512f76f1d7&v=4",
-            onPressed: (){
-              print("点击了用户头像");
-            },
+          Expanded(
+            flex: 1,
+            child: UserIcon(
+              height: 50,
+              width: 50,
+              image:
+                  "https://avatars0.githubusercontent.com/u/28807639?s=400&u=a456773f327cc2f7f7263b645b3945512f76f1d7&v=4",
+              onPressed: () {
+                print("点击了用户头像");
+              },
+            ),
           ),
-          Column(
-            // mainAxisSize: MainAxisSize.max,
-            
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              _renderAuthorWithTime(),
-              _renderIssueStatusInfo(),
-              _renderIssueDetail()
-            ],
+          Expanded(
+            flex: 5,
+            child: Padding(
+              padding: EdgeInsets.all(5),
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  _renderAuthorWithTime(),
+                  _renderIssueStatusInfo(),
+                  _renderIssueDetail(),
+                  _renderClosedByInfo()
+                ],
+              ),
+            ),
           ),
         ],
       ),
