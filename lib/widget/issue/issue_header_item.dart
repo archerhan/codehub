@@ -3,7 +3,7 @@
  * @Author: ArcherHan
  * @Date: 2019-07-26 17:46:20
  * @LastEditors: ArcherHan
- * @LastEditTime: 2019-07-29 15:15:32
+ * @LastEditTime: 2019-07-29 22:01:45
  */
 
 import 'package:flutter/material.dart';
@@ -18,7 +18,6 @@ class IssueHeaderItem extends StatelessWidget {
   final IssueHeaderViewModel issueHeaderViewModel;
   final VoidCallback onPressed;
   IssueHeaderItem(this.issueHeaderViewModel, {this.onPressed});
-
 
   _renderAuthorWithTime() {
     return Container(

@@ -5,6 +5,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:codehub/widget/my/my_header_item.dart';
 
 class MyPage extends StatefulWidget {
   static final String routeName = "my";
@@ -20,7 +21,7 @@ class _MyPageState extends State<MyPage> {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text("My"),
+        child: MyHeaderItem()
       ),
     );
   }
