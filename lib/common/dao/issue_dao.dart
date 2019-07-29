@@ -123,7 +123,7 @@ class IssueDao {
           return DataResult(null, false);
         }
         for (var item in res.data) {
-          issueList.add(item);
+          issueList.add(Issue.fromJson(item));
         }
         if (needDb) {
           //插入操作

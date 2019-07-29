@@ -1,3 +1,5 @@
+import 'package:codehub/common/model/issue.dart';
+import 'package:codehub/common/utils/common_utils.dart';
 /**
  *  author : archer
  *  date : 2019-06-26 22:31
@@ -13,6 +15,8 @@ import 'package:codehub/common/route/route_manager.dart';
 import 'package:codehub/widget/common/refresh/pull_load_refresh_widget.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:codehub/widget/issue/issue_header_item.dart';
+import 'package:codehub/widget/repo/card_item.dart';
+import 'package:codehub/widget/common/user_icon_widget.dart';
 
 class IssueDetailPage extends StatefulWidget {
   final String userName;
@@ -40,11 +44,23 @@ class _IssueDetailPageState extends State<IssueDetailPage>
     with AutomaticKeepAliveClientMixin {
   final OptionControl titleOptionControl = OptionControl();
 
+  IssueHeaderViewModel issueHeaderViewModel = IssueHeaderViewModel();
+
+  List<Issue> dataList = List();
   _getDataLogic() async {
     await IssueDao.getIssueComment(
             widget.userName, widget.reposName, widget.issueNum)
         .then((res) {
-      print(res);
+            if (res.data.length > 0) {
+              dataList.clear();
+              dataList = res.data;
+              
+            }
+          setState(() {
+
+          });
+    }).then((res){
+
     });
   }
 
@@ -52,10 +68,17 @@ class _IssueDetailPageState extends State<IssueDetailPage>
     await IssueDao.getIssueInfo(
             widget.userName, widget.reposName, widget.issueNum)
         .then((res) {
-      // print(res);
+          
+      ///刷新头部数据
+      _resolveHeaderData(res);
     }).then((res) {});
   }
-
+  _resolveHeaderData(res){
+    Issue issue = res.data;
+    setState(() {
+      issueHeaderViewModel = IssueHeaderViewModel.fromMap(issue);
+    });
+  }
   Future<Null> refresh() async {
     print("下拉刷新啦");
 
@@ -78,6 +101,86 @@ class _IssueDetailPageState extends State<IssueDetailPage>
     super.initState();
   }
 
+  _renderIssueDetailItem(index){
+    if (index == 0) {
+      return IssueHeaderItem(issueHeaderViewModel);
+
+    } else {
+      Issue issue = dataList[index-1];
+      return CardItem(
+      color: Colors.white,
+      margin: EdgeInsets.all(10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: UserIcon(
+              height: 30,
+              width: 30,
+              image: issue.user.avatar_url,
+              onPressed: (){
+                print("pressed");
+              },
+            ),
+          ),
+          Expanded(
+            flex: 6,
+            child: Padding(
+              padding: EdgeInsets.all(5),
+              child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _renderAuthorWithTime(issue),
+                _renderIssueDetail(issue)
+              ],
+            ),
+            ),
+          )
+        ],
+      ),
+    );
+    }
+
+  }
+    _renderAuthorWithTime(Issue issue) {
+    return Container(
+      child: Padding(
+        padding: EdgeInsets.all(0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              flex: 2,
+              child: Container(
+                child: Text(issue.user.login,style: TextStyle(fontSize: 16,color: Colors.black87,fontWeight: FontWeight.bold),),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                child: Text(
+                  CommonUtils.getNewsTimeStr(issue.createdAt),
+                  textAlign: TextAlign.right,
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+    _renderIssueDetail(Issue issue) {
+    return Container(
+      child: Text(
+        issue.body,
+        textAlign: TextAlign.left,
+        style: TextStyle(fontSize: 12,color: Colors.black),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -97,39 +200,17 @@ class _IssueDetailPageState extends State<IssueDetailPage>
         ),
       ),
       body: EasyRefresh(
+        firstRefresh: true,
         key: widget.refreshIndicatorKey,
         child: ListView.builder(
-          itemCount: 10,
+          itemCount: dataList.length + 1,
           itemBuilder: (BuildContext context, int index) {
-            if (index == 0) {
-              return IssueHeaderItem();
-            } else {
-              return Container(
-                child: Center(
-                  child: Text('this is an item'),
-                ),
-              );
-            }
+            return _renderIssueDetailItem(index);
           },
         ),
         onRefresh: refresh,
         loadMore: loadMore,
       ),
-      // body: PullLoadWidget(
-      //   (context, index){
-      //     return Container(
-      //       height: 44,
-      //       child: Center(
-      //         child: Text("this is an item"),
-      //       ),
-      //     );
-      //   },
-      //   widget.refreshWidgetControl,
-      //   loadMore,
-      //   refresh,
-      //   scrollController: widget.scrollController,
-      //   refreshKey: widget.refreshIndicatorKey,
-      // ),
     );
   }
 

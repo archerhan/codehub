@@ -9,6 +9,7 @@ import 'package:codehub/common/dao/my_follow_dao.dart';
 import 'package:codehub/common/model/follow_event.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:codehub/common/redux/my_state.dart';
 import 'package:codehub/widget/follow/follow_item.dart';
 import 'package:codehub/common/utils/event_utils.dart';
@@ -76,9 +77,11 @@ class _MyFollowPageState extends State<MyFollowPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return RefreshIndicator(
+    return EasyRefresh(
+      firstRefresh: true,
       onRefresh: refresh,
-      child: ListView.separated(
+      loadMore: refresh,
+      child: ListView.builder(
         itemCount: _followList.length,
         itemBuilder: (context, index) {
           if (index == loadingTag) {
@@ -98,9 +101,33 @@ class _MyFollowPageState extends State<MyFollowPage>
             return _renderItems(_followList[index]);
           }
         },
-        separatorBuilder: (context, index) => Divider(height: 0.0),
       ),
     );
+    // return RefreshIndicator(
+    //   onRefresh: refresh,
+    //   child: ListView.separated(
+    //     itemCount: _followList.length,
+    //     itemBuilder: (context, index) {
+    //       if (index == loadingTag) {
+    //         //获取新数据
+    //         _page++;
+    //         _fetchData();
+    //         //显示loading
+    //         return Container(
+    //           padding: const EdgeInsets.all(16.0),
+    //           alignment: Alignment.center,
+    //           child: SizedBox(
+    //               width: 24.0,
+    //               height: 24.0,
+    //               child: CircularProgressIndicator(strokeWidth: 2.0)),
+    //         );
+    //       } else {
+    //         return _renderItems(_followList[index]);
+    //       }
+    //     },
+    //     separatorBuilder: (context, index) => Divider(height: 0.0),
+    //   ),
+    // );
   }
 
   @override

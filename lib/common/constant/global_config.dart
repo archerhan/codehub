@@ -5,7 +5,7 @@
 ///
 class GlobalConfig {
   //是否开启Log
-  static const DEBUG = true;
+  static const DEBUG = false;
   //开启代理, 上线前一定要关闭!!!!!!!
   static const USE_PROXY = true;
   static const PROXY_IP = "PROXY 192.168.1.69:8888";

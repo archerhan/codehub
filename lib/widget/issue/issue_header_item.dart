@@ -3,10 +3,9 @@
  * @Author: ArcherHan
  * @Date: 2019-07-26 17:46:20
  * @LastEditors: ArcherHan
- * @LastEditTime: 2019-07-29 11:00:14
+ * @LastEditTime: 2019-07-29 15:15:32
  */
 
-import 'package:codehub/widget/issue/issue_item.dart';
 import 'package:flutter/material.dart';
 import 'package:codehub/common/model/issue.dart';
 import 'package:codehub/common/utils/common_utils.dart';
@@ -16,9 +15,10 @@ import 'package:codehub/common/constant/global_style.dart';
 import 'package:codehub/widget/repo/card_item.dart';
 
 class IssueHeaderItem extends StatelessWidget {
-  final IssueItemViewModel issueItemViewModel;
+  final IssueHeaderViewModel issueHeaderViewModel;
   final VoidCallback onPressed;
-  IssueHeaderItem({this.issueItemViewModel, this.onPressed});
+  IssueHeaderItem(this.issueHeaderViewModel, {this.onPressed});
+
 
   _renderAuthorWithTime() {
     return Container(
@@ -30,14 +30,14 @@ class IssueHeaderItem extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Container(
-                child: Text("userName",style: TextStyle(fontSize: 22,color: Colors.white),),
+                child: Text(issueHeaderViewModel.actionUser,style: TextStyle(fontSize: 22,color: Colors.white),),
               ),
             ),
             Expanded(
               flex: 1,
               child: Container(
                 child: Text(
-                  "time",
+                  issueHeaderViewModel.actionTime,
                   textAlign: TextAlign.right,
                   style: TextStyle(color: Colors.grey),
                 ),
@@ -50,26 +50,37 @@ class IssueHeaderItem extends StatelessWidget {
   }
 
   _renderIssueStatusInfo() {
-    Color issueStatusColor = "open" == "open" ? Colors.green : Colors.red;
+    Color issueStatusColor = issueHeaderViewModel.state == "open" ? Colors.green : Colors.red;
     return Container(
         height: 30,
         child: Row(
           children: <Widget>[
-            IconTextWidget(CustomIcons.ISSUE_ITEM_ISSUE, " open",
+            IconTextWidget(CustomIcons.ISSUE_ITEM_ISSUE, issueHeaderViewModel.state,
                 TextStyle(color: issueStatusColor), issueStatusColor, 12),
-            Text(" #90",style: TextStyle(color: Colors.white,fontSize: 12)),
-            IconTextWidget(CustomIcons.ISSUE_ITEM_COMMENT,"number",TextStyle(color: Colors.white),Colors.white,12),
+            Text(issueHeaderViewModel.issueTag,style: TextStyle(color: Colors.white,fontSize: 12)),
+            IconTextWidget(CustomIcons.ISSUE_ITEM_COMMENT,issueHeaderViewModel.commentCount,TextStyle(color: Colors.white),Colors.white,12),
           ],
         ));
   }
 
   _renderIssueDetail() {
     return Container(
-      child: Text(
-        "this is the imnm,nnkk s is t达到发he imnm,nnkk s is,nnkk s is t达到发he imnm,nnkk s is,nnkk s is t达到发he imnm,nnkk s is,nnkk s is t达到发he imnm,nnkk s is,nnkk s is t达到发he imnm,nnkk s is t达到发he imnm,nnkk s is t达到发he imnm,nnkk s is t达到发he imnm,nnkk s is t达到发he iss444",
+      
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+        issueHeaderViewModel.issueComment,
         textAlign: TextAlign.left,
         style: TextStyle(fontSize: 12,color: Colors.white),
       ),
+      Text(
+        issueHeaderViewModel.issueDes,
+        textAlign: TextAlign.left,
+        style: TextStyle(fontSize: 12,color: Colors.white),
+      ),
+        ],
+      )
     );
   }
   _renderClosedByInfo(){
@@ -79,7 +90,7 @@ class IssueHeaderItem extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Text(
-              "this is a test sentence",
+              "Close by " + issueHeaderViewModel.closedBy,
               textAlign: TextAlign.right,
               style: TextStyle(color: Colors.grey),
             ),
@@ -102,8 +113,7 @@ class IssueHeaderItem extends StatelessWidget {
             child: UserIcon(
               height: 50,
               width: 50,
-              image:
-                  "https://avatars0.githubusercontent.com/u/28807639?s=400&u=a456773f327cc2f7f7263b645b3945512f76f1d7&v=4",
+              image:issueHeaderViewModel.actionUserPic,
               onPressed: () {
                 print("点击了用户头像");
               },
