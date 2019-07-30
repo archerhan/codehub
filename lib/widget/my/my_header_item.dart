@@ -3,18 +3,18 @@
  * @Author: ArcherHan
  * @Date: 2019-07-29 21:53:47
  * @LastEditors: ArcherHan
- * @LastEditTime: 2019-07-29 22:32:12
+ * @LastEditTime: 2019-07-30 11:13:14
  */
 
 import 'package:flutter/material.dart';
 import 'package:codehub/widget/common/user_icon_widget.dart';
 import 'package:codehub/widget/common/icon_text_widget.dart';
 import 'package:codehub/common/constant/global_style.dart';
-import 'package:codehub/common/utils/common_utils.dart';
+// import 'package:codehub/common/utils/common_utils.dart';
 import 'package:codehub/common/model/user.dart';
 
 class MyHeaderItem extends StatelessWidget {
-  User user = User.empty();
+  final User user = User.empty();
 
   ///用户简介
   _renderHeadPhotoProfile() {
@@ -109,7 +109,7 @@ class MyHeaderItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      // height: 300,
       padding: EdgeInsets.all(10),
       color: Colors.black87,
       child: Column(
