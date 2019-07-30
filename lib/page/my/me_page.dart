@@ -133,7 +133,7 @@ _renderOrganizationItem(index){
   Widget build(BuildContext context) {
     return EasyRefresh(
       child: ListView.builder(
-        itemCount: 10,
+        itemCount: 100,
         itemBuilder: (BuildContext context, int index) {
           return _renderItem(index);
         },
