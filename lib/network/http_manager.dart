@@ -26,12 +26,13 @@ class HttpManager {
     _dio.interceptors.add(new ResponseInterceptor());
     _dio.interceptors.add(new ErrorInterceptor(_dio));
 
+    /// 用1个开关设置是否开启代理
     if (GlobalConfig.USE_PROXY) {
       (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
           (client) {
         client.findProxy = (uri) {
-          // 用1个开关设置是否开启代理
-          return GlobalConfig.DEBUG ? GlobalConfig.PROXY_IP : 'DIRECT';
+          // return GlobalConfig.DEBUG ? GlobalConfig.PROXY_IP : 'DIRECT';
+          return GlobalConfig.PROXY_IP;
         };
       };
     }

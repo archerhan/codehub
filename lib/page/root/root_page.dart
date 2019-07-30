@@ -9,7 +9,6 @@ import 'package:codehub/page/root/drawer_page.dart';
 import 'package:codehub/page/follow/my_follow_page.dart';
 import 'package:codehub/page/trending/trending_repositories_page.dart';
 import 'package:codehub/page/my/me_page.dart';
-import 'package:codehub/page/login/login_page.dart';
 
 class RootController extends StatefulWidget {
   static final String routeName = "home";

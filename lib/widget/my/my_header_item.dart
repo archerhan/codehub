@@ -81,31 +81,26 @@ class MyHeaderItem extends StatelessWidget {
       },
     );
   }
-  
-  _renderDescDate(){
+
+  _renderDescDate() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
           "这里是描述吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦",
-          style:TextStyle(
-            color: Colors.grey,
-            fontSize: 12
-          ),
+          style: TextStyle(color: Colors.grey, fontSize: 12),
         ),
         Padding(
           padding: EdgeInsets.only(top: 10),
         ),
         Text(
           "创建于：2019-07-29",
-          style: TextStyle(
-            color: Colors.grey,
-            fontSize: 12
-          ),
+          style: TextStyle(color: Colors.grey, fontSize: 12),
         ),
       ],
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -116,10 +111,13 @@ class MyHeaderItem extends StatelessWidget {
         children: <Widget>[
           ///头像简介
           _renderHeadPhotoProfile(),
+
           ///链接
           _renderLinkInfo(),
+
           ///描述与创建日期
           _renderDescDate(),
+
           ///悬浮的header
         ],
       ),

@@ -51,34 +51,30 @@ class _IssueDetailPageState extends State<IssueDetailPage>
     await IssueDao.getIssueComment(
             widget.userName, widget.reposName, widget.issueNum)
         .then((res) {
-            if (res.data.length > 0) {
-              dataList.clear();
-              dataList = res.data;
-              
-            }
-          setState(() {
-
-          });
-    }).then((res){
-
-    });
+      if (res.data.length > 0) {
+        dataList.clear();
+        dataList = res.data;
+      }
+      setState(() {});
+    }).then((res) {});
   }
 
   _getHeaderInfo() async {
     await IssueDao.getIssueInfo(
             widget.userName, widget.reposName, widget.issueNum)
         .then((res) {
-          
       ///刷新头部数据
       _resolveHeaderData(res);
     }).then((res) {});
   }
-  _resolveHeaderData(res){
+
+  _resolveHeaderData(res) {
     Issue issue = res.data;
     setState(() {
       issueHeaderViewModel = IssueHeaderViewModel.fromMap(issue);
     });
   }
+
   Future<Null> refresh() async {
     print("下拉刷新啦");
 
@@ -101,49 +97,48 @@ class _IssueDetailPageState extends State<IssueDetailPage>
     super.initState();
   }
 
-  _renderIssueDetailItem(index){
+  _renderIssueDetailItem(index) {
     if (index == 0) {
       return IssueHeaderItem(issueHeaderViewModel);
-
     } else {
-      Issue issue = dataList[index-1];
+      Issue issue = dataList[index - 1];
       return CardItem(
-      color: Colors.white,
-      margin: EdgeInsets.all(10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: UserIcon(
-              height: 30,
-              width: 30,
-              image: issue.user.avatar_url,
-              onPressed: (){
-                print("pressed");
-              },
+        color: Colors.white,
+        margin: EdgeInsets.all(10),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: UserIcon(
+                height: 30,
+                width: 30,
+                image: issue.user.avatar_url,
+                onPressed: () {
+                  print("pressed");
+                },
+              ),
             ),
-          ),
-          Expanded(
-            flex: 6,
-            child: Padding(
-              padding: EdgeInsets.all(5),
-              child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _renderAuthorWithTime(issue),
-                _renderIssueDetail(issue)
-              ],
-            ),
-            ),
-          )
-        ],
-      ),
-    );
+            Expanded(
+              flex: 6,
+              child: Padding(
+                padding: EdgeInsets.all(5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    _renderAuthorWithTime(issue),
+                    _renderIssueDetail(issue)
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      );
     }
-
   }
-    _renderAuthorWithTime(Issue issue) {
+
+  _renderAuthorWithTime(Issue issue) {
     return Container(
       child: Padding(
         padding: EdgeInsets.all(0),
@@ -153,7 +148,13 @@ class _IssueDetailPageState extends State<IssueDetailPage>
             Expanded(
               flex: 2,
               child: Container(
-                child: Text(issue.user.login,style: TextStyle(fontSize: 16,color: Colors.black87,fontWeight: FontWeight.bold),),
+                child: Text(
+                  issue.user.login,
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ),
             Expanded(
@@ -171,12 +172,13 @@ class _IssueDetailPageState extends State<IssueDetailPage>
       ),
     );
   }
-    _renderIssueDetail(Issue issue) {
+
+  _renderIssueDetail(Issue issue) {
     return Container(
       child: Text(
         issue.body,
         textAlign: TextAlign.left,
-        style: TextStyle(fontSize: 12,color: Colors.black),
+        style: TextStyle(fontSize: 12, color: Colors.black),
       ),
     );
   }

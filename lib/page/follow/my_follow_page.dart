@@ -103,31 +103,6 @@ class _MyFollowPageState extends State<MyFollowPage>
         },
       ),
     );
-    // return RefreshIndicator(
-    //   onRefresh: refresh,
-    //   child: ListView.separated(
-    //     itemCount: _followList.length,
-    //     itemBuilder: (context, index) {
-    //       if (index == loadingTag) {
-    //         //获取新数据
-    //         _page++;
-    //         _fetchData();
-    //         //显示loading
-    //         return Container(
-    //           padding: const EdgeInsets.all(16.0),
-    //           alignment: Alignment.center,
-    //           child: SizedBox(
-    //               width: 24.0,
-    //               height: 24.0,
-    //               child: CircularProgressIndicator(strokeWidth: 2.0)),
-    //         );
-    //       } else {
-    //         return _renderItems(_followList[index]);
-    //       }
-    //     },
-    //     separatorBuilder: (context, index) => Divider(height: 0.0),
-    //   ),
-    // );
   }
 
   @override

@@ -29,7 +29,10 @@ class IssueHeaderItem extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Container(
-                child: Text(issueHeaderViewModel.actionUser,style: TextStyle(fontSize: 22,color: Colors.white),),
+                child: Text(
+                  issueHeaderViewModel.actionUser,
+                  style: TextStyle(fontSize: 22, color: Colors.white),
+                ),
               ),
             ),
             Expanded(
@@ -49,40 +52,50 @@ class IssueHeaderItem extends StatelessWidget {
   }
 
   _renderIssueStatusInfo() {
-    Color issueStatusColor = issueHeaderViewModel.state == "open" ? Colors.green : Colors.red;
+    Color issueStatusColor =
+        issueHeaderViewModel.state == "open" ? Colors.green : Colors.red;
     return Container(
         height: 30,
         child: Row(
           children: <Widget>[
-            IconTextWidget(CustomIcons.ISSUE_ITEM_ISSUE, issueHeaderViewModel.state,
-                TextStyle(color: issueStatusColor), issueStatusColor, 12),
-            Text(issueHeaderViewModel.issueTag,style: TextStyle(color: Colors.white,fontSize: 12)),
-            IconTextWidget(CustomIcons.ISSUE_ITEM_COMMENT,issueHeaderViewModel.commentCount,TextStyle(color: Colors.white),Colors.white,12),
+            IconTextWidget(
+                CustomIcons.ISSUE_ITEM_ISSUE,
+                issueHeaderViewModel.state,
+                TextStyle(color: issueStatusColor),
+                issueStatusColor,
+                12),
+            Text(issueHeaderViewModel.issueTag,
+                style: TextStyle(color: Colors.white, fontSize: 12)),
+            IconTextWidget(
+                CustomIcons.ISSUE_ITEM_COMMENT,
+                issueHeaderViewModel.commentCount,
+                TextStyle(color: Colors.white),
+                Colors.white,
+                12),
           ],
         ));
   }
 
   _renderIssueDetail() {
     return Container(
-      
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-        issueHeaderViewModel.issueComment,
-        textAlign: TextAlign.left,
-        style: TextStyle(fontSize: 12,color: Colors.white),
-      ),
-      Text(
-        issueHeaderViewModel.issueDes,
-        textAlign: TextAlign.left,
-        style: TextStyle(fontSize: 12,color: Colors.white),
-      ),
-        ],
-      )
-    );
+        child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          issueHeaderViewModel.issueComment,
+          textAlign: TextAlign.left,
+          style: TextStyle(fontSize: 12, color: Colors.white),
+        ),
+        Text(
+          issueHeaderViewModel.issueDes,
+          textAlign: TextAlign.left,
+          style: TextStyle(fontSize: 12, color: Colors.white),
+        ),
+      ],
+    ));
   }
-  _renderClosedByInfo(){
+
+  _renderClosedByInfo() {
     return Container(
       height: 50,
       child: Row(
@@ -105,14 +118,14 @@ class IssueHeaderItem extends StatelessWidget {
       color: Colors.black87,
       margin: EdgeInsets.all(10),
       child: Row(
-        crossAxisAlignment:CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Expanded(
             flex: 1,
             child: UserIcon(
               height: 50,
               width: 50,
-              image:issueHeaderViewModel.actionUserPic,
+              image: issueHeaderViewModel.actionUserPic,
               onPressed: () {
                 print("点击了用户头像");
               },
