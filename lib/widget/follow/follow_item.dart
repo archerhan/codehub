@@ -1,3 +1,4 @@
+import 'package:codehub/common/route/route_manager.dart';
 /**
  *  author : archer
  *  date : 2019-06-26 10:13
@@ -43,7 +44,7 @@ class FollowItem extends StatelessWidget {
             height: 30.0,
             image: eventViewModel.actionUserPic,
             onPressed: () {
-              print("点击用户头像, 调到对应个人中心");
+              RouteManager.goPerson(context, eventViewModel.actionUser);
             },
           )
         : Container();

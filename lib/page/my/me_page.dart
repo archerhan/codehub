@@ -126,53 +126,6 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
     FollowEvent event = eventList[index-1];
 
     return FollowItem(FollowEventViewModel.fromFollowMap(event));
-    // return CardItem(
-    //   child: Column(
-    //     crossAxisAlignment: CrossAxisAlignment.start,
-    //     children: <Widget>[
-    //       Row(
-    //         children: <Widget>[
-    //           Expanded(
-    //             flex: 1,
-    //             child: UserIcon(
-    //               image: event.actor.avatar_url
-    //             ),
-    //           ),
-    //           Expanded(
-    //             flex: 4,
-    //             child: Container(
-    //               child: Text(event.actor.login),
-    //             ),
-    //           ),
-    //           Expanded(
-    //             flex: 4,
-    //             child: Container(
-    //               child: Text(
-    //                 CommonUtils.getNewsTimeStr(event.createdAt),
-    //                 style: TextStyle(color: Colors.grey),
-    //                 textAlign: TextAlign.right,
-    //               ),
-    //             ),
-    //           ),
-    //         ],
-    //       ),
-    //       Padding(
-    //         padding: EdgeInsets.all(5),
-    //         child: Text(
-    //           e
-    //           style: TextStyle(fontWeight: FontWeight.bold),
-    //         ),
-    //       ),
-    //       Padding(
-    //         padding: EdgeInsets.all(5),
-    //         child: Text(
-    //           "other infomationother infomationother infomationother infomationother infomation",
-    //           style: TextStyle(color: Colors.grey),
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 
   _renderOrganizationItem(index) {
@@ -207,7 +160,8 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return EasyRefresh(
+    return Scaffold(
+      body:     EasyRefresh(
       onRefresh: onRefresh,
       loadMore: onLoadMore,
       autoLoad: true,
@@ -220,7 +174,9 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
           return _renderItem(index);
         },
       ),
+    ),
     );
+
   }
 
   @override

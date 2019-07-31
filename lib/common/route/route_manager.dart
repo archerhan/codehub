@@ -40,7 +40,7 @@ class RouteManager {
 
   ///个人中心
   static goPerson(BuildContext context, String userName) {
-    NavigatorRouter(context, MyPage());
+    NavigatorRouter(context, MyPage(userName: userName,));
   }
 
   ///仓库详情
