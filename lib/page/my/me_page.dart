@@ -1,3 +1,4 @@
+import 'package:codehub/common/utils/common_utils.dart';
 /**
  *  author : archer
  *  date : 2019-06-18 11:24
@@ -16,6 +17,7 @@ import 'package:codehub/common/model/user.dart';
 import 'package:codehub/common/model/follow_event.dart';
 import 'package:codehub/common/dao/user_dao.dart';
 import 'package:codehub/common/dao/my_follow_dao.dart';
+import 'package:codehub/widget/follow/follow_item.dart';
 
 enum UserType { individual, organization }
 
@@ -33,6 +35,7 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
   int page = 0;
   List<FollowEvent> eventList = List();
   List<User> userList = List();
+  User userInfo = User.empty();
 
   Store<MyState> _getStore() {
     return StoreProvider.of(context);
@@ -44,9 +47,14 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
   }
 
   _getUserInfoData() async {
-    bool needDb = widget.userName == null ? false : true;
-    await UserDao.getUserInfo(_getUserName(), needDb: needDb).then((res) {
-      print("user info loaded~~~~~~~~~~~");
+    // bool needDb = widget.userName == null ? false : true;
+    await UserDao.getUserInfo(_getUserName(), needDb: false).then((res) {
+      if (res != null && res.result) {
+        setState(() {
+          userInfo = res.data;
+          userType = userInfo.type == "User" ? UserType.individual : UserType.organization;
+        });
+      }
     });
   }
 
@@ -56,21 +64,21 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
       _getUserInfoData();
       if (userType == UserType.individual) {
         MyFollowDao.getMyFollowDao(_getUserName(), page: page).then((res) {
-          setState(() {
-            if (res.data.length > 0 && res.result) {
+          if (res.data != null && res.result) {
+            setState(() {
               eventList.clear();
               eventList.addAll(res.data);
-            }
-          });
+            });
+          }
         });
       } else {
         UserDao.getMemberDao(_getUserName(), page).then((res) {
-          setState(() {
-            if (res.data.length > 0 && res.result) {
+          if (res.data != null && res.result) {
+            setState(() {
               userList.clear();
               userList.addAll(res.data);
-            }
-          });
+            });
+          }
         });
       }
     });
@@ -81,19 +89,19 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
     Future.delayed(Duration(seconds: 0), () {
       if (userType == UserType.individual) {
         MyFollowDao.getMyFollowDao(_getUserName(), page: page).then((res) {
-          setState(() {
-            if (res.data.length > 0 && res.result) {
+          if (res.data != null && res.result) {
+            setState(() {
               eventList.addAll(res.data);
-            }
-          });
+            });
+          }
         });
       } else {
         UserDao.getMemberDao(_getUserName(), page).then((res) {
-          setState(() {
-            if (res.data.length > 0 && res.result) {
+          if (res.data != null && res.result) {
+            setState(() {
               userList.addAll(res.data);
-            }
-          });
+            });
+          }
         });
       }
     });
@@ -102,11 +110,11 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
   ///根据type渲染item
   _renderItem(index) {
     if (index == 0) {
-      return MyHeaderItem();
+      return MyHeaderItem(userInfo);
     } else {
       ///个人帐号，显示个人event
       if (userType == UserType.individual) {
-        return _renderOrganizationItem(index);
+        return _renderIndividualItem(index);
       } else {
         ///组织帐号，显示组织成员
         return _renderOrganizationItem(index);
@@ -115,57 +123,60 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
   }
 
   _renderIndividualItem(index) {
-    return CardItem(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: UserIcon(
-                  image:
-                      "https://avatars0.githubusercontent.com/u/28807639?s=400&u=a456773f327cc2f7f7263b645b3945512f76f1d7&v=4",
-                ),
-              ),
-              Expanded(
-                flex: 4,
-                child: Container(
-                  child: Text("username"),
-                ),
-              ),
-              Expanded(
-                flex: 4,
-                child: Container(
-                  child: Text(
-                    "time",
-                    style: TextStyle(color: Colors.grey),
-                    textAlign: TextAlign.right,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.all(5),
-            child: Text(
-              "event detailevent detailevent detailevent detailevent detailevent detail",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(5),
-            child: Text(
-              "other infomationother infomationother infomationother infomationother infomation",
-              style: TextStyle(color: Colors.grey),
-            ),
-          ),
-        ],
-      ),
-    );
+    FollowEvent event = eventList[index-1];
+
+    return FollowItem(FollowEventViewModel.fromFollowMap(event));
+    // return CardItem(
+    //   child: Column(
+    //     crossAxisAlignment: CrossAxisAlignment.start,
+    //     children: <Widget>[
+    //       Row(
+    //         children: <Widget>[
+    //           Expanded(
+    //             flex: 1,
+    //             child: UserIcon(
+    //               image: event.actor.avatar_url
+    //             ),
+    //           ),
+    //           Expanded(
+    //             flex: 4,
+    //             child: Container(
+    //               child: Text(event.actor.login),
+    //             ),
+    //           ),
+    //           Expanded(
+    //             flex: 4,
+    //             child: Container(
+    //               child: Text(
+    //                 CommonUtils.getNewsTimeStr(event.createdAt),
+    //                 style: TextStyle(color: Colors.grey),
+    //                 textAlign: TextAlign.right,
+    //               ),
+    //             ),
+    //           ),
+    //         ],
+    //       ),
+    //       Padding(
+    //         padding: EdgeInsets.all(5),
+    //         child: Text(
+    //           e
+    //           style: TextStyle(fontWeight: FontWeight.bold),
+    //         ),
+    //       ),
+    //       Padding(
+    //         padding: EdgeInsets.all(5),
+    //         child: Text(
+    //           "other infomationother infomationother infomationother infomationother infomation",
+    //           style: TextStyle(color: Colors.grey),
+    //         ),
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 
   _renderOrganizationItem(index) {
+    User organizationMember = userList[index - 1];
     return CardItem(
       margin: EdgeInsets.all(5),
       child: Padding(
@@ -176,14 +187,14 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
               flex: 2,
               child: UserIcon(
                 image:
-                    "https://avatars0.githubusercontent.com/u/28807639?s=400&u=a456773f327cc2f7f7263b645b3945512f76f1d7&v=4",
+                organizationMember.avatar_url,
                 onPressed: () {},
               ),
             ),
             Expanded(
               flex: 6,
               child: Text(
-                "username",
+                organizationMember.login,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             )

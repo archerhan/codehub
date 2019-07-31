@@ -52,7 +52,7 @@ class IconTextWidget extends StatelessWidget {
               maxLines: 1,
             ),
           )
-        : Container(
+        : Container( 
             width: textWidth,
             child: Text(
               iconText,
