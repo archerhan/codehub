@@ -52,7 +52,9 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
       if (res != null && res.result) {
         setState(() {
           userInfo = res.data;
-          userType = userInfo.type == "User" ? UserType.individual : UserType.organization;
+          userType = userInfo.type == "User"
+              ? UserType.individual
+              : UserType.organization;
         });
       }
     });
@@ -123,7 +125,7 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
   }
 
   _renderIndividualItem(index) {
-    FollowEvent event = eventList[index-1];
+    FollowEvent event = eventList[index - 1];
 
     return FollowItem(FollowEventViewModel.fromFollowMap(event));
   }
@@ -139,8 +141,7 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
             Expanded(
               flex: 2,
               child: UserIcon(
-                image:
-                organizationMember.avatar_url,
+                image: organizationMember.avatar_url,
                 onPressed: () {},
               ),
             ),
@@ -161,22 +162,24 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      body:     EasyRefresh(
-      onRefresh: onRefresh,
-      loadMore: onLoadMore,
-      autoLoad: true,
-      firstRefresh: true,
-      child: ListView.builder(
-        itemCount: userType == UserType.individual
-            ? eventList.length
-            : userList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return _renderItem(index);
-        },
+      appBar: AppBar(
+        title: Text("text"),
       ),
-    ),
+      body: EasyRefresh(
+        onRefresh: onRefresh,
+        loadMore: onLoadMore,
+        autoLoad: true,
+        firstRefresh: true,
+        child: ListView.builder(
+          itemCount: userType == UserType.individual
+              ? eventList.length
+              : userList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return _renderItem(index);
+          },
+        ),
+      ),
     );
-
   }
 
   @override

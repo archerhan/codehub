@@ -3,7 +3,7 @@
  * @Author: ArcherHan
  * @Date: 2019-07-29 21:53:47
  * @LastEditors: ArcherHan
- * @LastEditTime: 2019-07-31 10:39:42
+ * @LastEditTime: 2019-07-31 14:32:05
  */
 
 import 'package:codehub/common/utils/common_utils.dart';
@@ -17,6 +17,7 @@ import 'package:codehub/common/model/user.dart';
 class MyHeaderItem extends StatelessWidget {
   User user = User.empty();
   MyHeaderItem(this.user);
+
   ///用户简介
   _renderHeadPhotoProfile() {
     return Row(
@@ -24,7 +25,7 @@ class MyHeaderItem extends StatelessWidget {
         Expanded(
           flex: 1,
           child: UserIcon(
-            image:user.avatar_url,
+            image: user.avatar_url ?? "https://avatars0.githubusercontent.com/u/28807639?s=400&u=a456773f327cc2f7f7263b645b3945512f76f1d7&v=4",
             width: 80,
             height: 80,
             onPressed: () {
@@ -39,7 +40,7 @@ class MyHeaderItem extends StatelessWidget {
             children: <Widget>[
               ///用户名
               Text(
-                user.login,
+                user.login ?? "--",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -48,19 +49,27 @@ class MyHeaderItem extends StatelessWidget {
 
               ///个人或组织名
               Text(
-                user.login,
+                user.login ?? "--",
                 style: TextStyle(
                   color: Colors.grey,
                 ),
               ),
 
               ///简介
-              IconTextWidget(CustomIcons.USER_ITEM_COMPANY, user.company ?? "目前啥也没有",
-                  TextStyle(color: Colors.grey), Colors.grey, 12),
+              IconTextWidget(
+                  CustomIcons.USER_ITEM_COMPANY,
+                  user.company ?? "目前啥也没有",
+                  TextStyle(color: Colors.grey),
+                  Colors.grey,
+                  12),
 
               ///位置
-              IconTextWidget(CustomIcons.USER_ITEM_LOCATION, user.location ?? "这家伙在火星",
-                  TextStyle(color: Colors.grey), Colors.grey, 12),
+              IconTextWidget(
+                  CustomIcons.USER_ITEM_LOCATION,
+                  user.location ?? "这家伙在火星",
+                  TextStyle(color: Colors.grey),
+                  Colors.grey,
+                  12),
             ],
           ),
         ),
@@ -94,7 +103,7 @@ class MyHeaderItem extends StatelessWidget {
           padding: EdgeInsets.only(top: 10),
         ),
         Text(
-          "创建于：" + CommonUtils.getDateStr(user.created_at),
+          "创建于：" + CommonUtils.getDateStr(user.created_at) ?? "远古时期",
           style: TextStyle(color: Colors.grey, fontSize: 12),
         ),
       ],
