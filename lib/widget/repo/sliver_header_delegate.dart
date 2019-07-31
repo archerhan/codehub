@@ -26,11 +26,9 @@ class SliverHeaderDelegate extends SliverPersistentHeaderDelegate {
   AnimationController animationController;
 
   @override
-  // TODO: implement maxExtent
   double get maxExtent => math.max(maxHeight, minHeight);
 
   @override
-  // TODO: implement minExtent
   double get minExtent => math.min(minHeight, maxHeight);
 
   @override

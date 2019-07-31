@@ -3,7 +3,7 @@
  * @Author: ArcherHan
  * @Date: 2019-07-26 17:46:20
  * @LastEditors: ArcherHan
- * @LastEditTime: 2019-07-29 22:01:45
+ * @LastEditTime: 2019-07-31 16:11:40
  */
 
 import 'package:flutter/material.dart';
@@ -125,7 +125,8 @@ class IssueHeaderItem extends StatelessWidget {
             child: UserIcon(
               height: 50,
               width: 50,
-              image: issueHeaderViewModel.actionUserPic,
+              image: issueHeaderViewModel.actionUserPic ??
+                  "https://avatars0.githubusercontent.com/u/28807639?s=400&u=a456773f327cc2f7f7263b645b3945512f76f1d7&v=4",
               onPressed: () {
                 print("点击了用户头像");
               },

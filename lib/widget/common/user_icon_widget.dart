@@ -28,10 +28,11 @@ class UserIcon extends StatelessWidget {
           padding ?? const EdgeInsets.only(top: 4.0, right: 5.0, left: 5.0),
       constraints: const BoxConstraints(minHeight: 0.0, minWidth: 0.0),
       child: ClipOval(
-        child: FadeInImage.assetNetwork(
-          placeholder: "resource/images/snow_sun.jpg",
-          image: image,
-          fit: BoxFit.fitWidth,
+        //fadeImage有性能问题
+        child: Image.network(
+          image,
+          // placeholder: "resource/images/valley.jpg",
+          fit: BoxFit.cover,
           width: width,
           height: height,
         ),

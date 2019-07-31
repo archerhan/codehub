@@ -3,7 +3,7 @@
  * @Author: ArcherHan
  * @Date: 2019-07-29 21:53:47
  * @LastEditors: ArcherHan
- * @LastEditTime: 2019-07-31 14:32:05
+ * @LastEditTime: 2019-07-31 22:01:30
  */
 
 import 'package:codehub/common/utils/common_utils.dart';
@@ -25,7 +25,8 @@ class MyHeaderItem extends StatelessWidget {
         Expanded(
           flex: 1,
           child: UserIcon(
-            image: user.avatar_url ?? "https://avatars0.githubusercontent.com/u/28807639?s=400&u=a456773f327cc2f7f7263b645b3945512f76f1d7&v=4",
+            image: user.avatar_url ??
+                "https://avatars0.githubusercontent.com/u/28807639?s=400&u=a456773f327cc2f7f7263b645b3945512f76f1d7&v=4",
             width: 80,
             height: 80,
             onPressed: () {

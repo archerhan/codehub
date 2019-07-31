@@ -29,15 +29,8 @@ class _MyFollowPageState extends State<MyFollowPage>
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    print(state);
-//    super.didChangeAppLifecycleState(state);
-  }
-
-  @override
   void initState() {
     super.initState();
-    refresh();
   }
 
   Future<Null> refresh() async {
@@ -49,7 +42,7 @@ class _MyFollowPageState extends State<MyFollowPage>
   ///Fetch data
   _fetchData() async {
     await MyFollowDao.getMyFollowReceived(_getStore().state.userInfo.login,
-            page: _page, needDb: true)
+            page: _page, needDb: false)
         .then((res) {
       if (res.data != null && res.data.length > 0) {
         for (var item in res.data) {
@@ -69,7 +62,6 @@ class _MyFollowPageState extends State<MyFollowPage>
       eventViewModel,
       onPressed: () {
         EventUtils.ActionUtils(context, e, "");
-        print("点击了Item");
       },
     );
   }
@@ -78,6 +70,7 @@ class _MyFollowPageState extends State<MyFollowPage>
   Widget build(BuildContext context) {
     super.build(context);
     return EasyRefresh(
+      autoLoad: true,
       firstRefresh: true,
       onRefresh: refresh,
       loadMore: refresh,
