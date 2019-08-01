@@ -5,6 +5,7 @@
  */
 import 'dart:async';
 import 'dart:convert';
+import 'package:codehub/network/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbar/flutter_statusbar.dart';
 import 'package:codehub/common/constant/global_style.dart';
@@ -197,5 +198,12 @@ class CommonUtils {
       }
     }
     return fullName;
+  }
+
+    static String getUserChartAddress(String userName) {
+    return Api.graphicHost +
+        CustomColors.primaryValueString.replaceAll("#", "") +
+        "/" +
+        userName;
   }
 }

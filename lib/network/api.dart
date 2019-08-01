@@ -9,6 +9,7 @@ import 'package:codehub/common/constant/global_config.dart';
 class Api {
   static const String host = "https://api.github.com/";
   static const String hostWeb = "https://github.com/";
+  static const String graphicHost = 'https://ghchart.rshah.org/';
 
   ///获取授权  post
   static getAuthorization() {

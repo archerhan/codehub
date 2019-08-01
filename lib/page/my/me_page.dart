@@ -21,6 +21,8 @@ import 'package:codehub/common/dao/my_follow_dao.dart';
 import 'package:codehub/widget/follow/follow_item.dart';
 import 'package:codehub/common/utils/event_utils.dart';
 import 'package:codehub/widget/repo/sliver_header_delegate.dart';
+import 'package:codehub/widget/my/my_header_bottom_widget.dart';
+import 'package:codehub/widget/my/my_header_commit_chart.dart';
 
 enum UserType { individual, organization }
 
@@ -166,6 +168,7 @@ class _MyPageState extends State<MyPage>
 
   @override
   Widget build(BuildContext context) {
+    double chartSize = (userInfo.login != null && userInfo.type == "Organization") ? 70 : 215;
     super.build(context);
     return Scaffold(
       //查看其他人的主页时需要主页，点击底部tab时不需要
@@ -193,11 +196,12 @@ class _MyPageState extends State<MyPage>
               ),
               child: MyHeaderItem(userInfo),
             )),
+            ///悬停widget
             SliverPersistentHeader(
               pinned: true,
               delegate: SliverHeaderDelegate(
-                  minHeight: 60,
-                  maxHeight: 60,
+                  minHeight: 80,
+                  maxHeight: 80,
                   changeSize: true,
                   snapConfig: FloatingHeaderSnapConfiguration(
                     vsync: this,
@@ -212,15 +216,46 @@ class _MyPageState extends State<MyPage>
                     return SizedBox.expand(
                       child: Padding(
                         padding:
-                            EdgeInsets.only(bottom: 10, left: lr, right: lr),
-                        child: Container(
-                          height: 40,
-                          color: Colors.black87,
-                        ),
+                            EdgeInsets.only(bottom: 10, left: 0, right: 0),
+                        child: MyHeaderBottomWidget(
+                          [
+                            {"仓库":(userInfo.public_repos ?? 0).toString()},
+                            {"粉丝":(userInfo.followers ?? 0).toString()},
+                            {"关注":(userInfo.following ?? 0).toString()},
+                            {"星标":userInfo.starred ?? "0"},
+                            {"荣耀":"0"}
+                          ],
+                          onPressed: (index){
+                            print("点击了第$index个item");
+                          },
+                          ),
                       ),
                     );
                   }),
             ),
+            ///用户提交图表
+            SliverPersistentHeader(
+              delegate: SliverHeaderDelegate(
+                maxHeight: chartSize,
+                minHeight: chartSize,
+                changeSize: true,
+                snapConfig: FloatingHeaderSnapConfiguration(
+              vsync: this,
+              curve: Curves.bounceInOut,
+              duration: const Duration(milliseconds: 10),
+            ),
+            builder: (BuildContext context, double shrinkOffset,
+                bool overlapsContent){
+                  return SizedBox.expand(
+                    child: Container(
+                      height: chartSize,
+                      child: MyHeaderCommitChart(userInfo),
+                    ),
+                  );
+                }
+              ),
+            ),
+            ///列表
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
@@ -233,14 +268,6 @@ class _MyPageState extends State<MyPage>
             ),
           ],
         ),
-        // child: ListView.builder(
-        //   itemCount: userType == UserType.individual
-        //       ? eventList.length+1
-        //       : userList.length+1,
-        //   itemBuilder: (BuildContext context, int index) {
-        //     return _renderItem(context,index);
-        //   },
-        // ),
       ),
     );
   }

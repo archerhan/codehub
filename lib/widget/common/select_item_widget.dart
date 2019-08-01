@@ -34,7 +34,6 @@ class SelectItemWidget extends StatefulWidget implements PreferredSizeWidget {
   _SelectItemWidgetState createState() => _SelectItemWidgetState();
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize {
     return Size.fromHeight(height);
   }
