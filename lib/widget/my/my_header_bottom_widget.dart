@@ -67,7 +67,7 @@ class MyHeaderBottomWidget extends StatelessWidget {
           height: 40,
           color: Colors.grey,
         ));
-            list.insert(
+    list.insert(
         7,
         Container(
           width: 1,

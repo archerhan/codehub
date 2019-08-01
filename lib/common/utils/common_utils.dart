@@ -200,7 +200,7 @@ class CommonUtils {
     return fullName;
   }
 
-    static String getUserChartAddress(String userName) {
+  static String getUserChartAddress(String userName) {
     return Api.graphicHost +
         CustomColors.primaryValueString.replaceAll("#", "") +
         "/" +

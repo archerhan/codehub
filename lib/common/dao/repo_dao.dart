@@ -19,6 +19,7 @@ import 'package:codehub/common/db/provider/repo_detail_db_provider.dart';
 import 'package:codehub/common/db/provider/repo_commit_db_provider.dart';
 import 'package:codehub/common/db/provider/repo_readme_db_provider.dart';
 import 'package:codehub/common/model/file.dart';
+import 'package:codehub/common/model/user.dart';
 
 class ReposDao {
   ///获取用户对当前仓库的star、watch状态
@@ -275,5 +276,81 @@ class ReposDao {
     } else {
       return DataResult(null, false);
     }
+  }
+
+  /**
+   * 用户的仓库
+   */
+  static getUserRepositoryDao(userName, page, sort, {needDb = false}) async {
+    // UserReposDbProvider provider = new UserReposDbProvider();
+    next() async {
+      String url = Api.userRepos(userName, sort) + Api.getPageParams("&", page);
+      var res = await httpManager.request(url, null, null, null);
+      if (res != null && res.result && res.data.length > 0) {
+        List<Repository> list = new List();
+        var dataList = res.data;
+        if (dataList == null || dataList.length == 0) {
+          return new DataResult(null, false);
+        }
+        for (int i = 0; i < dataList.length; i++) {
+          var data = dataList[i];
+          list.add(Repository.fromJson(data));
+        }
+        if (needDb) {
+          // provider.insert(userName, json.encode(dataList));
+        }
+        return new DataResult(list, true);
+      } else {
+        return new DataResult(null, false);
+      }
+    }
+
+    if (needDb) {
+      // List<Repository> list = await provider.geData(userName);
+      // if (list == null) {
+      //   return await next();
+      // }
+      // DataResult dataResult = new DataResult(list, true, next: next);
+      // return dataResult;
+    }
+    return await next();
+  }
+
+  /**
+   * 获取用户所有star
+   */
+  static getStarRepositoryDao(userName, page, sort, {needDb = false}) async {
+    // UserStaredDbProvider provider = new UserStaredDbProvider();
+    next() async {
+      String url = Api.userStar(userName, sort) + Api.getPageParams("&", page);
+      var res = await httpManager.request(url, null, null, null);
+      if (res != null && res.result && res.data.length > 0) {
+        List<Repository> list = new List();
+        var dataList = res.data;
+        if (dataList == null || dataList.length == 0) {
+          return new DataResult(null, false);
+        }
+        for (int i = 0; i < dataList.length; i++) {
+          var data = dataList[i];
+          list.add(Repository.fromJson(data));
+        }
+        if (needDb) {
+          // provider.insert(userName, json.encode(dataList));
+        }
+        return new DataResult(list, true);
+      } else {
+        return new DataResult(null, false);
+      }
+    }
+
+    if (needDb) {
+      // List<Repository> list = await provider.geData(userName);
+      // if (list == null) {
+      //   return await next();
+      // }
+      // DataResult dataResult = new DataResult(list, true, next: next);
+      // return dataResult;
+    }
+    return await next();
   }
 }

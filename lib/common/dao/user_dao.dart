@@ -15,6 +15,7 @@ import 'package:codehub/common/model/user.dart';
 import 'package:codehub/common/db/provider/user_info_db_provider.dart';
 import 'package:codehub/common/redux/user_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:codehub/common/model/user_org.dart';
 
 class UserDao {
   static login(userName, password, Store store) async {
@@ -164,5 +165,117 @@ class UserDao {
     } else {
       return DataResult(null, false);
     }
+  }
+
+  /**
+   * 获取用户粉丝列表
+   */
+  static getFollowerListDao(userName, page, {needDb = false}) async {
+    // UserFollowerDbProvider provider = new UserFollowerDbProvider();
+
+    next() async {
+      String url = Api.getUserFollower(userName) + Api.getPageParams("?", page);
+      var res = await httpManager.request(url, null, null, null);
+      if (res != null && res.result) {
+        List<User> list = new List();
+        var data = res.data;
+        if (data == null || data.length == 0) {
+          return new DataResult(null, false);
+        }
+        for (int i = 0; i < data.length; i++) {
+          list.add(new User.fromJson(data[i]));
+        }
+        if (needDb) {
+          // provider.insert(userName, json.encode(data));
+        }
+        return new DataResult(list, true);
+      } else {
+        return new DataResult(null, false);
+      }
+    }
+
+    if (needDb) {
+      // List<User> list = await provider.geData(userName);
+      // if (list == null) {
+      //   return await next();
+      // }
+      // DataResult dataResult = new DataResult(list, true, next: next);
+      // return dataResult;
+    }
+    return await next();
+  }
+
+  /**
+   * 获取用户关注列表
+   */
+  static getFollowedListDao(userName, page, {needDb = false}) async {
+    // UserFollowedDbProvider provider = new UserFollowedDbProvider();
+    next() async {
+      String url = Api.getUserFollow(userName) + Api.getPageParams("?", page);
+      var res = await httpManager.request(url, null, null, null);
+      if (res != null && res.result) {
+        List<User> list = new List();
+        var data = res.data;
+        if (data == null || data.length == 0) {
+          return new DataResult(null, false);
+        }
+        for (int i = 0; i < data.length; i++) {
+          list.add(new User.fromJson(data[i]));
+        }
+        if (needDb) {
+          // provider.insert(userName, json.encode(data));
+        }
+        return new DataResult(list, true);
+      } else {
+        return new DataResult(null, false);
+      }
+    }
+
+    if (needDb) {
+      // List<User> list = await provider.geData(userName);
+      // if (list == null) {
+      //   return await next();
+      // }
+      // DataResult dataResult = new DataResult(list, true, next: next);
+      // return dataResult;
+    }
+    return await next();
+  }
+
+  /**
+   * 获取用户组织
+   */
+  static getUserOrgsDao(userName, page, {needDb = false}) async {
+    // UserOrgsDbProvider provider = new UserOrgsDbProvider();
+    next() async {
+      String url = Api.getUserOrgs(userName) + Api.getPageParams("?", page);
+      var res = await httpManager.request(url, null, null, null);
+      if (res != null && res.result) {
+        List<UserOrg> list = new List();
+        var data = res.data;
+        if (data == null || data.length == 0) {
+          return new DataResult(null, false);
+        }
+        for (int i = 0; i < data.length; i++) {
+          list.add(new UserOrg.fromJson(data[i]));
+        }
+        if (needDb) {
+          // provider.insert(userName, json.encode(data));
+        }
+        return new DataResult(list, true);
+      } else {
+        return new DataResult(null, false);
+      }
+    }
+
+    if (needDb) {
+      // List<UserOrg> list = await provider.geData(userName);
+      // if (list == null) {
+      //   return await next();
+      // }
+      // DataResult dataResult = new DataResult(list, true, next: next);
+      // return dataResult;
+    }
+    return await next();
   }
 }

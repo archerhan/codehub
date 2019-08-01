@@ -42,7 +42,7 @@ class _MyFollowPageState extends State<MyFollowPage>
   ///Fetch data
   _fetchData() async {
     await MyFollowDao.getMyFollowReceived(_getStore().state.userInfo.login,
-            page: _page, needDb: false)
+            page: _page, needDb: true)
         .then((res) {
       if (res.data != null && res.data.length > 0) {
         for (var item in res.data) {

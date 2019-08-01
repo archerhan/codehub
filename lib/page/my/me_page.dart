@@ -166,9 +166,50 @@ class _MyPageState extends State<MyPage>
     );
   }
 
+  ///根据index跳转不同的页面（其实页面是一个，数据源不同而已，页面都是常规的listview页面）
+  _resolveRoute(index) {
+    switch (index) {
+      case 0:
+        {
+          RouteManager.gotoCommonList(
+              context, userInfo.login, "repository", "user_repos",
+              userName: userInfo.login);
+        }
+        break;
+      case 1:
+        {
+          RouteManager.gotoCommonList(
+              context, userInfo.login, "user", "follower",
+              userName: userInfo.login);
+        }
+        break;
+      case 2:
+        {
+          RouteManager.gotoCommonList(
+              context, userInfo.login, "user", "followed",
+              userName: userInfo.login);
+        }
+        break;
+      case 3:
+        {
+          RouteManager.gotoCommonList(
+              context, userInfo.login, "repository", "user_star",
+              userName: userInfo.login);
+        }
+        break;
+      case 4:
+        {
+          print("todo：跳转honor列表");
+        }
+        break;
+      default:
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    double chartSize = (userInfo.login != null && userInfo.type == "Organization") ? 70 : 215;
+    double chartSize =
+        (userInfo.login != null && userInfo.type == "Organization") ? 70 : 215;
     super.build(context);
     return Scaffold(
       //查看其他人的主页时需要主页，点击底部tab时不需要
@@ -196,6 +237,7 @@ class _MyPageState extends State<MyPage>
               ),
               child: MyHeaderItem(userInfo),
             )),
+
             ///悬停widget
             SliverPersistentHeader(
               pinned: true,
@@ -210,51 +252,48 @@ class _MyPageState extends State<MyPage>
                   ),
                   builder: (BuildContext context, double shrinkOffset,
                       bool overlapsContent) {
-                    ///根据数值计算偏差
-                    var lr = 10 - shrinkOffset / 60 * 10;
-                    var radius = Radius.circular(4 - shrinkOffset / 60 * 4);
                     return SizedBox.expand(
                       child: Padding(
-                        padding:
-                            EdgeInsets.only(bottom: 10, left: 0, right: 0),
+                        padding: EdgeInsets.only(bottom: 10, left: 0, right: 0),
                         child: MyHeaderBottomWidget(
                           [
-                            {"仓库":(userInfo.public_repos ?? 0).toString()},
-                            {"粉丝":(userInfo.followers ?? 0).toString()},
-                            {"关注":(userInfo.following ?? 0).toString()},
-                            {"星标":userInfo.starred ?? "0"},
-                            {"荣耀":"0"}
+                            {"仓库": (userInfo.public_repos ?? 0).toString()},
+                            {"粉丝": (userInfo.followers ?? 0).toString()},
+                            {"关注": (userInfo.following ?? 0).toString()},
+                            {"星标": userInfo.starred ?? "0"},
+                            {"荣耀": "0"} //暂时先不管这个
                           ],
-                          onPressed: (index){
-                            print("点击了第$index个item");
+                          onPressed: (index) {
+                            _resolveRoute(index);
                           },
-                          ),
+                        ),
                       ),
                     );
                   }),
             ),
+
             ///用户提交图表
             SliverPersistentHeader(
               delegate: SliverHeaderDelegate(
-                maxHeight: chartSize,
-                minHeight: chartSize,
-                changeSize: true,
-                snapConfig: FloatingHeaderSnapConfiguration(
-              vsync: this,
-              curve: Curves.bounceInOut,
-              duration: const Duration(milliseconds: 10),
+                  maxHeight: chartSize,
+                  minHeight: chartSize,
+                  changeSize: true,
+                  snapConfig: FloatingHeaderSnapConfiguration(
+                    vsync: this,
+                    curve: Curves.bounceInOut,
+                    duration: const Duration(milliseconds: 10),
+                  ),
+                  builder: (BuildContext context, double shrinkOffset,
+                      bool overlapsContent) {
+                    return SizedBox.expand(
+                      child: Container(
+                        height: chartSize,
+                        child: MyHeaderCommitChart(userInfo),
+                      ),
+                    );
+                  }),
             ),
-            builder: (BuildContext context, double shrinkOffset,
-                bool overlapsContent){
-                  return SizedBox.expand(
-                    child: Container(
-                      height: chartSize,
-                      child: MyHeaderCommitChart(userInfo),
-                    ),
-                  );
-                }
-              ),
-            ),
+
             ///列表
             SliverList(
               delegate: SliverChildBuilderDelegate(
