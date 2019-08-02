@@ -19,9 +19,57 @@ import 'package:codehub/common/db/provider/repo_detail_db_provider.dart';
 import 'package:codehub/common/db/provider/repo_commit_db_provider.dart';
 import 'package:codehub/common/db/provider/repo_readme_db_provider.dart';
 import 'package:codehub/common/model/file.dart';
-import 'package:codehub/common/model/user.dart';
+import 'package:codehub/common/model/trend_repo_mode.dart';
+import 'package:codehub/network/github_trending.dart';
+
 
 class ReposDao {
+
+  /**
+   * 趋势数据
+   * @param page 分页，趋势数据其实没有分页
+   * @param since 数据时长， 本日，本周，本月
+   * @param languageType 语言
+   */
+  static getTrendDao(
+      {since = 'daily', languageType, page = 0, needDb = true}) async {
+    // TrendRepositoryDbProvider provider = new TrendRepositoryDbProvider();
+    String languageTypeDb = languageType ?? "*";
+
+    next() async {
+      String url = Api.trending(since, languageType);
+      var res = await new GitHubTrending().fetchTrending(url);
+      if (res != null && res.result && res.data.length > 0) {
+        List<TrendingRepoModel> list = new List();
+        var data = res.data;
+        if (data == null || data.length == 0) {
+          return new DataResult(null, false);
+        }
+        if (needDb) {
+          // provider.insert(languageTypeDb, since, json.encode(data));
+        }
+        for (int i = 0; i < data.length; i++) {
+          TrendingRepoModel model = data[i];
+          list.add(model);
+        }
+        return new DataResult(list, true);
+      } else {
+        return new DataResult(null, false);
+      }
+    }
+
+    if (needDb) {
+      // List<TrendingRepoModel> list =
+      //     await provider.getData(languageTypeDb, since);
+      // if (list == null || list.length == 0) {
+      //   return await next();
+      // }
+      // DataResult dataResult = new DataResult(list, true, next: next);
+      // return dataResult;
+    }
+    return await next();
+  }
+
   ///获取用户对当前仓库的star、watch状态
   static getRepositoryStatusDao(userName, reposName) async {
     //star
