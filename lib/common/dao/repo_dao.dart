@@ -22,9 +22,7 @@ import 'package:codehub/common/model/file.dart';
 import 'package:codehub/common/model/trend_repo_mode.dart';
 import 'package:codehub/network/github_trending.dart';
 
-
 class ReposDao {
-
   /**
    * 趋势数据
    * @param page 分页，趋势数据其实没有分页

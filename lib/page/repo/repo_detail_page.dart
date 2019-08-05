@@ -116,6 +116,9 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage>
   ///底部widget
   _renderBottomItem(var text, var icon, var onPressed) {
     return FlatButton(
+      onPressed: (){
+        print("on pressed");
+      },
       child: IconTextWidget(
         icon,
         text,

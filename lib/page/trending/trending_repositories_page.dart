@@ -8,39 +8,39 @@ import 'package:flutter/material.dart';
 import 'package:codehub/widget/common/common_repo_item.dart';
 import 'package:codehub/common/redux/my_state.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:redux/redux.dart';
+import 'package:codehub/widget/trend/trend_header.dart';
+import 'package:codehub/widget/repo/sliver_header_delegate.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:codehub/common/constant/global_style.dart';
 import 'package:codehub/bloc/trend_bloc.dart';
-
-
+import 'package:flutter/rendering.dart';
 
 class TrendingRepositories extends StatefulWidget {
   @override
   _TrendingRepositoriesState createState() => _TrendingRepositoriesState();
 }
 
-
-class _TrendingRepositoriesState extends State<TrendingRepositories> with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
-  
-    ///显示数据时间
+class _TrendingRepositoriesState extends State<TrendingRepositories>
+    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+  ///显示数据时间
   TrendTypeModel selectTime;
 
   ///显示过滤语言
   TrendTypeModel selectType;
 
-    ///bloc
+  ///bloc
   final TrendBloc trendBloc = new TrendBloc();
 
-  _renderItem(e){
+  _renderItem(e) {
     RepoItemViewModel repoItemViewModel = RepoItemViewModel.fromTrendMap(e);
     return RepoItem(repoItemViewModel);
   }
 
-  Future<void>onRefresh()async {
+  Future<void> onRefresh() async {
     return trendBloc.reqeustRefresh(selectTime, selectType);
   }
-@override
+
+  @override
   void didChangeDependencies() {
     if (!trendBloc.requested) {
       setState(() {
@@ -50,30 +50,51 @@ class _TrendingRepositoriesState extends State<TrendingRepositories> with Automa
     }
     super.didChangeDependencies();
   }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    List<Map<String,List<TrendTypeModel>>> data = [{"今日":trendTime(context)},{"全部":trendType(context)}];
+    
     return StoreBuilder<MyState>(
-      builder: (context, store){
+      builder: (context, store) {
         return Scaffold(
           backgroundColor: Color(CustomColors.mainBackgroundColor),
           body: StreamBuilder(
             stream: trendBloc.stream,
-            builder: (context,snapShot){
+            builder: (context, snapShot) {
               return EasyRefresh(
                 autoLoad: true,
                 firstRefresh: true,
                 onRefresh: onRefresh,
                 child: CustomScrollView(
                   slivers: <Widget>[
+                    SliverPersistentHeader(
+                      pinned: true,
+                      delegate: SliverHeaderDelegate(
+                        minHeight: 80,
+                        maxHeight: 80,
+                        snapConfig: FloatingHeaderSnapConfiguration(
+                          vsync:this,
+                          curve: Curves.bounceInOut,
+                          duration: const Duration(milliseconds: 10),
+                        ),
+                        child: TrendPopupHeader(data,onSelected: (model){
+                          print(model.value);
+                          // selectTime = 
+                          onRefresh();
+                        },),
+                      ),
+
+                    ),
                     SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return _renderItem(snapShot.data[index]);
-                },
-                childCount: snapShot.data.length,
-              ),
-            ),
+                      delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                          return _renderItem(snapShot.data[index]);
+                        },
+                        childCount: snapShot.data.length,
+                      ),
+                    ),
                   ],
                 ),
               );
@@ -125,4 +146,3 @@ trendType(BuildContext context) {
     TrendTypeModel("C#", "c%23"),
   ];
 }
-

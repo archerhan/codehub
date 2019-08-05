@@ -13,20 +13,22 @@ import 'package:rxdart/rxdart.dart';
 class TrendBloc {
   bool _requested = false;
   bool _isLoading = false;
-  
+
   ///是否正在请求
   bool get isLoading => _isLoading;
+
   ///是否已经请求过
   bool get requested => _requested;
 
   ///rxdart 实现的 stream
   var _subject = PublishSubject<List<TrendingRepoModel>>();
-  
+
   Observable<List<TrendingRepoModel>> get stream => _subject.stream;
 
   Future<void> reqeustRefresh(selectTime, selectType) async {
     _isLoading = true;
-    var res = await ReposDao.getTrendDao(since: selectTime.value,languageType: selectType.value);
+    var res = await ReposDao.getTrendDao(
+        since: selectTime.value, languageType: selectType.value);
     if (res != null && res.result) {
       _subject.add(res.data);
     }

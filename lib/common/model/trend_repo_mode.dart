@@ -43,7 +43,8 @@ class TrendingRepoModel {
 
   TrendingRepoModel.empty();
 
-  factory TrendingRepoModel.fromJson(Map<String, dynamic> json) => _$TrendingRepoModelFromJson(json);
+  factory TrendingRepoModel.fromJson(Map<String, dynamic> json) =>
+      _$TrendingRepoModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$TrendingRepoModelToJson(this);
 }

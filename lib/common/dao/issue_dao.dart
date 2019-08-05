@@ -5,9 +5,6 @@
  */
 
 import 'dart:convert';
-import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:codehub/common/dao/dao_reslut.dart';
 import 'package:codehub/network/api.dart';
 import 'package:codehub/network/http_manager.dart';
