@@ -3,7 +3,7 @@
  * @Author: ArcherHan
  * @Date: 2019-08-05 10:35:49
  * @LastEditors: ArcherHan
- * @LastEditTime: 2019-08-05 14:05:14
+ * @LastEditTime: 2019-08-06 11:35:45
  */
 
 import 'package:flutter/material.dart';
@@ -11,6 +11,7 @@ import 'package:codehub/page/trending/trending_repositories_page.dart';
 import 'package:codehub/common/constant/global_style.dart';
 
 class TrendPopupHeader extends StatelessWidget {
+  
   final List<Map<String,List<TrendTypeModel>>> dataList;
   final PopupMenuItemSelected<TrendTypeModel> onSelected;
   TrendPopupHeader(this.dataList,{this.onSelected});

@@ -220,8 +220,7 @@ class _MyPageState extends State<MyPage>
             ),
       body: EasyRefresh(
         onRefresh: onRefresh,
-        loadMore: onLoadMore,
-        autoLoad: true,
+        onLoad: onLoadMore,
         firstRefresh: true,
         child: CustomScrollView(
           slivers: <Widget>[

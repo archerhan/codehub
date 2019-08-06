@@ -145,10 +145,9 @@ class _CommonListPageState extends State<CommonListPage> {
         ),
       ),
       body: EasyRefresh(
-        autoLoad: true,
         firstRefresh: true,
         onRefresh: onRefresh,
-        loadMore: onLoadMore,
+        onLoad: onLoadMore,
         child: ListView.builder(
           itemCount: dataList.length,
           itemBuilder: (BuildContext context, int index) {

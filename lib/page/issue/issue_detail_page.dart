@@ -31,8 +31,8 @@ class IssueDetailPage extends StatefulWidget {
 
   final ScrollController scrollController = ScrollController();
 
-  final GlobalKey<EasyRefreshState> refreshIndicatorKey =
-      GlobalKey<EasyRefreshState>();
+  // final GlobalKey<EasyRefreshState> refreshIndicatorKey =
+      // GlobalKey<EasyRefreshState>();
 
   IssueDetailPage(this.userName, this.reposName, this.issueNum,
       {this.needHomeIcon = false});
@@ -203,7 +203,7 @@ class _IssueDetailPageState extends State<IssueDetailPage>
       ),
       body: EasyRefresh(
         firstRefresh: true,
-        key: widget.refreshIndicatorKey,
+        // key: widget.refreshIndicatorKey,
         child: ListView.builder(
           itemCount: dataList.length + 1,
           itemBuilder: (BuildContext context, int index) {
@@ -211,7 +211,7 @@ class _IssueDetailPageState extends State<IssueDetailPage>
           },
         ),
         onRefresh: refresh,
-        loadMore: loadMore,
+        onLoad: loadMore,
       ),
     );
   }

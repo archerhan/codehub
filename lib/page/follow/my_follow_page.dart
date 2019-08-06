@@ -70,10 +70,9 @@ class _MyFollowPageState extends State<MyFollowPage>
   Widget build(BuildContext context) {
     super.build(context);
     return EasyRefresh(
-      autoLoad: true,
       firstRefresh: true,
       onRefresh: refresh,
-      loadMore: refresh,
+      onLoad: refresh,
       child: ListView.builder(
         itemCount: _followList.length,
         itemBuilder: (context, index) {

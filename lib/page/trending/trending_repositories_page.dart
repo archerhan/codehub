@@ -14,6 +14,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:codehub/common/constant/global_style.dart';
 import 'package:codehub/bloc/trend_bloc.dart';
 import 'package:flutter/rendering.dart';
+import 'package:codehub/common/route/route_manager.dart';
 
 class TrendingRepositories extends StatefulWidget {
   @override
@@ -28,18 +29,30 @@ class _TrendingRepositoriesState extends State<TrendingRepositories>
   ///显示过滤语言
   TrendTypeModel selectType;
 
+  ///刷新控件，主动刷新
+  EasyRefreshController _controller;
+
+  String timeStr = "今日";
+  String lanStr = "全部"; 
+
   ///bloc
   final TrendBloc trendBloc = new TrendBloc();
 
   _renderItem(e) {
     RepoItemViewModel repoItemViewModel = RepoItemViewModel.fromTrendMap(e);
-    return RepoItem(repoItemViewModel);
+    return RepoItem(repoItemViewModel,onPressed: (){
+      RouteManager.goReposDetail(context, repoItemViewModel.ownerName, repoItemViewModel.repositoryName);
+    },);
   }
 
   Future<void> onRefresh() async {
     return trendBloc.reqeustRefresh(selectTime, selectType);
   }
-
+@override
+  void initState() {
+     _controller = EasyRefreshController();
+    super.initState();
+  }
   @override
   void didChangeDependencies() {
     if (!trendBloc.requested) {
@@ -54,7 +67,7 @@ class _TrendingRepositoriesState extends State<TrendingRepositories>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    List<Map<String,List<TrendTypeModel>>> data = [{"今日":trendTime(context)},{"全部":trendType(context)}];
+    List<Map<String,List<TrendTypeModel>>> data = [{timeStr:trendTime(context)},{lanStr:trendType(context)}];
     
     return StoreBuilder<MyState>(
       builder: (context, store) {
@@ -64,7 +77,7 @@ class _TrendingRepositoriesState extends State<TrendingRepositories>
             stream: trendBloc.stream,
             builder: (context, snapShot) {
               return EasyRefresh(
-                autoLoad: true,
+                controller: _controller,
                 firstRefresh: true,
                 onRefresh: onRefresh,
                 child: CustomScrollView(
@@ -80,9 +93,24 @@ class _TrendingRepositoriesState extends State<TrendingRepositories>
                           duration: const Duration(milliseconds: 10),
                         ),
                         child: TrendPopupHeader(data,onSelected: (model){
-                          print(model.value);
-                          // selectTime = 
-                          onRefresh();
+                          // print(model.name);
+                          
+                          for (TrendTypeModel item in trendTime(context)) {
+                            if (model.value == item.value) {
+                              selectTime = model;
+                              timeStr = model.name;
+                            }
+                          }
+                          for (TrendTypeModel item in trendType(context)) {
+                            if (model.value == item.value) {
+                              selectType = model;
+                              lanStr = model.name;
+                            }
+                          }
+                          setState(() {
+                            
+                          });
+                          _controller.callRefresh();
                         },),
                       ),
 
@@ -92,7 +120,7 @@ class _TrendingRepositoriesState extends State<TrendingRepositories>
                         (BuildContext context, int index) {
                           return _renderItem(snapShot.data[index]);
                         },
-                        childCount: snapShot.data.length,
+                        childCount: snapShot.hasData ? snapShot.data.length : 0,
                       ),
                     ),
                   ],

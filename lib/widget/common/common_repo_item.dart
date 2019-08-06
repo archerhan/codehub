@@ -3,7 +3,7 @@
  * @Author: ArcherHan
  * @Date: 2019-08-01 18:56:10
  * @LastEditors: ArcherHan
- * @LastEditTime: 2019-08-01 23:18:09
+ * @LastEditTime: 2019-08-06 10:33:59
  */
 
 import 'package:flutter/material.dart';
@@ -109,7 +109,7 @@ class RepoItem extends StatelessWidget {
           Expanded(
             child: IconTextWidget(
                 CustomIcons.REPOS_ITEM_ISSUE,
-                repoItemViewModel.repositoryIssues ?? "0",
+                repoItemViewModel.repositoryIssues.split(" ").first ?? "0",
                 TextStyle(color: Colors.grey),
                 Colors.grey,
                 16),
