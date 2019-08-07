@@ -1,13 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'repo_commit.dart';
+part of 'push_commit.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-RepoCommit _$RepoCommitFromJson(Map<String, dynamic> json) {
-  return RepoCommit(
+PushCommit _$PushCommitFromJson(Map<String, dynamic> json) {
+  return PushCommit(
+    (json['files'] as List)
+        ?.map((e) =>
+            e == null ? null : CommitFile.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    json['stats'] == null
+        ? null
+        : CommitStats.fromJson(json['stats'] as Map<String, dynamic>),
     json['sha'] as String,
     json['url'] as String,
     json['html_url'] as String,
@@ -28,8 +35,10 @@ RepoCommit _$RepoCommitFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$RepoCommitToJson(RepoCommit instance) =>
+Map<String, dynamic> _$PushCommitToJson(PushCommit instance) =>
     <String, dynamic>{
+      'files': instance.files,
+      'stats': instance.stats,
       'sha': instance.sha,
       'url': instance.url,
       'html_url': instance.htmlUrl,

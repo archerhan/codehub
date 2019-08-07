@@ -21,6 +21,7 @@ import 'package:codehub/common/db/provider/repo_readme_db_provider.dart';
 import 'package:codehub/common/model/file.dart';
 import 'package:codehub/common/model/trend_repo_mode.dart';
 import 'package:codehub/network/github_trending.dart';
+import 'package:codehub/common/model/push_commit.dart';
 
 class ReposDao {
   /**
@@ -398,5 +399,16 @@ class ReposDao {
       // return dataResult;
     }
     return await next();
+  }
+  ///获取仓库的单个提交详情
+  static getReposCommitsInfoDao(userName, reposName, sha) async {
+    String url = Api.getReposCommitsInfo(userName, reposName, sha);
+    var res = await httpManager.request(url, null, null, null);
+    if (res != null && res.result) {
+      PushCommit pushCommit = PushCommit.fromJson(res.data);
+      return new DataResult(pushCommit, true);
+    } else {
+      return new DataResult(null, false);
+    }
   }
 }

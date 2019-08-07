@@ -12,6 +12,10 @@ import 'package:codehub/widget/repo/card_item.dart';
 import 'package:codehub/widget/common/icon_text_widget.dart';
 import 'package:codehub/widget/common/user_icon_widget.dart';
 import 'package:codehub/common/constant/global_style.dart';
+import 'package:codehub/common/model/push_commit.dart';
+import 'package:codehub/common/dao/repo_dao.dart';
+import 'package:codehub/bloc/push_detail_bloc.dart';
+
 
 class PushDetailPage extends StatefulWidget {
   final String userName;
@@ -30,6 +34,16 @@ class PushDetailPage extends StatefulWidget {
 
 class _PushDetailPageState extends State<PushDetailPage>
     with TickerProviderStateMixin {
+
+  _getDataLogic() async {
+    return await ReposDao.getReposCommitsInfoDao(widget.userName, widget.reposName, widget.sha);
+  }
+
+  Future<void> refresh()async{
+    await _getDataLogic();
+  }
+
+
   _renderItem() {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10),
@@ -145,7 +159,7 @@ class _PushDetailPageState extends State<PushDetailPage>
         title: Text(widget.reposName),
       ),
       body: EasyRefresh(
-        onRefresh: null,
+        onRefresh: refresh,
         onLoad: null,
         child: CustomScrollView(
           slivers: <Widget>[
