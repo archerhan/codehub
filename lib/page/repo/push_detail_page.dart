@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:codehub/widget/repo/sliver_header_delegate.dart';
 import 'package:codehub/widget/repo/card_item.dart';
+import 'package:codehub/widget/common/icon_text_widget.dart';
+import 'package:codehub/widget/common/user_icon_widget.dart';
+import 'package:codehub/common/constant/global_style.dart';
 
 class PushDetailPage extends StatefulWidget {
   final String userName;
@@ -27,24 +30,112 @@ class PushDetailPage extends StatefulWidget {
 
 class _PushDetailPageState extends State<PushDetailPage>
     with TickerProviderStateMixin {
-  _renderItem(e) {
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: Text("path"),
-        ),
-        Expanded(
-          child: CardItem(
-            margin: EdgeInsets.all(10),
-            child: Container(
-              height: 30,
-              width: 300,
-              child: Text("file"),
+  _renderItem() {
+    return Container(
+      padding: EdgeInsets.only(left: 10, right: 10),
+      height: 80,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Text(
+              "path",
+              style: TextStyle(color: Colors.grey),
             ),
           ),
-        ),
-      ],
+          Expanded(
+            flex: 3,
+            child: CardItem(
+              child: Container(
+                // color: Colors.blue,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Text(
+                        "</>",
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Expanded(
+                      flex: 4,
+                      child: Text("file"),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
+  }
+
+  _renderHeader() {
+    return Container(
+        child: CardItem(
+      margin: EdgeInsets.all(10),
+      color: Colors.black87,
+      child: Container(
+        height: 120,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: UserIcon(
+                image:
+                    "https://avatars1.githubusercontent.com/u/28807639?s=460&v=4",
+                height: 45,
+                width: 45,
+              ),
+            ),
+            Expanded(
+              flex: 5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 8),
+                    child: Row(
+                      children: <Widget>[
+                        IconTextWidget(CustomIcons.PUSH_ITEM_EDIT, "1",
+                            TextStyle(color: Colors.grey), Colors.grey, 14),
+                        Container(
+                          width: 8,
+                        ),
+                        IconTextWidget(CustomIcons.PUSH_ITEM_ADD, "44",
+                            TextStyle(color: Colors.grey), Colors.grey, 14),
+                        Container(
+                          width: 8,
+                        ),
+                        IconTextWidget(CustomIcons.PUSH_ITEM_MIN, "9",
+                            TextStyle(color: Colors.grey), Colors.grey, 14)
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 8, bottom: 8),
+                    child: Text(
+                      "time",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 8, bottom: 8),
+                    child: Text(
+                      "detail",
+                      style: TextStyle(color: Colors.grey),
+                      maxLines: 1,
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    ));
   }
 
   @override
@@ -60,36 +151,23 @@ class _PushDetailPageState extends State<PushDetailPage>
           slivers: <Widget>[
             SliverPersistentHeader(
               delegate: SliverHeaderDelegate(
-                snapConfig: FloatingHeaderSnapConfiguration(
-                  vsync: this,
-                  curve: Curves.bounceInOut,
-                  duration: const Duration(milliseconds: 10),
-                ),
-                minHeight: 120,
-                maxHeight: 120,
-                child: CardItem(
-                  margin: EdgeInsets.all(10),
-                  color: Colors.black87,
-                  child: Container(
-                    height: 120,
-                    child: Text(
-                      "this is the header",
-                      style: TextStyle(color: Colors.white),
-                    ),
+                  snapConfig: FloatingHeaderSnapConfiguration(
+                    vsync: this,
+                    curve: Curves.bounceInOut,
+                    duration: const Duration(milliseconds: 10),
                   ),
-                ),
+                  minHeight: 120,
+                  maxHeight: 120,
+                  child: _renderHeader()),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return _renderItem();
+                },
+                childCount: 10,
               ),
             ),
-
-            // SliverList(
-            //   delegate: SliverChildBuilderDelegate(
-            //     (BuildContext context, int index) {
-            //       return _renderItem(null);
-            //     },
-            //     childCount: 10,
-            //   ),
-            // ),
-            
           ],
         ),
       ),
