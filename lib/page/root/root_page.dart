@@ -88,7 +88,7 @@ class _RootControllerState extends State<RootController>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("标题"),
+        title: Text("CodeHub"),
       ),
       drawer: MyDrawer(),
       body: buildPageView(),
