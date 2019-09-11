@@ -16,7 +16,6 @@ import 'package:codehub/common/model/push_commit.dart';
 import 'package:codehub/common/dao/repo_dao.dart';
 import 'package:codehub/bloc/push_detail_bloc.dart';
 
-
 class PushDetailPage extends StatefulWidget {
   final String userName;
 
@@ -34,15 +33,14 @@ class PushDetailPage extends StatefulWidget {
 
 class _PushDetailPageState extends State<PushDetailPage>
     with TickerProviderStateMixin {
-
   _getDataLogic() async {
-    return await ReposDao.getReposCommitsInfoDao(widget.userName, widget.reposName, widget.sha);
+    return await ReposDao.getReposCommitsInfoDao(
+        widget.userName, widget.reposName, widget.sha);
   }
 
-  Future<void> refresh()async{
+  Future<void> refresh() async {
     await _getDataLogic();
   }
-
 
   _renderItem() {
     return Container(

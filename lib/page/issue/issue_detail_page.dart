@@ -32,7 +32,7 @@ class IssueDetailPage extends StatefulWidget {
   final ScrollController scrollController = ScrollController();
 
   // final GlobalKey<EasyRefreshState> refreshIndicatorKey =
-      // GlobalKey<EasyRefreshState>();
+  // GlobalKey<EasyRefreshState>();
 
   IssueDetailPage(this.userName, this.reposName, this.issueNum,
       {this.needHomeIcon = false});

@@ -400,6 +400,7 @@ class ReposDao {
     }
     return await next();
   }
+
   ///获取仓库的单个提交详情
   static getReposCommitsInfoDao(userName, reposName, sha) async {
     String url = Api.getReposCommitsInfo(userName, reposName, sha);

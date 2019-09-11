@@ -32,7 +32,8 @@ class CommitFile {
     this.patch,
   );
 
-  factory CommitFile.fromJson(Map<String, dynamic> json) => _$CommitFileFromJson(json);
+  factory CommitFile.fromJson(Map<String, dynamic> json) =>
+      _$CommitFileFromJson(json);
 
   Map<String, dynamic> toJson() => _$CommitFileToJson(this);
 }

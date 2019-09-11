@@ -5,7 +5,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:codehub/common/dao/my_follow_dao.dart';
 import 'package:codehub/common/model/follow_event.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -13,6 +12,7 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:codehub/common/redux/my_state.dart';
 import 'package:codehub/widget/follow/follow_item.dart';
 import 'package:codehub/common/utils/event_utils.dart';
+import 'package:codehub/bloc/follow_bloc.dart';
 
 class MyFollowPage extends StatefulWidget {
   @override
@@ -21,9 +21,7 @@ class MyFollowPage extends StatefulWidget {
 
 class _MyFollowPageState extends State<MyFollowPage>
     with AutomaticKeepAliveClientMixin, WidgetsBindingObserver {
-  var loadingTag = 0; //表尾标记
-  var _followList = <FollowEvent>[];
-  var _page = 0;
+  final FollowBloc followBloc = FollowBloc();
   Store<MyState> _getStore() {
     return StoreProvider.of(context);
   }
@@ -35,24 +33,13 @@ class _MyFollowPageState extends State<MyFollowPage>
 
   Future<Null> refresh() async {
     await Future.delayed(const Duration(seconds: 0), () {
-      _fetchData();
+      followBloc.requestRefresh(_getStore().state.userInfo.login);
     });
   }
 
-  ///Fetch data
-  _fetchData() async {
-    await MyFollowDao.getMyFollowReceived(_getStore().state.userInfo.login,
-            page: _page, needDb: true)
-        .then((res) {
-      if (res.data != null && res.data.length > 0) {
-        for (var item in res.data) {
-          _followList.add(item);
-        }
-        if (_followList.length > 0) {
-          loadingTag = _followList.length - 1;
-        }
-        setState(() {});
-      }
+  Future<Null> loadMore() async {
+    await Future.delayed(const Duration(seconds: 0), () {
+      followBloc.requestLoadMore(_getStore().state.userInfo.login);
     });
   }
 
@@ -69,29 +56,21 @@ class _MyFollowPageState extends State<MyFollowPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return EasyRefresh(
-      firstRefresh: true,
-      onRefresh: refresh,
-      onLoad: refresh,
-      child: ListView.builder(
-        itemCount: _followList.length,
-        itemBuilder: (context, index) {
-          if (index == loadingTag) {
-            //获取新数据
-            _page++;
-            _fetchData();
-            //显示loading
-            return Container(
-              padding: const EdgeInsets.all(16.0),
-              alignment: Alignment.center,
-              child: SizedBox(
-                  width: 24.0,
-                  height: 24.0,
-                  child: CircularProgressIndicator(strokeWidth: 2.0)),
-            );
-          } else {
-            return _renderItems(_followList[index]);
-          }
+    return Scaffold(
+      body: StreamBuilder(
+        stream: followBloc.stream,
+        builder: (context, snapShot){
+          return EasyRefresh(
+            firstRefresh: true,
+            onRefresh: refresh,
+            onLoad: loadMore,
+            child: (snapShot.data == null || snapShot.data.length == 0) ? Container(child: Text("暂无数据"),) : ListView.builder(
+              itemCount: snapShot.data.length,
+              itemBuilder: (context, index) {
+                  return _renderItems(snapShot.data[index]);
+              },
+            ),
+          );
         },
       ),
     );

@@ -38,7 +38,8 @@ class PushCommit {
     this.parents,
   );
 
-  factory PushCommit.fromJson(Map<String, dynamic> json) => _$PushCommitFromJson(json);
+  factory PushCommit.fromJson(Map<String, dynamic> json) =>
+      _$PushCommitFromJson(json);
 
   Map<String, dynamic> toJson() => _$PushCommitToJson(this);
 }

@@ -33,26 +33,32 @@ class _TrendingRepositoriesState extends State<TrendingRepositories>
   EasyRefreshController _controller;
 
   String timeStr = "今日";
-  String lanStr = "全部"; 
+  String lanStr = "全部";
 
   ///bloc
   final TrendBloc trendBloc = new TrendBloc();
 
   _renderItem(e) {
     RepoItemViewModel repoItemViewModel = RepoItemViewModel.fromTrendMap(e);
-    return RepoItem(repoItemViewModel,onPressed: (){
-      RouteManager.goReposDetail(context, repoItemViewModel.ownerName, repoItemViewModel.repositoryName);
-    },);
+    return RepoItem(
+      repoItemViewModel,
+      onPressed: () {
+        RouteManager.goReposDetail(context, repoItemViewModel.ownerName,
+            repoItemViewModel.repositoryName);
+      },
+    );
   }
 
   Future<void> onRefresh() async {
     return trendBloc.reqeustRefresh(selectTime, selectType);
   }
-@override
+
+  @override
   void initState() {
-     _controller = EasyRefreshController();
+    _controller = EasyRefreshController();
     super.initState();
   }
+
   @override
   void didChangeDependencies() {
     if (!trendBloc.requested) {
@@ -67,8 +73,11 @@ class _TrendingRepositoriesState extends State<TrendingRepositories>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    List<Map<String,List<TrendTypeModel>>> data = [{timeStr:trendTime(context)},{lanStr:trendType(context)}];
-    
+    List<Map<String, List<TrendTypeModel>>> data = [
+      {timeStr: trendTime(context)},
+      {lanStr: trendType(context)}
+    ];
+
     return StoreBuilder<MyState>(
       builder: (context, store) {
         return Scaffold(
@@ -88,32 +97,32 @@ class _TrendingRepositoriesState extends State<TrendingRepositories>
                         minHeight: 80,
                         maxHeight: 80,
                         snapConfig: FloatingHeaderSnapConfiguration(
-                          vsync:this,
+                          vsync: this,
                           curve: Curves.bounceInOut,
                           duration: const Duration(milliseconds: 10),
                         ),
-                        child: TrendPopupHeader(data,onSelected: (model){
-                          // print(model.name);
-                          
-                          for (TrendTypeModel item in trendTime(context)) {
-                            if (model.value == item.value) {
-                              selectTime = model;
-                              timeStr = model.name;
-                            }
-                          }
-                          for (TrendTypeModel item in trendType(context)) {
-                            if (model.value == item.value) {
-                              selectType = model;
-                              lanStr = model.name;
-                            }
-                          }
-                          setState(() {
-                            
-                          });
-                          _controller.callRefresh();
-                        },),
-                      ),
+                        child: TrendPopupHeader(
+                          data,
+                          onSelected: (model) {
+                            // print(model.name);
 
+                            for (TrendTypeModel item in trendTime(context)) {
+                              if (model.value == item.value) {
+                                selectTime = model;
+                                timeStr = model.name;
+                              }
+                            }
+                            for (TrendTypeModel item in trendType(context)) {
+                              if (model.value == item.value) {
+                                selectType = model;
+                                lanStr = model.name;
+                              }
+                            }
+                            setState(() {});
+                            _controller.callRefresh();
+                          },
+                        ),
+                      ),
                     ),
                     SliverList(
                       delegate: SliverChildBuilderDelegate(

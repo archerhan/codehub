@@ -5,16 +5,18 @@ import 'package:rxdart/rxdart.dart';
 class PushDetailBloc {
   bool _requested = false;
   bool _isLoading = false;
-    ///是否正在请求
+
+  ///是否正在请求
   bool get isLoading => _isLoading;
+
   ///是否已经请求过
   bool get requested => _requested;
 
-    ///rxdart 实现的 stream
+  ///rxdart 实现的 stream
   var _subject = PublishSubject<List<PushCommit>>();
   Observable<List<PushCommit>> get stream => _subject.stream;
 
-  Future<void> requestRefresh(userName,repoName,sha) async {
+  Future<void> requestRefresh(userName, repoName, sha) async {
     _isLoading = true;
     var res = ReposDao.getReposCommitsInfoDao(userName, repoName, sha);
     if (res != null && res.result) {

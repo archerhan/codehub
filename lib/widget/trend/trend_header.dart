@@ -11,12 +11,11 @@ import 'package:codehub/page/trending/trending_repositories_page.dart';
 import 'package:codehub/common/constant/global_style.dart';
 
 class TrendPopupHeader extends StatelessWidget {
-  
-  final List<Map<String,List<TrendTypeModel>>> dataList;
+  final List<Map<String, List<TrendTypeModel>>> dataList;
   final PopupMenuItemSelected<TrendTypeModel> onSelected;
-  TrendPopupHeader(this.dataList,{this.onSelected});
+  TrendPopupHeader(this.dataList, {this.onSelected});
 
-  _renderHeaderItem(String data, List<TrendTypeModel> list){
+  _renderHeaderItem(String data, List<TrendTypeModel> list) {
     return new Expanded(
       child: new PopupMenuButton<TrendTypeModel>(
         child: new Center(
@@ -29,9 +28,9 @@ class TrendPopupHeader extends StatelessWidget {
     );
   }
 
-  _renderPopupItem(List<TrendTypeModel> data){
+  _renderPopupItem(List<TrendTypeModel> data) {
     List<PopupMenuEntry<TrendTypeModel>> list = new List();
-        for (TrendTypeModel item in data) {
+    for (TrendTypeModel item in data) {
       list.add(PopupMenuItem<TrendTypeModel>(
         value: item,
         child: new Text(item.name),
@@ -40,18 +39,24 @@ class TrendPopupHeader extends StatelessWidget {
     return list;
   }
 
-  _renderHeader(){
+  _renderHeader() {
     List<Widget> itemList = List();
-    assert(itemList.length == 0,"itemList不能为空");
+    assert(itemList.length == 0, "itemList不能为空");
 
     for (var item in dataList) {
       Widget widget = _renderHeaderItem(item.keys.first, item.values.first);
       itemList.add(widget);
     }
-    itemList.insert(1, Container(width: 1,height: 40,color: Colors.white,));
+    itemList.insert(
+        1,
+        Container(
+          width: 1,
+          height: 40,
+          color: Colors.white,
+        ));
     return itemList;
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
