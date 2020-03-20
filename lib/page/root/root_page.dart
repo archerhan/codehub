@@ -77,8 +77,8 @@ class _RootControllerState extends State<RootController>
       case AppLifecycleState.paused:
         print("paused");
         break;
-      case AppLifecycleState.suspending:
-        print("suspending");
+      case AppLifecycleState.detached:
+        print("detached");
         break;
     }
     super.didChangeAppLifecycleState(state);
